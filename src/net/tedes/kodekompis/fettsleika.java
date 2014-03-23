@@ -1,5 +1,5 @@
 package net.tedes.kodekompis;
 
-public class Fest {
+public class fettsleika {
 
 }
