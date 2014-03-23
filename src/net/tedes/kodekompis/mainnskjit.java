@@ -1,5 +1,5 @@
 package net.tedes.kodekompis;
 
-public class fettsleika {
+public class mainnskjit {
 
 }
