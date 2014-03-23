@@ -1,115 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_background_color"
-     >
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp"
-        android:src="@drawable/ic_launcher"
+    android:weightSum="10"
+    android:orientation="vertical" 
+    >
+	
+    <!-- HEADER -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        >
+        <TextView
+	        android:id="@+id/code_view"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:textSize="30sp"
+	        android:textColor="@color/eb_white"
+	        android:textStyle="bold"
+	        android:gravity="center"
+	        android:hint="Kun for testing"
+	         />
         
-         />
+    </LinearLayout>
+    <!-- END HEADER -->
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
+
+	<!-- NUMMER RAD 1 -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageButton3"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="35dp"
-        android:background="@null"
-        android:src="@drawable/code0" />
-
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        
+        <ImageButton
+	        android:id="@+id/inputNumber1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/code1"
+	        android:padding="10dp"
+	         />
+        
+        <ImageButton
+	        android:id="@+id/inputNumber2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/code2"
+	        android:padding="10dp" />
+        
+        <ImageButton
+	        android:id="@+id/inputNumber3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/code3"
+	        android:padding="10dp" />
+        
+    </LinearLayout>
+    <!-- END NUMMER RAD 1 -->
+    
+    
+    <!-- NUMMER RAD 2 -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/imageView2"
-        android:layout_alignLeft="@+id/imageButton2"
-        android:layout_marginBottom="28dp"
-        android:background="@null"
-        android:src="@drawable/code8" />
-
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        
+        <ImageButton
+	        android:id="@+id/inputNumber4"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/code4"
+	        android:padding="10dp" />
+        
+        <ImageButton
+	        android:id="@+id/inputNumber5"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/code5" 
+	        android:padding="10dp"/>
+        
+        <ImageButton
+	        android:id="@+id/inputNumber6"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/code6" 
+	        android:padding="10dp"/>
+        
+    </LinearLayout>
+    <!-- END NUMMER RAD 2 -->
+    
+    
+    <!-- NUMMER RAD 3 -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/imageButton3"
-        android:layout_alignLeft="@+id/imageButton1"
-        android:layout_marginBottom="23dp"
-        android:background="@null"
-        android:src="@drawable/code5" />
-
-    <ImageButton
-        android:id="@+id/imageButton1"
-        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        
+        <ImageButton
+	        android:id="@+id/inputNumber7"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/code7"
+	        android:padding="10dp" />
+        
+        <ImageButton
+	        android:id="@+id/inputNumber8"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/code8"
+	        android:padding="10dp" />
+        
+        <ImageButton
+	        android:id="@+id/inputNumber9"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/code9"
+	        android:padding="10dp" />
+        
+    </LinearLayout>
+    <!-- END NUMMER RAD 3 -->
+    
+    
+    <!-- NUMMER RAD 4 -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/imageButton2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="22dp"
-        android:background="@null"
-        android:src="@drawable/code2" />
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        
+        <ImageButton
+	        android:id="@+id/inputNumber0"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/code0"
+	        android:padding="10dp" />
+        
+    </LinearLayout>
+	<!-- END NUMMER RAD 4 -->
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageButton1"
-        android:layout_marginLeft="31dp"
-        android:layout_toRightOf="@+id/imageButton1"
-        android:background="@null"
-        android:src="@drawable/code3" />
-
-    <ImageButton
-        android:id="@+id/imageButton4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageButton1"
-        android:layout_marginRight="31dp"
-        android:layout_toLeftOf="@+id/imageButton1"
-        android:background="@null"
-        android:src="@drawable/code1" />
-
-    <ImageButton
-        android:id="@+id/imageButton5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageButton4"
-        android:layout_alignTop="@+id/imageButton2"
-        android:background="@null"
-        android:src="@drawable/code4" />
-
-    <ImageButton
-        android:id="@+id/imageButton6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView3"
-        android:layout_alignTop="@+id/imageButton2"
-        android:background="@null"
-        android:src="@drawable/code6" />
-
-    <ImageButton
-        android:id="@+id/imageButton7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageButton5"
-        android:layout_alignTop="@+id/imageButton3"
-        android:background="@null"
-        android:src="@drawable/code7" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageButton6"
-        android:layout_below="@+id/imageButton2"
-        android:background="@null"
-        android:src="@drawable/code9" />
-
-</RelativeLayout>
+</LinearLayout>
