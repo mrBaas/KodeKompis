@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class CodePanelFragment extends Fragment implements OnClickListener {
+public class FragmentCodePanel extends Fragment implements OnClickListener {
 
 	//Kun for testing
 	TextView mVisKode;
@@ -26,7 +26,7 @@ public class CodePanelFragment extends Fragment implements OnClickListener {
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.code_fragment_layout, parent, false);
+		View v = inflater.inflate(R.layout.fragment_layout_code, parent, false);
 		
 		
 		mVisKode = (TextView)v.findViewById(R.id.code_view);
@@ -106,7 +106,7 @@ public class CodePanelFragment extends Fragment implements OnClickListener {
 		} else if (mVisKode.length() == 3){
 			//Loader skal etter hvert hit
 			mVisKode.append(String.valueOf(n));
-			Intent i = new Intent(getActivity(), CodeListActivity.class);
+			Intent i = new Intent(getActivity(), ActivityCodeList.class);
 			startActivity(i);
 		} else {
 			//Do nothing
@@ -121,5 +121,4 @@ public class CodePanelFragment extends Fragment implements OnClickListener {
 			//Do nothing
 		}
 	}
-	
 }
