@@ -105,7 +105,7 @@ public class CodePanelFragment extends Fragment implements OnClickListener {
 		if(mVisKode.length() < 3){
 			mVisKode.append(String.valueOf(n));
 		} else if (mVisKode.length() == 3){
-			//Loader her
+			//Loader skal etter hvert hit
 			mVisKode.append(String.valueOf(n));
 			Intent i = new Intent(getActivity(), CodeListActivity.class);
 			startActivity(i);
