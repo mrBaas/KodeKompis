@@ -1,5 +1,6 @@
 package net.tedes.kodekompis;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ public class CodePanelFragment extends Fragment implements OnClickListener {
 
 	//Kun for testing
 	TextView mVisKode;
+	Context context;
 	
 	//KodePanel med ImageButtons
 	ImageButton knapp1, knapp2, knapp3, knapp4, knapp5, knapp6, knapp7, knapp8, knapp9, knapp0, slett;
@@ -27,6 +29,8 @@ public class CodePanelFragment extends Fragment implements OnClickListener {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.code_fragment_layout, parent, false);
+		
+		context = getActivity();
 		
 		mVisKode = (TextView)v.findViewById(R.id.code_view);
 		
@@ -103,7 +107,7 @@ public class CodePanelFragment extends Fragment implements OnClickListener {
 		if(mVisKode.length() < 3){
 			mVisKode.append(String.valueOf(n));
 		} else if (mVisKode.length() == 4){
-			startActivity(new Intent(this, CodeListActivity.class));
+			startActivity(new Intent(context, CodeListActivity.class));
 		} else {
 			//Do nothing
 		}	
