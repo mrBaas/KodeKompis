@@ -1,5 +1,6 @@
 package net.tedes.kodekompis;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -99,18 +100,22 @@ public class CodePanelFragment extends Fragment implements OnClickListener {
 	}
 	
 	public void addNumberToTextView(int n){
-		if(mVisKode.length() < 4){
+		if(mVisKode.length() < 3){
 			mVisKode.append(String.valueOf(n));
-		}else {
-			//Ikke gjør noenting i første omgang
+		} else if (mVisKode.length() == 4){
+			startActivity(new Intent(this, CodeListActivity.class));
+		} else {
+			//Do nothing
 		}	
 	}
 	
 	public void slettNummer(){
-		if(!mVisKode.getText().equals("") || mVisKode.length() < 4){
+		if(mVisKode.length() > 0){
 			String tempText = String.valueOf(mVisKode.getText());
 			mVisKode.setText(tempText.substring(0, tempText.length() - 1));
-		} 
+		} else {
+			//Do nothing
+		}
 	}
 	
 }
