@@ -2,4 +2,6 @@
 <resources>
     <color name="main_background_color">#6a6a6a</color>
     <color name="eb_white">#ebebeb</color>
+    <color name="liste_bolk_bakgrunn">#212121</color>
+    <color name="liste_bolk_sub">#f5f5f5</color>
 </resources>

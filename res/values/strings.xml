@@ -3,6 +3,24 @@
 
     <string name="app_name">KodeKompis</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-
+    
+    <!-- DATABOLK MODELL -->
+    <string name="sted_hint">URL/SYSTEM</string>
+    <string name="bruker_hint">> Brukernavn</string>
+    <string name="passord_hint">> Passord</string>
+    <!-- END DATABOLK MODELL -->
+    
+    <!-- MENU -->
+	<string name="legg_til">Legg til</string>
+	<!-- END MENU -->
+	
+	<!-- DIALOG -->
+	<string name="dialog_header">Her ska det vær ei overskrift!</string>
+	<string name="dialog_sted_valg">Sted:</string>
+	<string name="dialog_sted_hint">Wordfeud</string>
+	<string name="dialog_bruker_valg">Brukernavn:</string>
+	<string name="dialog_bruker_hint">OlaNord123</string>
+	<string name="dialog_passord_valg">Passord:</string>
+	<string name="dialog_pass_hint">Snuski1945</string>
+	<!-- END DIALOG -->
 </resources>
