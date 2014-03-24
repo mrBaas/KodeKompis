@@ -17,11 +17,10 @@
 	        android:id="@+id/code_view"
 	        android:layout_width="match_parent"
 	        android:layout_height="match_parent"
-	        android:textSize="30sp"
+	        android:textSize="34sp"
 	        android:textColor="@color/eb_white"
 	        android:textStyle="bold"
 	        android:gravity="center"
-	        android:hint="Kun for testing"
 	         />
         
     </LinearLayout>
@@ -145,12 +144,27 @@
         android:gravity="center"
         >
         
+        <ImageView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/whitespace"
+	        android:padding="10dp" />
+        
         <ImageButton
 	        android:id="@+id/inputNumber0"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:background="@null"
 	        android:src="@drawable/code0"
+	        android:padding="10dp" />
+        
+        <ImageButton
+	        android:id="@+id/slett"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/slett"
 	        android:padding="10dp" />
         
     </LinearLayout>

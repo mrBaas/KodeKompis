@@ -15,7 +15,7 @@ public class CodePanelFragment extends Fragment implements OnClickListener {
 	TextView mVisKode;
 	
 	//KodePanel med ImageButtons
-	ImageButton knapp1, knapp2, knapp3, knapp4, knapp5, knapp6, knapp7, knapp8, knapp9, knapp0;
+	ImageButton knapp1, knapp2, knapp3, knapp4, knapp5, knapp6, knapp7, knapp8, knapp9, knapp0, slett;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,7 @@ public class CodePanelFragment extends Fragment implements OnClickListener {
 		knapp8 = (ImageButton)v.findViewById(R.id.inputNumber8);
 		knapp9 = (ImageButton)v.findViewById(R.id.inputNumber9);
 		knapp0 = (ImageButton)v.findViewById(R.id.inputNumber0);
+		slett = (ImageButton)v.findViewById(R.id.slett);
 		
 		//Setter lyttere på hver knapp
 		knapp1.setOnClickListener(this);
@@ -52,7 +53,7 @@ public class CodePanelFragment extends Fragment implements OnClickListener {
 		knapp8.setOnClickListener(this);
 		knapp9.setOnClickListener(this);
 		knapp0.setOnClickListener(this);
-		
+		slett.setOnClickListener(this);
 		
 		return v;
 	}
@@ -89,6 +90,10 @@ public class CodePanelFragment extends Fragment implements OnClickListener {
            case R.id.inputNumber0:
         	   addNumberToTextView(0);
                break;
+           case R.id.slett:
+        	   slettNummer();
+        	   break;
+        	   
 	       
 	   } 
 	}
@@ -97,9 +102,15 @@ public class CodePanelFragment extends Fragment implements OnClickListener {
 		if(mVisKode.length() < 4){
 			mVisKode.append(String.valueOf(n));
 		}else {
-			
-		}
-		
+			//Ikke gjør noenting i første omgang
+		}	
+	}
+	
+	public void slettNummer(){
+		if(!mVisKode.getText().equals("") || mVisKode.length() < 4){
+			String tempText = String.valueOf(mVisKode.getText());
+			mVisKode.setText(tempText.substring(0, tempText.length() - 1));
+		} 
 	}
 	
 }
