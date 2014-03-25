@@ -23,6 +23,7 @@ import android.util.Log;
 
 public class Security {
 	
+	//These final values could eventually be written to preferences upon first start.
 	private static final String TAG = Security.class.getSimpleName();
 	private static final int SALT_BYTE_SIZE = 32;
 	private static final String DELIMITER = "]";
