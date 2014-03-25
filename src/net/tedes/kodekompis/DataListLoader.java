@@ -1,5 +1,6 @@
 package net.tedes.kodekompis;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
 
 public class DataListLoader extends AsyncTaskLoader<List<DataBolk>> {
+	
 		List<DataBolk> mDataBolks;
 		
 		public DataListLoader(Context context){
@@ -23,22 +25,21 @@ public class DataListLoader extends AsyncTaskLoader<List<DataBolk>> {
 			
 			//Test av entries
 			
-			List<DataBolk> entries = new ArrayList<DataBolk>();
-			int counter = 0;
-			while(counter < 1000){
-				entries.add(new DataBolk(counter,"Facebook" + counter, "Joeran","Rasshøl"));
-				counter++;
+			List<DataBolk> entries = InternalStorage.getDataBolks(getContext());
+			
+			if(entries == null){
+				entries = new ArrayList<DataBolk>();
 			}
+			
+//			int counter = 0;
+//			while(counter < 1000){
+//				entries.add(new DataBolk(counter,"Facebook" + counter, "Joeran","Rasshøl"));
+//				counter++;
+//			}
 			return entries;
 			
 		}
-		
-		/**
-		 * 
-		 * LocationListener for henting av lokasjonsdata i DataListLoader
-		 *
-		 */
-		
+	
 		
 		/**
 		*Metode som blir kalt når det er ny data som skal til klienten

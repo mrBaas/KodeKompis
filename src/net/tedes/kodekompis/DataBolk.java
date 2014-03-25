@@ -1,6 +1,8 @@
 package net.tedes.kodekompis;
 
-public class DataBolk {
+import java.io.Serializable;
+
+public class DataBolk implements Serializable {
 	
 	int mId;
 	String mSted;

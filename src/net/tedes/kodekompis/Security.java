@@ -22,9 +22,6 @@ import android.util.Base64;
 import android.util.Log;
 
 public class Security {
-
-	//When creating PIN, save securekey and salt on internal storage.
-	//Use same method when comparing user pin input for access later.
 	
 	private static final String TAG = Security.class.getSimpleName();
 	private static final int SALT_BYTE_SIZE = 32;
