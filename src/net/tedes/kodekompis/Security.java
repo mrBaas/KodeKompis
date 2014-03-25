@@ -19,6 +19,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import android.content.Context;
 import android.util.Base64;
 import android.util.Log;
 
@@ -128,10 +129,68 @@ public class Security {
 		}
 	}
 	
+	public static String kodeDekrypter(String kryptert, String password) {
+		try {
+			String[] fields = kryptert.split("]");
+			byte[] salt = fromBase64(fields[0]);
+			byte[] iv = fromBase64(fields[1]);
+			byte[] cipherBytes = fromBase64(fields[2]);
+			
+			SecretKey key = generateKey(password, salt);
+			Cipher cipher = Cipher.getInstance(ALGORITHM_CIPHER);
+			IvParameterSpec ivParams = new IvParameterSpec(iv);
+			cipher.init(Cipher.DECRYPT_MODE, key, ivParams);
+			byte[] plaintext = cipher.doFinal(cipherBytes);
+			String plainStr = new String(plaintext , "UTF-8");
+			return plainStr;
+		} catch (NoSuchAlgorithmException e) {
+			//throw new RuntimeException(e);
+			return null;
+		} catch (UnsupportedEncodingException e) {
+			//throw new RuntimeException(e);
+			return null;
+		} catch (BadPaddingException e) {
+			//throw new RuntimeException(e);
+			return null;
+		} catch (IllegalBlockSizeException e) {
+			//throw new RuntimeException(e);
+			return null;
+		} catch (InvalidAlgorithmParameterException e) {
+			//throw new RuntimeException(e);
+			return null;
+		} catch (InvalidKeyException e) {
+			//throw new RuntimeException(e);
+			return null;
+		} catch (NoSuchPaddingException e) {
+			//throw new RuntimeException(e);
+			return null;
+		}
+	}
+	
 	private static String DecryptFailed(String kryptert){
 		return kryptert.substring(0, 19);
 	}
 
+	public static void savePassword(Context context, String password){
+		byte[] salt   = generateSalt();
+		SecretKey key = generateKey(password, salt);
+		String hash   = krypter(password, key, salt);
+		
+		InternalStorage.writeKode(context, hash);
+	}
+	
+	public static boolean comparePassword(Context context, String password) {
+		String hash = InternalStorage.readKode(context);
+		String savedPassword = Security.kodeDekrypter(hash, password);
+		if(savedPassword == null){
+			return false;
+		} else {
+			return savedPassword.equals(password);
+		}
+	}
+	
+	
+	
   //Generate a random salt. Remember to keep salt stored safely.
 	public static byte[] generateSalt() {
 		SecureRandom random = new SecureRandom();

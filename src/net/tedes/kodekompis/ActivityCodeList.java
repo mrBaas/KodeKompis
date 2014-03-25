@@ -31,9 +31,13 @@ public class ActivityCodeList extends FragmentActivity
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		FragmentManager fm = getSupportFragmentManager();
-		FragmentLeggTilListe leggTil = new FragmentLeggTilListe();
-        leggTil.show(fm, "fragment_dialog_create");
-        
+		boolean check = Security.comparePassword(getBaseContext(), kode);
+		if(check){
+			FragmentLeggTilListe leggTil = new FragmentLeggTilListe();
+	        leggTil.show(fm, "fragment_dialog_create");
+		} else {
+			//Do nothing, wrong password.
+		}
 		return true;
 	}
 	

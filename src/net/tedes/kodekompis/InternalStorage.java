@@ -15,7 +15,8 @@ import android.content.Context;
 public final class InternalStorage {
 
 	private InternalStorage() {}
-	private static final String FILENAME = "tedesliste";
+	private static final String FILENAME_OBJECTLIST = "tedesliste";
+	private static final String FILENAME_KODELIST = "rotliste";
 
 	public static ArrayList<DataBolk> readList(Context context, String password) {
 		ArrayList<DataBolk> bolks = Security.dekrypterListe(readListEncrypted(context), password);
@@ -25,7 +26,7 @@ public final class InternalStorage {
 	public static ArrayList<DataBolkEncrypted> readListEncrypted(Context context){
 		ArrayList<DataBolkEncrypted> entries = null;
 			try {
-				Object objectFromFile = readObject(context, FILENAME);
+				Object objectFromFile = readObject(context, FILENAME_OBJECTLIST);
 				entries = (ArrayList<DataBolkEncrypted>) objectFromFile;
 			} catch (StreamCorruptedException e) {
 				e.printStackTrace();
@@ -46,7 +47,42 @@ public final class InternalStorage {
 	
 	public static void writeListEncrypted(Context context, ArrayList<DataBolkEncrypted> entries){
 		try {
-			writeObject(context, FILENAME, entries);
+			writeObject(context, FILENAME_OBJECTLIST, entries);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//Warning, invoking this method will reset the stored list.
+	public static void resetList(Context context, String password) {
+		ArrayList<DataBolk> temp = new ArrayList<DataBolk>();
+		InternalStorage.writeList(context, temp, password);
+	}
+	
+	public static String readKode(Context context){
+		String hash = null;
+			try {
+				Object objectFromFile = readObject(context, FILENAME_KODELIST);
+				hash = (String) objectFromFile;
+			} catch (StreamCorruptedException e) {
+				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			if(hash.equals("") || hash == null) {
+				throw new RuntimeException();
+			}
+			
+		return hash;
+	}
+	
+	public static void writeKode(Context context, String hash){
+		try {
+			writeObject(context, FILENAME_KODELIST, hash);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

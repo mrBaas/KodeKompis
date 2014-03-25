@@ -142,7 +142,11 @@ public class FragmentCodePanel extends Fragment implements OnClickListener {
 			mVisKode.append(String.valueOf(n));
 			Intent i = new Intent(getActivity(), ActivityCodeList.class);
 			//Ship kode to ActivityCodeList
-			i.putExtra("kode", String.valueOf(mVisKode.getText()));
+			String kode = String.valueOf(mVisKode.getText());
+			i.putExtra("kode", kode);
+			
+			//MOVE TO FIRST TIME LAUNCH ONLY
+			//Security.savePassword(getActivity(), kode);
 			//Toast.makeText(getActivity().getBaseContext(), "kode: "+String.valueOf(mVisKode.getText()), Toast.LENGTH_LONG).show();
 			startActivity(i);
 		} else {
