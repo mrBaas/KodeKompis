@@ -66,6 +66,8 @@ public class FragmentCodePanel extends Fragment implements OnClickListener {
 		knapp0.setOnClickListener(this);
 		slett.setOnClickListener(this);
 		
+		slett.setVisibility(View.INVISIBLE);
+		
 		return v;
 	}
 	
@@ -111,6 +113,7 @@ public class FragmentCodePanel extends Fragment implements OnClickListener {
 	
 	public void addNumberToTextView(int n){
 		if(mVisKode.length() < 3){
+			Fader.FadeIn(getActivity(), slett.getId());
 			mVisKode.append(String.valueOf(n));
 			
 			//For testing purposes
@@ -141,10 +144,14 @@ public class FragmentCodePanel extends Fragment implements OnClickListener {
 	}
 	
 	public void slettNummer(){
-		if(mVisKode.length() > 0){
+		if(mVisKode.length() > 0 && mVisKode.length() != 1){
 			String tempText = String.valueOf(mVisKode.getText());
 			mVisKode.setText(tempText.substring(0, tempText.length() - 1));
-		} else {
+		} else if (mVisKode.length() == 1) {
+			String tempText = String.valueOf(mVisKode.getText());
+			mVisKode.setText(tempText.substring(0, tempText.length() - 1));
+			Fader.FadOut(getActivity(), slett.getId());
+		}else {
 			//Do nothing
 		}
 	}
