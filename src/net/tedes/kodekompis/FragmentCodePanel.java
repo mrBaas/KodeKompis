@@ -113,7 +113,9 @@ public class FragmentCodePanel extends Fragment implements OnClickListener {
 	
 	public void addNumberToTextView(int n){
 		if(mVisKode.length() < 3){
-			Fader.FadeIn(getActivity(), slett.getId());
+			if(mVisKode.length() == 0){
+				Fader.FadeIn(getActivity(), slett.getId());
+			}
 			mVisKode.append(String.valueOf(n));
 		
 			
