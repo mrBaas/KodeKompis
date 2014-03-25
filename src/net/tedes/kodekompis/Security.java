@@ -7,6 +7,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.KeySpec;
+import java.util.ArrayList;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -48,6 +49,32 @@ public class Security {
         }
     }
 	
+	public static ArrayList<DataBolk> dekrypterListe(ArrayList<DataBolkEncrypted> bolksEncrypted, String password) {
+		
+		DataBolk bolk;
+		ArrayList<DataBolk> bolks = new ArrayList<DataBolk>();
+		
+		for(int i=0; i<bolksEncrypted.size();i++){
+			bolk = new DataBolk(bolksEncrypted.get(i), password);
+			bolks.add(bolk);
+		}
+		
+		return bolks;
+	}
+	
+	public static ArrayList<DataBolkEncrypted> krypterListe(ArrayList<DataBolk> bolks, String password) {
+		
+		DataBolkEncrypted bolkEncrypted;
+		ArrayList<DataBolkEncrypted> bolksEncrypted = new ArrayList<DataBolkEncrypted>();
+		
+		for(int i=0; i<bolks.size();i++){
+			bolkEncrypted = new DataBolkEncrypted(bolks.get(i), password);
+			bolksEncrypted.add(bolkEncrypted);
+		}
+		
+		return bolksEncrypted;
+	}
+	
 	public static String krypter(String plaintext, SecretKey key, byte[] salt) {
         try {
             Cipher cipher = Cipher.getInstance(ALGORITHM_CIPHER);
@@ -79,30 +106,30 @@ public class Security {
 			return plainStr;
 		} catch (NoSuchAlgorithmException e) {
 			//throw new RuntimeException(e);
-			return DecryptFailed();
+			return DecryptFailed(kryptert);
 		} catch (UnsupportedEncodingException e) {
 			//throw new RuntimeException(e);
-			return DecryptFailed();
+			return DecryptFailed(kryptert);
 		} catch (BadPaddingException e) {
 			//throw new RuntimeException(e);
-			return DecryptFailed();
+			return DecryptFailed(kryptert);
 		} catch (IllegalBlockSizeException e) {
 			//throw new RuntimeException(e);
-			return DecryptFailed();
+			return DecryptFailed(kryptert);
 		} catch (InvalidAlgorithmParameterException e) {
 			//throw new RuntimeException(e);
-			return DecryptFailed();
+			return DecryptFailed(kryptert);
 		} catch (InvalidKeyException e) {
 			//throw new RuntimeException(e);
-			return DecryptFailed();
+			return DecryptFailed(kryptert);
 		} catch (NoSuchPaddingException e) {
 			//throw new RuntimeException(e);
-			return DecryptFailed();
+			return DecryptFailed(kryptert);
 		}
 	}
 	
-	private static String DecryptFailed(){
-		return "Failed.";
+	private static String DecryptFailed(String kryptert){
+		return kryptert.substring(0, 19);
 	}
 
   //Generate a random salt. Remember to keep salt stored safely.

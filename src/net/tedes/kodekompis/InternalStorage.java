@@ -17,11 +17,16 @@ public final class InternalStorage {
 	private InternalStorage() {}
 	private static final String FILENAME = "tedesliste";
 
-	public static List<DataBolk> getDataBolks(Context context){
-		List<DataBolk> entries = null;
+	public static ArrayList<DataBolk> readList(Context context, String password) {
+		ArrayList<DataBolk> bolks = Security.dekrypterListe(readListEncrypted(context), password);
+		return bolks;
+	}
+	
+	public static ArrayList<DataBolkEncrypted> readListEncrypted(Context context){
+		ArrayList<DataBolkEncrypted> entries = null;
 			try {
 				Object objectFromFile = readObject(context, FILENAME);
-				entries = (ArrayList<DataBolk>) objectFromFile;
+				entries = (ArrayList<DataBolkEncrypted>) objectFromFile;
 			} catch (StreamCorruptedException e) {
 				e.printStackTrace();
 			} catch (FileNotFoundException e) {
@@ -34,7 +39,7 @@ public final class InternalStorage {
 		return entries;
 	}
 	
-	public static void setDataBolks(Context context, ArrayList<DataBolk> entries){
+	public static void writeListEncrypted(Context context, ArrayList<DataBolkEncrypted> entries){
 		try {
 			writeObject(context, FILENAME, entries);
 		} catch (IOException e) {

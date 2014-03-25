@@ -118,38 +118,16 @@ public class FragmentCodePanel extends Fragment implements OnClickListener {
 				String appPassword = "1234";
 				String feilPassord = "2345";
 				
-				byte[] 	  itemStedSalt   = Security.generateSalt();
-				byte[] 	  itemBrukerSalt = Security.generateSalt();
-				byte[] 	  itemPassSalt   = Security.generateSalt();
-				
-				SecretKey itemStedKey    = Security.generateKey(appPassword, itemStedSalt);
-				SecretKey itemBrukerKey  = Security.generateKey(appPassword, itemBrukerSalt);
-				SecretKey itemPassKey    = Security.generateKey(appPassword, itemPassSalt);
-				
 				String itemStedPlain   = "stad";
-				String itemStedCrypt   = Security.krypter(itemStedPlain, itemStedKey, itemStedSalt);
-				String itemStedDecrypt = Security.dekrypter(itemStedCrypt, appPassword);
-				String itemStedFail    = Security.dekrypter(itemStedCrypt, feilPassord);
-				
 				String itemBrukerPlain   = "bruker";
-				String itemBrukerCrypt   = Security.krypter(itemBrukerPlain, itemBrukerKey, itemBrukerSalt);
-				String itemBrukerDecrypt = Security.dekrypter(itemBrukerCrypt, appPassword);
-				String itemBrukerFail    = Security.dekrypter(itemBrukerCrypt, feilPassord);
-				
 				String itemPassPlain   = "passord";
-				String itemPassCrypt   = Security.krypter(itemPassPlain, itemPassKey, itemPassSalt);
-				String itemPassDecrypt = Security.dekrypter(itemPassCrypt, appPassword);
-				String itemPassFail    = Security.dekrypter(itemPassCrypt, feilPassord);
+
+				DataBolk 		  test1 = new DataBolk("Plain: "+itemStedPlain, itemBrukerPlain, itemPassPlain);
+				DataBolkEncrypted test2 = new DataBolkEncrypted(test1, appPassword);
 				
-				DataBolk test1 = new DataBolk("Plain: "+itemStedPlain, itemBrukerPlain, itemPassPlain);
-				DataBolk test2 = new DataBolk("Encrypt: "+itemStedCrypt, itemBrukerCrypt, itemPassCrypt);
-				DataBolk test3 = new DataBolk("Decrypt: "+itemStedDecrypt, itemBrukerDecrypt, itemPassDecrypt);
-				DataBolk test4 = new DataBolk("Fail: "+itemStedFail, itemBrukerFail, itemPassFail);
-				List<DataBolk> testlist = new ArrayList<DataBolk>();
-				testlist.add(test1);
+				List<DataBolkEncrypted> testlist = new ArrayList<DataBolkEncrypted>();
 				testlist.add(test2);
-				testlist.add(test3);
-				InternalStorage.setDataBolks(getActivity().getBaseContext(), (ArrayList<DataBolk>)testlist);
+				InternalStorage.writeListEncrypted(getActivity().getBaseContext(), (ArrayList<DataBolkEncrypted>) testlist);
 			}
 			
 		} else if (mVisKode.length() == 3){

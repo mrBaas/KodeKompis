@@ -3,7 +3,7 @@ package net.tedes.kodekompis;
 import java.io.Serializable;
 import java.util.UUID;
 
-public class DataBolk implements Serializable {
+public class DataBolkEncrypted implements Serializable {
 	
 	/**
 	 * 
@@ -14,20 +14,23 @@ public class DataBolk implements Serializable {
 	private String mBrukernavn;
 	private String mPassord;
 
-	public DataBolk(String sted, String bruker, String pass) {
-		this.mId = UUID.randomUUID();
-		this.mSted = sted;
-		this.mBrukernavn = bruker;
-		this.mPassord = pass;
-	}
-
-	public DataBolk(DataBolkEncrypted bolk, String password){
+//	public DataBolkEncrypted(UUID mId, String sted, String bruker, String pass) {
+//		this.mId = mId;
+//		this.mSted = sted;
+//		this.mBrukernavn = bruker;
+//		this.mPassord = pass;
+//	}
+	
+	public DataBolkEncrypted(DataBolk bolk, String password) {
+		byte[] salt1 = Security.generateSalt();
+		byte[] salt2 = Security.generateSalt();
+		
 		this.mId 			= bolk.getmId();
 		this.mSted 			= bolk.getmSted();
-		this.mBrukernavn 	= Security.dekrypter(bolk.getmBrukernavn(), password);
-		this.mPassord 		= Security.dekrypter(bolk.getmPassord(), password);
+		this.mBrukernavn 	= Security.krypter(bolk.getmBrukernavn(), Security.generateKey(password, salt1), salt1);
+		this.mPassord		= Security.krypter(bolk.getmPassord(), Security.generateKey(password, salt2), salt2);
 	}
-	
+
 	public String getmSted() {
 		return mSted;
 	}
