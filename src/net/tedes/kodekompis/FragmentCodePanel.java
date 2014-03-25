@@ -115,6 +115,7 @@ public class FragmentCodePanel extends Fragment implements OnClickListener {
 		if(mVisKode.length() < 3){
 			Fader.FadeIn(getActivity(), slett.getId());
 			mVisKode.append(String.valueOf(n));
+		
 			
 			//For testing purposes
 			if(mVisKode.length() == 1) {
