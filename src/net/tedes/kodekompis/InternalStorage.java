@@ -34,6 +34,14 @@ public final class InternalStorage {
 		return entries;
 	}
 	
+	public static void setDataBolks(Context context, ArrayList<DataBolk> entries){
+		try {
+			writeObject(context, FILENAME, entries);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private static void writeObject(Context context, String key, Object object) throws IOException {
 		FileOutputStream fos = context.openFileOutput(key, Context.MODE_PRIVATE);
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
