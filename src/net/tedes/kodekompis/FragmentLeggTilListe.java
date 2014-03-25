@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,11 +11,18 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class FragmentLeggTilListe extends DialogFragment implements OnClickListener {
 	
-	Button mAvbryt;
-	Button mLeggTil;
+	private DataBolk mInputListe;
+	
+	private Button mAvbryt;
+	private Button mLeggTil;
+	
+	private EditText mSted;
+	private EditText mBruker;
+	private EditText mPass;
 
     public FragmentLeggTilListe() {
         // Empty constructor required for DialogFragment
@@ -30,8 +36,13 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         getDialog().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         
+        
         mAvbryt = (Button)view.findViewById(R.id.dialog_button_avbryt);
         mLeggTil = (Button)view.findViewById(R.id.dialog_button_legg_til);
+        
+        mSted = (EditText)view.findViewById(R.id.dialog_input_sted);
+        mBruker = (EditText)view.findViewById(R.id.dialog_input_bruker);
+        mPass = (EditText)view.findViewById(R.id.dialog_input_passord);
         
         mAvbryt.setOnClickListener(this);
         mLeggTil.setOnClickListener(this);
@@ -48,7 +59,7 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         		getDialog().dismiss();
         		break;
         	case R.id.dialog_button_legg_til:
-        		//Do Something
+        		mInputListe = new DataBolk(mSted.getText().toString(), mBruker.getText().toString(), mPass.getText().toString());
         		break;
 		}
 	}

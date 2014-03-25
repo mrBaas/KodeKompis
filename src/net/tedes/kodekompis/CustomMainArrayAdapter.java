@@ -27,6 +27,10 @@ public class CustomMainArrayAdapter extends ArrayAdapter<DataBolk> {
 		}
 	}
 	
+	public void setDataBolk(DataBolk data){
+		add(data);
+	}
+	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent){
 		View view;

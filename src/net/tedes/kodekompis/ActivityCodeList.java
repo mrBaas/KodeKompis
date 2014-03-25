@@ -20,7 +20,7 @@ public class ActivityCodeList extends FragmentActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		FragmentManager fm = getSupportFragmentManager();
-        FragmentLeggTilListe leggTil = new FragmentLeggTilListe();
+		FragmentLeggTilListe leggTil = new FragmentLeggTilListe();
         leggTil.show(fm, "fragment_dialog_create");
         
 		return true;

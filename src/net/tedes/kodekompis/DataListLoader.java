@@ -18,10 +18,6 @@ public class DataListLoader extends AsyncTaskLoader<List<DataBolk>> {
 		public List<DataBolk> loadInBackground() {
 			//Metode som laster inn data i bakgrunnen
 			
-			//Her må det først kjøres et kall etter data koblet til lokasjon
-			//Deretter skal det lastes inn data i forbindelse med søk/tidliger søk
-			
-			
 			//Test av entries
 			//REMEMBER TO IMPLEMENT DECRYPTION THROUGH SECURITY.JAVA HERE, AFTER FIRST READ/WRITE TESTS.
 			List<DataBolk> entries = InternalStorage.getDataBolks(getContext());

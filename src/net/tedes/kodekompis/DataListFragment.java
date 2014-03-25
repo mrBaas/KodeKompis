@@ -21,6 +21,7 @@ public class DataListFragment extends ListFragment implements LoaderManager.Load
 	public void onActivityCreated(Bundle savedInstanceState){
 		super.onActivityCreated(savedInstanceState);
 		
+		
 		//I utgangspunktet er listen tom
 		setEmptyText("Takk for at du bruker denne applikasjonen. Begynn å lagre dine brukernavn og passord ved å trykke på + tegnet.");
 		
@@ -36,7 +37,6 @@ public class DataListFragment extends ListFragment implements LoaderManager.Load
 		getLoaderManager().initLoader(0, null, this);
 		
 	}
-	
 	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id){
