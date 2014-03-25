@@ -23,7 +23,7 @@ public class DataListLoader extends AsyncTaskLoader<List<DataBolk>> {
 			
 			
 			//Test av entries
-			
+			//REMEMBER TO IMPLEMENT DECRYPTION THROUGH SECURITY.JAVA HERE, AFTER FIRST READ/WRITE TESTS.
 			List<DataBolk> entries = InternalStorage.getDataBolks(getContext());
 			
 			if(entries == null){
