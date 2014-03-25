@@ -29,7 +29,7 @@ public class Security {
 	private static final String DELIMITER = "]";
 	private static int KEY_LENGTH = 256;
     //iteration count determines run time for en-/decryption
-    private static int ITERATION_COUNT = 1000;
+    private static int ITERATION_COUNT = 10;
     private static final String ALGORITHM_PBKDF2 = "PBKDF2WithHmacSHA1";
     private static final String ALGORITHM_CIPHER = "AES/CBC/PKCS5Padding";
 	
