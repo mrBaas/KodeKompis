@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,6 +14,7 @@ public class ActivityCodeList extends FragmentActivity
 					implements FragmentLeggTilListe.OnNewBolkFinished {
 	
 	private DataListFragment datalistFragment;
+	private String kode;
 	
 	@Override
 	public void sendBolkenVidere(DataBolk bolken) {
@@ -40,7 +42,10 @@ public class ActivityCodeList extends FragmentActivity
 		super.onCreate(savedInstanceState);
 		
 		//Picking up kode from startscreen
-		//this.kode = getIntent().getStringExtra("kode");
+		Bundle extras = getIntent().getExtras();
+		String kode = extras.getString("kode");
+		this.kode = kode;
+		Log.d("Martin", "activity-kode: "+kode);
 				
 		setContentView(R.layout.activity_layout_code_list);
 		
@@ -52,6 +57,7 @@ public class ActivityCodeList extends FragmentActivity
 		if (fragment == null) {
 			fragment = new DataListFragment();
 			datalistFragment = (DataListFragment)fragment;
+			datalistFragment.setKode(kode);
 			fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
 		}
 	}

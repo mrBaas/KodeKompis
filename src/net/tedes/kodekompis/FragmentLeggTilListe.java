@@ -16,13 +16,12 @@ import android.widget.EditText;
 
 public class FragmentLeggTilListe extends DialogFragment implements OnClickListener {
 	
-	OnNewBolkFinished mCallback;
+	private OnNewBolkFinished mCallback;
 
     // Container Activity must implement this interface
     public interface OnNewBolkFinished {
         public void sendBolkenVidere(DataBolk bolken);
     }
-
 
     @Override
     public void onAttach(Activity activity) {

@@ -9,9 +9,11 @@ import android.support.v4.content.AsyncTaskLoader;
 public class DataListLoader extends AsyncTaskLoader<List<DataBolk>> {
 	
 		List<DataBolk> mDataBolks;
+		private String kode;
 		
-		public DataListLoader(Context context){
+		public DataListLoader(Context context, String kode){
 			super(context);
+			this.kode = kode;
 		}
 
 		@Override
@@ -22,7 +24,7 @@ public class DataListLoader extends AsyncTaskLoader<List<DataBolk>> {
 			//REMEMBER TO IMPLEMENT DECRYPTION THROUGH SECURITY.JAVA HERE, AFTER FIRST READ/WRITE TESTS.
 			//NB: HARDCODED PASSWORD BELOW!
 			
-			ArrayList<DataBolk> entries = InternalStorage.readList(getContext(), "1234");
+			ArrayList<DataBolk> entries = InternalStorage.readList(getContext(), kode);
 			
 			
 //			int counter = 0;

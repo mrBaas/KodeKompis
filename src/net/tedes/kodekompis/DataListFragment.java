@@ -7,15 +7,18 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class DataListFragment extends ListFragment implements LoaderManager.LoaderCallbacks<List<DataBolk>> {
 
 	private CustomMainArrayAdapter mAdapter;
+	private String kode;
 	
 	public void mottaBolken(DataBolk bolken){
 		mAdapter.addDataBolk(bolken);
@@ -23,6 +26,12 @@ public class DataListFragment extends ListFragment implements LoaderManager.Load
 		//Make async task here maybe?
 		InternalStorage.writeList(getActivity().getBaseContext(), mAdapter.getData(), "1234");
 	}
+	
+    public void setKode(String kode) {
+    	this.kode = kode;
+    	Log.d("Martin", "kode: "+kode);
+    	//Toast.makeText(getActivity().getBaseContext(), "Kode: "+kode, Toast.LENGTH_LONG).show();
+    }
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState){
@@ -53,7 +62,7 @@ public class DataListFragment extends ListFragment implements LoaderManager.Load
 
 	@Override
 	public Loader<List<DataBolk>> onCreateLoader(int arg0, Bundle arg1) {
-		return new DataListLoader(getActivity());
+		return new DataListLoader(getActivity(), kode);
 	}
 
 	@Override
