@@ -1,16 +1,21 @@
 package net.tedes.kodekompis;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 public class DataBolk implements Serializable {
 	
-	int mId;
-	String mSted;
-	String mBrukernavn;
-	String mPassord;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private UUID mId;
+	private String mSted;
+	private String mBrukernavn;
+	private String mPassord;
 
-	public DataBolk(int id, String sted, String bruker, String pass) {
-		this.mId = id;
+	public DataBolk(String sted, String bruker, String pass) {
+		this.mId = UUID.randomUUID();
 		this.mSted = sted;
 		this.mBrukernavn = bruker;
 		this.mPassord = pass;
@@ -40,7 +45,7 @@ public class DataBolk implements Serializable {
 		this.mPassord = mPassord;
 	}
 
-	public int getmId() {
+	public UUID getmId() {
 		return mId;
 	}
 	
