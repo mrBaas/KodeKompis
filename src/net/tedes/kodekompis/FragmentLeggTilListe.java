@@ -71,7 +71,6 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         mAvbryt.setOnClickListener(this);
         mLeggTil.setOnClickListener(this);
         
-        
         return view;
     }
 

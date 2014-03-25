@@ -10,12 +10,19 @@ public class PreferencesManager {
 
 	public static final String PREFS_NAME = "Tedespreferanser";
 	
-	// Restore preferences
-	public static void getPreferences(Context context) {
+	//This one is only for string variables. Make new ones as needed.
+	public static String getPreferences(Context context, String prefname) {
 		SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, context.MODE_PRIVATE);
-		String Uname = prefs.getString("username", "");
-		String pass = prefs.getString("password", "");
+		String value = prefs.getString(prefname, "");
+		return value;
+	}
 
+	//This one is only for string variables. Make new ones as needed.
+	public static void setPreferences(Context context, String prefname, String value) {
+		SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, context.MODE_PRIVATE);
+	    SharedPreferences.Editor editor = settings.edit();
+	    editor.putString(prefname, value);
+	    editor.commit();
 	}
 	
 }

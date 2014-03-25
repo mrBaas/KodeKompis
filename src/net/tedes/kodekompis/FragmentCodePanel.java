@@ -16,6 +16,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class FragmentCodePanel extends Fragment implements OnClickListener {
 
@@ -120,26 +121,28 @@ public class FragmentCodePanel extends Fragment implements OnClickListener {
 		
 			
 			//For testing purposes
-			if(mVisKode.length() == 1) {
-				String appPassword = "1234";
-				String feilPassord = "2345";
-				
-				String itemStedPlain   = "stad";
-				String itemBrukerPlain   = "bruker";
-				String itemPassPlain   = "passord";
-
-				DataBolk 		  test1 = new DataBolk("Plain: "+itemStedPlain, itemBrukerPlain, itemPassPlain);
-				DataBolkEncrypted test2 = new DataBolkEncrypted(test1, appPassword);
-				
-				List<DataBolkEncrypted> testlist = new ArrayList<DataBolkEncrypted>();
-				testlist.add(test2);
-				InternalStorage.writeListEncrypted(getActivity().getBaseContext(), (ArrayList<DataBolkEncrypted>) testlist);
-			}
+//			if(mVisKode.length() == 1) {
+//				String appPassword = "1234";
+//				String feilPassord = "2345";
+//				
+//				String itemStedPlain   = "stad";
+//				String itemBrukerPlain   = "bruker";
+//				String itemPassPlain   = "passord";
+//
+//				DataBolk 		  test1 = new DataBolk("Plain: "+itemStedPlain, itemBrukerPlain, itemPassPlain);
+//				DataBolkEncrypted test2 = new DataBolkEncrypted(test1, appPassword);
+//				
+//				List<DataBolkEncrypted> testlist = new ArrayList<DataBolkEncrypted>();
+//				testlist.add(test2);
+//				InternalStorage.writeListEncrypted(getActivity().getBaseContext(), (ArrayList<DataBolkEncrypted>) testlist);
+//			}
 			
 		} else if (mVisKode.length() == 3){
 			//Loader skal etter hvert hit
 			mVisKode.append(String.valueOf(n));
 			Intent i = new Intent(getActivity(), ActivityCodeList.class);
+			//Ship kode to ActivityCodeList
+			//i.putExtra("kode", mVisKode.getText());
 			startActivity(i);
 		} else {
 			//Do nothing

@@ -15,7 +15,14 @@ import android.widget.ListView;
 
 public class DataListFragment extends ListFragment implements LoaderManager.LoaderCallbacks<List<DataBolk>> {
 
-	CustomMainArrayAdapter mAdapter;
+	private CustomMainArrayAdapter mAdapter;
+	
+	public void mottaBolken(DataBolk bolken){
+		mAdapter.addDataBolk(bolken);
+		mAdapter.notifyDataSetChanged();
+		//Make async task here maybe?
+		InternalStorage.writeList(getActivity().getBaseContext(), mAdapter.getData(), "1234");
+	}
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState){
@@ -23,7 +30,7 @@ public class DataListFragment extends ListFragment implements LoaderManager.Load
 		
 		
 		//I utgangspunktet er listen tom
-		setEmptyText("Takk for at du bruker denne applikasjonen. Begynn å lagre dine brukernavn og passord ved å trykke på + tegnet.");
+		setEmptyText("Takk for at du *rap* bruker denne applikasjonen, Morty. Begynn å lagre dine brukernavn og passord ved å trykke på + tegnet, Morty.");
 		
 		//Tomt adapter blir opprettet for å vise data i listen.
 		mAdapter = new CustomMainArrayAdapter(getActivity());

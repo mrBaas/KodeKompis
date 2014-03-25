@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class ActivityCodeList extends FragmentActivity 
 					implements FragmentLeggTilListe.OnNewBolkFinished {
@@ -15,11 +16,8 @@ public class ActivityCodeList extends FragmentActivity
 	
 	@Override
 	public void sendBolkenVidere(DataBolk bolken) {
-		datalistFragment.getAdapter().setDataBolk(bolken);
-		datalistFragment.getAdapter().notifyDataSetChanged();
-	}	
-	
-	
+		datalistFragment.mottaBolken(bolken);
+	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu){
@@ -41,6 +39,9 @@ public class ActivityCodeList extends FragmentActivity
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+		//Picking up kode from startscreen
+		//this.kode = getIntent().getStringExtra("kode");
+				
 		setContentView(R.layout.activity_layout_code_list);
 		
 		//Henter ut getSupportFragmentManager() i stede for getFragmentManager()
@@ -54,6 +55,5 @@ public class ActivityCodeList extends FragmentActivity
 			fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
 		}
 	}
-
 	
 }

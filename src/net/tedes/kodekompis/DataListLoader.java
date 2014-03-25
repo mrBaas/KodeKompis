@@ -22,7 +22,7 @@ public class DataListLoader extends AsyncTaskLoader<List<DataBolk>> {
 			//REMEMBER TO IMPLEMENT DECRYPTION THROUGH SECURITY.JAVA HERE, AFTER FIRST READ/WRITE TESTS.
 			//NB: HARDCODED PASSWORD BELOW!
 			
-			ArrayList<DataBolk> entries = InternalStorage.readList(getContext(), "2345");
+			ArrayList<DataBolk> entries = InternalStorage.readList(getContext(), "1234");
 			
 			
 //			int counter = 0;
@@ -61,7 +61,6 @@ public class DataListLoader extends AsyncTaskLoader<List<DataBolk>> {
 			if (oldApps != null){
 				onReleaseResources(oldApps);
 			}
-			
 		}
 		
 		/**

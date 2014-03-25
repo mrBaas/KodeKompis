@@ -1,5 +1,6 @@
 package net.tedes.kodekompis;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -18,6 +19,14 @@ public class CustomMainArrayAdapter extends ArrayAdapter<DataBolk> {
 		mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 	
+	public ArrayList<DataBolk> getData() {
+		ArrayList<DataBolk> bolks = new ArrayList<DataBolk>();
+		for(int i=0; i < this.getCount();i++){
+			bolks.add(this.getItem(i));
+		}
+		return bolks;
+	}
+	
 	public void setData(List<DataBolk> data) {
 		clear();
 		if(data != null){
@@ -27,7 +36,7 @@ public class CustomMainArrayAdapter extends ArrayAdapter<DataBolk> {
 		}
 	}
 	
-	public void setDataBolk(DataBolk data){
+	public void addDataBolk(DataBolk data){
 		add(data);
 	}
 	

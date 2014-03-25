@@ -39,6 +39,11 @@ public final class InternalStorage {
 		return entries;
 	}
 	
+	public static void writeList(Context context, ArrayList<DataBolk> bolks, String password){
+		ArrayList<DataBolkEncrypted> bolksEncrypted = Security.krypterListe(bolks, password);
+		writeListEncrypted(context, bolksEncrypted);
+	}
+	
 	public static void writeListEncrypted(Context context, ArrayList<DataBolkEncrypted> entries){
 		try {
 			writeObject(context, FILENAME, entries);
