@@ -15,7 +15,7 @@
             android:id="@+id/dataBolk_sted"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/eb_white"
+            android:textColor="@color/contrast_color_blue"
             android:textSize="24sp"
             android:textStyle="bold"
             android:text="@string/sted_hint"
@@ -34,7 +34,7 @@
             android:id="@+id/dataBolk_bruker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/main_background_color"
+            android:textColor="@color/sub_header_grey"
             android:textSize="22sp"
             android:textStyle="bold"
             android:text="@string/bruker_hint"
@@ -45,12 +45,39 @@
             android:id="@+id/dataBolk_passord"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/main_background_color"
+            android:textColor="@color/sub_header_grey"
             android:textSize="22sp"
             android:textStyle="bold"
             android:text="@string/passord_hint"
             android:padding="3dp"
             />
+        
+        <LinearLayout 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:weightSum="2"
+	        android:visibility="gone"
+	        >
+            
+            <Button 
+	            android:id="@+id/slett_entry"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:text="Slett"
+	            />
+	        
+	        <Button 
+	            android:id="@+id/slett_entry"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:text="Ny Kode"
+	            />
+            
+        </LinearLayout>
+	       
     </LinearLayout>
     
 </LinearLayout>

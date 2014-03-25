@@ -6,4 +6,8 @@
     <color name="liste_bolk_sub">#f5f5f5</color>
     <color name="dialog_bg">#fafafa</color>
     <color name="font_black_on_white">#333333</color>
+    
+    <!-- List Font Colors -->
+    <color name="contrast_color_blue">#b9d3e2</color>
+	<color name="sub_header_grey">#343434</color>
 </resources>
