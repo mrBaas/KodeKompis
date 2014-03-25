@@ -15,12 +15,14 @@
 	<!-- END MENU -->
 	
 	<!-- DIALOG -->
-	<string name="dialog_header">Her ska det vær ei overskrift!</string>
+	<string name="dialog_header">Legg til liste</string>
 	<string name="dialog_sted_valg">Sted:</string>
 	<string name="dialog_sted_hint">Wordfeud</string>
 	<string name="dialog_bruker_valg">Brukernavn:</string>
 	<string name="dialog_bruker_hint">OlaNord123</string>
 	<string name="dialog_passord_valg">Passord:</string>
 	<string name="dialog_pass_hint">Snuski1945</string>
+	<string name="dialog_text_avbryt">AVBRYT</string>
+	<string name="dialog_text_legg_til">LEGG TIL</string>
 	<!-- END DIALOG -->
 </resources>

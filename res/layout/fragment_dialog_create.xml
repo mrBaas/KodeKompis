@@ -1,39 +1,149 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/add_dataBolk"
-    android:layout_width="match_parent" 
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent"
     android:layout_gravity="center"
-    android:layout_margin="20dp" 
     android:orientation="vertical"  >
 	
-    
-    <TextView
-        android:text="@string/dialog_header"
-        android:textColor="@color/eb_white"
-        android:textStyle="bold" 
-        android:textSize="30sp"
-        android:layout_width="wrap_content" 
-        android:layout_height="wrap_content" />
-    
     <LinearLayout 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:orientation="vertical"
+        android:background="@drawable/dialog_shape"
         >
         
         <TextView
-	        android:text="@string/dialog_sted_valg"
+            android:padding="10dp"
+            android:background="@drawable/dialog_header_shape"
+	        android:text="@string/dialog_header"
 	        android:textColor="@color/eb_white"
 	        android:textStyle="bold" 
-	        android:layout_width="wrap_content" 
-	        android:layout_height="wrap_content" />
-	    
-	    <EditText 
-	        android:id="@+id/dialog_input_sted"
-	        android:layout_width="wrap_content"
+	        android:textSize="22sp"
+	        android:layout_width="match_parent" 
 	        android:layout_height="wrap_content"
-	        android:hint="@string/dialog_sted_hint"
+	        android:gravity="center"
 	        />
+	    
+	    <LinearLayout 
+	        android:padding="10dp"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:weightSum="3"
+	        >
+	        
+	        <TextView
+		        android:text="@string/dialog_sted_valg"
+		        android:textColor="@color/font_black_on_white"
+		        android:textStyle="bold" 
+		        android:textSize="20sp"
+		        android:layout_width="0dp" 
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1"
+		        />
+		    
+		    <EditText 
+		        android:id="@+id/dialog_input_sted"
+		        android:textColor="@color/font_black_on_white"
+		        android:layout_width="0dp" 
+		        android:layout_height="wrap_content"
+		        android:layout_weight="2"
+		        android:textSize="20sp"
+		        android:hint="@string/dialog_sted_hint"
+		        />
+	        
+	    </LinearLayout>
+	    
+	    <LinearLayout 
+	        android:padding="10dp"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:weightSum="3"
+	        >
+	        
+	        <TextView
+		        android:text="@string/dialog_bruker_valg"
+		        android:textColor="@color/font_black_on_white"
+		        android:textStyle="bold" 
+		        android:textSize="20sp"
+		        android:layout_width="0dp" 
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1"
+		        />
+		    
+		    <EditText 
+		        android:id="@+id/dialog_input_bruker"
+		        android:textColor="@color/font_black_on_white"
+		        android:layout_width="0dp" 
+		        android:layout_height="wrap_content"
+		        android:layout_weight="2"
+		        android:textSize="20sp"
+		        android:hint="@string/dialog_bruker_hint"
+		        />
+	        
+	    </LinearLayout>
+	    
+	    <LinearLayout 
+	        android:padding="10dp"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:weightSum="3"
+	        >
+	        
+	        <TextView
+		        android:text="@string/dialog_passord_valg"
+		        android:textColor="@color/font_black_on_white"
+		        android:textStyle="bold" 
+		        android:textSize="20sp"
+		        android:layout_width="0dp" 
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1"
+		        />
+		    
+		    <EditText 
+		        android:id="@+id/dialog_input_passord"
+		        android:textColor="@color/font_black_on_white"
+		        android:layout_width="0dp" 
+		        android:layout_height="wrap_content"
+		        android:layout_weight="2"
+		        android:textSize="20sp"
+		        android:hint="@string/dialog_pass_hint"
+		        />
+	        
+	    </LinearLayout>
+	    
+	    <LinearLayout 
+	        android:padding="10dp"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:weightSum="2"
+	        >
+	    
+		    <Button 
+		        android:id="@+id/dialog_button_avbryt"
+		        android:textColor="@color/font_black_on_white"
+		        android:layout_width="0dp" 
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1"
+		        android:textSize="20sp"
+				android:text="@string/dialog_text_avbryt"
+		        />
+		    
+		    <Button 
+		        android:id="@+id/dialog_button_legg_til"
+		        android:textColor="@color/font_black_on_white"
+		        android:layout_width="0dp" 
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1"
+		        android:textSize="20sp"
+				android:text="@string/dialog_text_legg_til"
+		        />
+	        
+	    </LinearLayout>
+
         
     </LinearLayout>
     

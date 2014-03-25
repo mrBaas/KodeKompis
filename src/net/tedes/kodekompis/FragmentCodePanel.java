@@ -26,6 +26,8 @@ public class FragmentCodePanel extends Fragment implements OnClickListener {
 		
 	}
 	
+	
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_layout_code, parent, false);

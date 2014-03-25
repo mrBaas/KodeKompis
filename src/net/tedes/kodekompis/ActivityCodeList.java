@@ -22,6 +22,7 @@ public class ActivityCodeList extends FragmentActivity {
 		FragmentManager fm = getSupportFragmentManager();
         FragmentLeggTilListe leggTil = new FragmentLeggTilListe();
         leggTil.show(fm, "fragment_dialog_create");
+        
 		return true;
 	}
 	
