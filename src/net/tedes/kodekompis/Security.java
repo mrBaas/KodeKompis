@@ -63,19 +63,46 @@ public class Security {
         }
     }
 	
-	public static String dekrypter(String kryptert, String password) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException {
-		String[] fields = kryptert.split("]");
-		byte[] salt = fromBase64(fields[0]);
-		byte[] iv = fromBase64(fields[1]);
-		byte[] cipherBytes = fromBase64(fields[2]);
-		
-		SecretKey key = generateKey(password, salt);
-		Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-		IvParameterSpec ivParams = new IvParameterSpec(iv);
-		cipher.init(Cipher.DECRYPT_MODE, key, ivParams);
-		byte[] plaintext = cipher.doFinal(cipherBytes);
-		String plainStr = new String(plaintext , "UTF-8");
-		return plainStr;
+	public static String dekrypter(String kryptert, String password) {
+		try {
+			String[] fields = kryptert.split("]");
+			byte[] salt = fromBase64(fields[0]);
+			byte[] iv = fromBase64(fields[1]);
+			byte[] cipherBytes = fromBase64(fields[2]);
+			
+			SecretKey key = generateKey(password, salt);
+			Cipher cipher = Cipher.getInstance(ALGORITHM_CIPHER);
+			IvParameterSpec ivParams = new IvParameterSpec(iv);
+			cipher.init(Cipher.DECRYPT_MODE, key, ivParams);
+			byte[] plaintext = cipher.doFinal(cipherBytes);
+			String plainStr = new String(plaintext , "UTF-8");
+			return plainStr;
+		} catch (NoSuchAlgorithmException e) {
+			//throw new RuntimeException(e);
+			return DecryptFailed();
+		} catch (UnsupportedEncodingException e) {
+			//throw new RuntimeException(e);
+			return DecryptFailed();
+		} catch (BadPaddingException e) {
+			//throw new RuntimeException(e);
+			return DecryptFailed();
+		} catch (IllegalBlockSizeException e) {
+			//throw new RuntimeException(e);
+			return DecryptFailed();
+		} catch (InvalidAlgorithmParameterException e) {
+			//throw new RuntimeException(e);
+			return DecryptFailed();
+		} catch (InvalidKeyException e) {
+			//throw new RuntimeException(e);
+			return DecryptFailed();
+		} catch (NoSuchPaddingException e) {
+			//throw new RuntimeException(e);
+			return DecryptFailed();
+		}
+	}
+	
+	private static String DecryptFailed(){
+		return "Failed.";
 	}
 
   //Generate a random salt. Remember to keep salt stored safely.

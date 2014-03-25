@@ -66,4 +66,8 @@ public class DataListFragment extends ListFragment implements LoaderManager.Load
 		
 	}
 	
+	public CustomMainArrayAdapter getAdapter() {
+		return this.mAdapter;
+	}
+	
 }

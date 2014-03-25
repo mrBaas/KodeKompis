@@ -1,5 +1,6 @@
 package net.tedes.kodekompis;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -15,7 +16,30 @@ import android.widget.EditText;
 
 public class FragmentLeggTilListe extends DialogFragment implements OnClickListener {
 	
-	private DataBolk mInputListe;
+	OnNewBolkFinished mCallback;
+
+    // Container Activity must implement this interface
+    public interface OnNewBolkFinished {
+        public void sendBolkenVidere(DataBolk bolken);
+    }
+
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mCallback = (OnNewBolkFinished) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnNewBolkFinished");
+        }
+    }
+
+	
+	private DataBolk bolken;
 	
 	private Button mAvbryt;
 	private Button mLeggTil;
@@ -59,7 +83,9 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         		getDialog().dismiss();
         		break;
         	case R.id.dialog_button_legg_til:
-        		mInputListe = new DataBolk(mSted.getText().toString(), mBruker.getText().toString(), mPass.getText().toString());
+        		bolken = new DataBolk(mSted.getText().toString(), mBruker.getText().toString(), mPass.getText().toString());
+        		mCallback.sendBolkenVidere(bolken);
+        		getDialog().dismiss();
         		break;
 		}
 	}

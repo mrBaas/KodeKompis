@@ -8,7 +8,18 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-public class ActivityCodeList extends FragmentActivity {
+public class ActivityCodeList extends FragmentActivity 
+					implements FragmentLeggTilListe.OnNewBolkFinished {
+	
+	private DataListFragment datalistFragment;
+	
+	@Override
+	public void sendBolkenVidere(DataBolk bolken) {
+		datalistFragment.getAdapter().setDataBolk(bolken);
+		datalistFragment.getAdapter().notifyDataSetChanged();
+	}	
+	
+	
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu){
@@ -39,8 +50,10 @@ public class ActivityCodeList extends FragmentActivity {
 		
 		if (fragment == null) {
 			fragment = new DataListFragment();
+			datalistFragment = (DataListFragment)fragment;
 			fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
 		}
 	}
+
 	
 }
