@@ -44,6 +44,7 @@ public class CustomMainArrayAdapter extends ArrayAdapter<DataBolk> {
 		}
 	}
 	
+	
 	public void addDataBolk(DataBolk data){
 		add(data);
 	}
