@@ -146,7 +146,7 @@ public class FragmentCodePanel extends Fragment implements OnClickListener {
 			i.putExtra("kode", kode);
 			
 			//MOVE TO FIRST TIME LAUNCH ONLY
-			//Security.savePassword(getActivity(), kode);
+			Security.savePassword(getActivity(), kode);
 			//Toast.makeText(getActivity().getBaseContext(), "kode: "+String.valueOf(mVisKode.getText()), Toast.LENGTH_LONG).show();
 			startActivity(i);
 		} else {
