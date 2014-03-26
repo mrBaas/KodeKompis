@@ -2,6 +2,7 @@ package net.tedes.kodekompis;
 
 import java.util.List;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
@@ -19,6 +20,7 @@ public class DataListFragment extends ListFragment implements LoaderManager.Load
 
 	private CustomMainArrayAdapter mAdapter;
 	private String kode;
+	private boolean korrektKode;
 	
 	public void mottaBolken(DataBolk bolken){
 		mAdapter.addDataBolk(bolken);
@@ -27,10 +29,19 @@ public class DataListFragment extends ListFragment implements LoaderManager.Load
 		InternalStorage.writeList(getActivity().getBaseContext(), mAdapter.getData(), kode);
 	}
 	
-    public void setKode(String kode) {
+    public void setKode(String kode, Context context) {
     	this.kode = kode;
-    	Log.d("Martin", "kode: "+kode);
-    	//Toast.makeText(getActivity().getBaseContext(), "Kode: "+kode, Toast.LENGTH_LONG).show();
+    	Log.d("Martin", "setKode kode: "+kode);
+    	this.korrektKode = Security.comparePassword(context, kode);
+    	Log.d("Martin", "kode: "+kode+", korrektkode: "+korrektKode);
+    	if(!korrektKode){
+    		int i = PreferencesManager.getInt(context, "failedlogins");
+    		PreferencesManager.setInt(context, "failedlogins", ++i);
+    		Log.d("Martin", "failedlogins: "+i);
+    		Toast.makeText(context, "Failed Logins: "+i, Toast.LENGTH_LONG).show();
+    	} else {
+    		PreferencesManager.setInt(context, "failedlogins", 0);
+    	}
     }
 	
 	@Override
@@ -43,12 +54,8 @@ public class DataListFragment extends ListFragment implements LoaderManager.Load
 		
 		//Tomt adapter blir opprettet for å vise data i listen.
 		mAdapter = new CustomMainArrayAdapter(getActivity());
-		
-		//Dersom feil passord, masker stedsverdier.
-		//boolean check = Security.comparePassword(getActivity(), kode);
-		//Log.d("Martin", ""+check);
-		//if(!check) { mAdapter.maskStedValues();	}
-		//setListAdapter(mAdapter);
+	
+		setListAdapter(mAdapter);
 		
 		//Progress loader
 		setListShown(false);
@@ -73,6 +80,10 @@ public class DataListFragment extends ListFragment implements LoaderManager.Load
 	@Override
 	public void onLoadFinished(Loader<List<DataBolk>> arg0, List<DataBolk> data) {
 		mAdapter.setData(data);
+		
+		//Dersom feil passord, masker stedsverdier.
+		if(!korrektKode) { mAdapter.maskStedValues();	}
+		
 		//På dette tidspunktet skal listen vises
 		if(isResumed()){
 			setListShown(true);

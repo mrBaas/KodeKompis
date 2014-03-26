@@ -19,19 +19,10 @@ public class DataListLoader extends AsyncTaskLoader<List<DataBolk>> {
 		@Override
 		public List<DataBolk> loadInBackground() {
 			//Metode som laster inn data i bakgrunnen
-			
-			//Test av entries
-			//REMEMBER TO IMPLEMENT DECRYPTION THROUGH SECURITY.JAVA HERE, AFTER FIRST READ/WRITE TESTS.
-			//NB: HARDCODED PASSWORD BELOW!
-			
+
+			//Hent og dekrypter data
 			ArrayList<DataBolk> entries = InternalStorage.readList(getContext(), kode);
 			
-			
-//			int counter = 0;
-//			while(counter < 1000){
-//				entries.add(new DataBolk(counter,"Facebook" + counter, "Joeran","Rasshøl"));
-//				counter++;
-//			}
 			return entries;
 			
 		}

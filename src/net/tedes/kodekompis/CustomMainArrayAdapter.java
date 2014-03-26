@@ -1,6 +1,7 @@
 package net.tedes.kodekompis;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import android.content.Context;
@@ -36,10 +37,28 @@ public class CustomMainArrayAdapter extends ArrayAdapter<DataBolk> {
 		}
 	}
 	
+	//Maskering av Sted-verdi. Merk at den fortsatt ligger lagret i klartekst i internminnet.
 	public void maskStedValues(){
 		ArrayList<DataBolk> bolks = getData();
+		DataBolk bolk;
+		String sted, nySted,s1,s2,s3;
 		for(int i = 0; i < bolks.size(); i++){
-			bolks.get(i).setmSted("Not Available");
+			sted = bolks.get(i).getmSted();
+			int j = sted.length();
+			if(j < 5){
+				bolks.get(i).setmSted("****");
+			} else {
+				s1 = sted.substring(0, 2);
+			
+				char[] chars = new char[j-4];
+				Arrays.fill(chars, '*');
+				s2 = new String(chars);
+
+				s3 = sted.substring(j-2,j);
+				
+				nySted = s1+s2+s3;
+				bolks.get(i).setmSted(nySted);
+			}
 		}
 	}
 	
@@ -58,9 +77,10 @@ public class CustomMainArrayAdapter extends ArrayAdapter<DataBolk> {
 		}
 		
 		DataBolk item = getItem(position);
+		//Todo: Mat inn ikon istedetfor "Bruker:" etc.
 		((TextView)view.findViewById(R.id.dataBolk_sted)).setText(item.getmSted());
-		((TextView)view.findViewById(R.id.dataBolk_bruker)).setText(item.getmBrukernavn());
-		((TextView)view.findViewById(R.id.dataBolk_passord)).setText(item.getmPassord());
+		((TextView)view.findViewById(R.id.dataBolk_bruker)).setText("Bruker: " + item.getmBrukernavn());
+		((TextView)view.findViewById(R.id.dataBolk_passord)).setText("Passord: " + item.getmPassord());
 		
 		return view;
 		

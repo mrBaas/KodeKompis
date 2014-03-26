@@ -61,7 +61,7 @@ public class ActivityCodeList extends FragmentActivity
 		if (fragment == null) {
 			fragment = new DataListFragment();
 			datalistFragment = (DataListFragment)fragment;
-			datalistFragment.setKode(kode);
+			datalistFragment.setKode(kode, getBaseContext());
 			fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
 		}
 	}
