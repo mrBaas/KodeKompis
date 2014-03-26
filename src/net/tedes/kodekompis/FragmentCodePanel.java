@@ -116,25 +116,6 @@ public class FragmentCodePanel extends Fragment implements OnClickListener {
 				Fader.FadeIn(getActivity(), slett.getId());
 			}
 			mVisKode.append(String.valueOf(n));
-		
-			
-			//For testing purposes
-//			if(mVisKode.length() == 1) {
-//				String appPassword = "1234";
-//				String feilPassord = "2345";
-//				
-//				String itemStedPlain   = "stad";
-//				String itemBrukerPlain   = "bruker";
-//				String itemPassPlain   = "passord";
-//
-//				DataBolk 		  test1 = new DataBolk("Plain: "+itemStedPlain, itemBrukerPlain, itemPassPlain);
-//				DataBolkEncrypted test2 = new DataBolkEncrypted(test1, appPassword);
-//				
-//				List<DataBolkEncrypted> testlist = new ArrayList<DataBolkEncrypted>();
-//				testlist.add(test2);
-//				InternalStorage.writeListEncrypted(getActivity().getBaseContext(), (ArrayList<DataBolkEncrypted>) testlist);
-//			}
-			
 		} else if (mVisKode.length() == 3){
 			//Loader skal etter hvert hit
 			mVisKode.append(String.valueOf(n));
@@ -142,10 +123,7 @@ public class FragmentCodePanel extends Fragment implements OnClickListener {
 			//Ship kode to ActivityCodeList
 			String kode = String.valueOf(mVisKode.getText());
 			i.putExtra("kode", kode);
-			
-			//MOVE TO FIRST TIME LAUNCH ONLY
-			//Security.savePassword(getActivity(), kode);
-			//Toast.makeText(getActivity().getBaseContext(), "kode: "+String.valueOf(mVisKode.getText()), Toast.LENGTH_LONG).show();
+			clearKode();
 			startActivity(i);
 		} else {
 			//Do nothing
@@ -160,8 +138,14 @@ public class FragmentCodePanel extends Fragment implements OnClickListener {
 			String tempText = String.valueOf(mVisKode.getText());
 			mVisKode.setText(tempText.substring(0, tempText.length() - 1));
 			Fader.FadOut(getActivity(), slett.getId());
-		}else {
+		} else {
 			//Do nothing
 		}
 	}
+	
+	private void clearKode(){
+		this.mVisKode.setText("1234567890");
+		this.mVisKode.setText("");
+	}
+	
 }
