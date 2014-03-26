@@ -107,8 +107,6 @@ public class FragmentCodePanel extends Fragment implements OnClickListener {
            case R.id.slett:
         	   slettNummer();
         	   break;
-        	   
-	       
 	   } 
 	}
 	
