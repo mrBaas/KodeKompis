@@ -40,6 +40,7 @@ public class CustomMainArrayAdapter extends ArrayAdapter<DataBolk> {
 		ArrayList<DataBolk> bolks = getData();
 		for(int i = 0; i < bolks.size(); i++){
 			bolks.get(i).setmSted("Not Available");
+			
 		}
 	}
 	
