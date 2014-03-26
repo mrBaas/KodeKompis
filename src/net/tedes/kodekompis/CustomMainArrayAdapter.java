@@ -36,6 +36,13 @@ public class CustomMainArrayAdapter extends ArrayAdapter<DataBolk> {
 		}
 	}
 	
+	public void maskStedValues(){
+		ArrayList<DataBolk> bolks = getData();
+		for(int i = 0; i < bolks.size(); i++){
+			bolks.get(i).setmSted("Not Available");
+		}
+	}
+	
 	public void addDataBolk(DataBolk data){
 		add(data);
 	}
