@@ -1,4 +1,4 @@
-<!-- fragment_screen_slide_page.xml -->
+<!-- fragment_welcome_page1.xml -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/content"
     android:layout_width="match_parent"
@@ -9,5 +9,5 @@
         android:lineSpacingMultiplier="1.2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/sliderstring" />
+        android:text="@string/welcomestring2" />
 </ScrollView>

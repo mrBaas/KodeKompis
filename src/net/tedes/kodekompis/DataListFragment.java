@@ -40,7 +40,12 @@ public class DataListFragment extends ListFragment implements LoaderManager.Load
     		Log.d("Martin", "failedlogins: "+i);
     		Toast.makeText(context, "Failed Logins: "+i, Toast.LENGTH_LONG).show();
     	} else {
+    		//Kode godkjent. Reset failedloginscounter, og inkrementer startcounter.
+    		int startcounter = PreferencesManager.getInt(context, "startcounter");
+			PreferencesManager.setInt(context, "startcounter", ++startcounter);
     		PreferencesManager.setInt(context, "failedlogins", 0);
+    		Toast.makeText(context, "login success", Toast.LENGTH_LONG).show();
+    		
     	}
     }
 	

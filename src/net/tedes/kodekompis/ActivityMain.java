@@ -33,10 +33,10 @@ public class ActivityMain extends FragmentActivity {
 						
 			//Keep track of how many times the application (ActivityMain) has been launched.
 			int startcounter = PreferencesManager.getInt(getBaseContext(), "startcounter");
-			PreferencesManager.setInt(getBaseContext(), "startcounter", ++startcounter);
 			Log.d("Martin", "startcounter: "+startcounter);
 			
 			//Do something special on first time start
+			//TODO: Limit counter to first start only. After it works.
 			if(startcounter < 100) {
 				// Instantiate a ViewPager and a PagerAdapter.
 		        mPager = (ViewPager) findViewById(R.id.pager);
@@ -84,7 +84,22 @@ public class ActivityMain extends FragmentActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return new FragmentWelcome();
+        	switch (position){
+        		case 0:
+        			//Toast.makeText(getBaseContext(), "case 0", Toast.LENGTH_LONG).show();
+        			return new FragmentWelcome1();
+        		case 1:
+        			//Toast.makeText(getBaseContext(), "case 1", Toast.LENGTH_LONG).show();
+        			return new FragmentWelcome2();
+        		case 2:
+        			//Toast.makeText(getBaseContext(), "case 2", Toast.LENGTH_LONG).show();
+        			return new FragmentWelcome3();
+        			default:
+        				Log.e("Martin", "MainActivity PagerAdapter out of bounds. Pos: "+position);
+        				throw new RuntimeException();
+        	}
+        	
+            //return new FragmentWelcome();
         }
 
         @Override

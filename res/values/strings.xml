@@ -27,6 +27,8 @@
 	<!-- END DIALOG -->
 	
 	<!-- WELCOMESCREEN SLIDER -->
-	<string name="sliderstring">Fjas</string>
+	<string name="welcomestring1">Welcome 1</string>
+	<string name="welcomestring2">Welcome 2</string>
+	<string name="welcomestring3">Welcome 3</string>
 	<!-- END WELCOMESCREEN SLIDER -->
 </resources>
