@@ -84,6 +84,7 @@ public class CustomMainArrayAdapter extends ArrayAdapter<DataBolk> {
 		((TextView)view.findViewById(R.id.dataBolk_bruker)).setText("Bruker: " + item.getmBrukernavn());
 		((TextView)view.findViewById(R.id.dataBolk_passord)).setText("Passord: " + item.getmPassord());
 		
+		//saved
 		return view;
 		
 	}
