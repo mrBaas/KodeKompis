@@ -20,6 +20,17 @@ public class ActivityMain extends FragmentActivity {
 	private PagerAdapter mPagerAdapter;
 	
 	@Override
+	protected void onStop() {
+	    super.onStop();  // Always call the superclass method first
+	    selectFragment();
+	}
+	
+	@Override
+	protected void onRestart() {
+	    super.onStop();  // Always call the superclass method first
+	}
+	
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_layout_main);
@@ -31,33 +42,7 @@ public class ActivityMain extends FragmentActivity {
 		
 		if (fragment == null) {
 						
-			//Keep track of how many times the application (ActivityMain) has been launched.
-			int startcounter = PreferencesManager.getInt(getBaseContext(), "startcounter");
-			Log.d("Martin", "startcounter: "+startcounter);
-			
-			//Do something special on first time start
-			//TODO: Limit counter to first start only. After it works.
-			if(startcounter < 100) {
-				// Instantiate a ViewPager and a PagerAdapter.
-		        mPager = (ViewPager) findViewById(R.id.pager);
-		        mPager.setPageTransformer(true, new DepthPageTransformer());
-		        mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-		        mPager.setAdapter(mPagerAdapter);
-				//fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
-			} else {
-				//Normal start
-				//Check how many consecutive failed logins, before adding FragmentCodePanel
-				int failedlogins = PreferencesManager.getInt(getBaseContext(), "failedlogins");
-				Log.d("Martin", "check failed logins on start: "+failedlogins);
-				
-				if(failedlogins > 4) {
-					Toast.makeText(getBaseContext(), "Too many failed logins", 3000);
-					//Do not proceed
-				} else {
-					fragment = new FragmentCodePanel();
-					fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
-				}
-			}
+			selectFragment();
 		}
 	}
 	
@@ -73,6 +58,39 @@ public class ActivityMain extends FragmentActivity {
         }
     }
 	
+    private void selectFragment(){
+    	FragmentManager fm = getSupportFragmentManager();
+		Fragment fragment = fm.findFragmentById(R.id.fragmentContainer);
+    	
+    	//Keep track of how many times the application (ActivityMain) has been launched.
+		int startcounter = PreferencesManager.getInt(getBaseContext(), "startcounter");
+		Log.d("Martin", "startcounter: "+startcounter);
+		
+		//Do something special on first time start
+		//TODO: Limit counter to first start only. After it works.
+		if(startcounter < 100) {
+			// Instantiate a ViewPager and a PagerAdapter.
+	        mPager = (ViewPager) findViewById(R.id.pager);
+	        mPager.setPageTransformer(true, new DepthPageTransformer());
+	        mPagerAdapter = new ScreenSlidePagerAdapter(fm);
+	        mPager.setAdapter(mPagerAdapter);
+			//fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
+		} else {
+			//Normal start
+			//Check how many consecutive failed logins, before adding FragmentCodePanel
+			int failedlogins = PreferencesManager.getInt(getBaseContext(), "failedlogins");
+			Log.d("Martin", "check failed logins on start: "+failedlogins);
+			
+			if(failedlogins > 4) {
+				Toast.makeText(getBaseContext(), "Too many failed logins", 3000);
+				//Do not proceed
+			} else {
+				fragment = new FragmentCodePanel();
+				fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
+			}
+		}
+    }
+    
 	/**
      * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
      * sequence.
