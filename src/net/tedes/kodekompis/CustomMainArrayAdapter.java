@@ -59,8 +59,10 @@ public class CustomMainArrayAdapter extends ArrayAdapter<DataBolk> {
 				nySted = s1+s2+s3;
 				bolks.get(i).setmSted(nySted);
 			}
+			bolks.get(i).setmSted("Not Available");
 		}
 	}
+	
 	
 	public void addDataBolk(DataBolk data){
 		add(data);
