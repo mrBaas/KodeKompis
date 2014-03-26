@@ -24,7 +24,7 @@ public class DataListFragment extends ListFragment implements LoaderManager.Load
 		mAdapter.addDataBolk(bolken);
 		mAdapter.notifyDataSetChanged();
 		//Make async task here maybe?
-		InternalStorage.writeList(getActivity().getBaseContext(), mAdapter.getData(), "1234");
+		InternalStorage.writeList(getActivity().getBaseContext(), mAdapter.getData(), kode);
 	}
 	
     public void setKode(String kode) {
@@ -43,7 +43,12 @@ public class DataListFragment extends ListFragment implements LoaderManager.Load
 		
 		//Tomt adapter blir opprettet for å vise data i listen.
 		mAdapter = new CustomMainArrayAdapter(getActivity());
-		setListAdapter(mAdapter);
+		
+		//Dersom feil passord, masker stedsverdier.
+		//boolean check = Security.comparePassword(getActivity(), kode);
+		//Log.d("Martin", ""+check);
+		//if(!check) { mAdapter.maskStedValues();	}
+		//setListAdapter(mAdapter);
 		
 		//Progress loader
 		setListShown(false);
