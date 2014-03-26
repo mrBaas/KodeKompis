@@ -50,6 +50,7 @@ public class Fader {
           v.clearAnimation();
           v.startAnimation(animation);
           v.setVisibility(View.VISIBLE);
+          //Random comment
         }
     }
     
