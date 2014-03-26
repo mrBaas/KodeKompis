@@ -16,9 +16,8 @@ public class Fader {
         // load animation XML resource under res/anim
         Animation animation  = AnimationUtils.loadAnimation(act, R.anim.fadein);
         if(animation == null){
-        
-        	return; // here, we don't care
-        
+        	//Do not care
+        	return;
         }
         //Dette er en test for å lage konflikt
         
@@ -53,6 +52,7 @@ public class Fader {
           v.clearAnimation();
           v.startAnimation(animation);
           v.setVisibility(View.VISIBLE);
+          //Random comment
         }
     }
     
