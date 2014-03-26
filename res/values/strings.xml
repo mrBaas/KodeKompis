@@ -25,4 +25,8 @@
 	<string name="dialog_text_avbryt">AVBRYT</string>
 	<string name="dialog_text_legg_til">LEGG TIL</string>
 	<!-- END DIALOG -->
+	
+	<!-- WELCOMESCREEN SLIDER -->
+	<string name="sliderstring">Fjas</string>
+	<!-- END WELCOMESCREEN SLIDER -->
 </resources>

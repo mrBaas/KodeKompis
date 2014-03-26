@@ -21,7 +21,7 @@ import android.widget.Toast;
 public class FragmentCodePanel extends Fragment implements OnClickListener {
 
 	//Kun for testing
-	TextView mVisKode;
+	private TextView mVisKode;
 	
 	//KodePanel med ImageButtons
 	ImageButton knapp1, knapp2, knapp3, knapp4, knapp5, knapp6, knapp7, knapp8, knapp9, knapp0, slett;
@@ -146,7 +146,7 @@ public class FragmentCodePanel extends Fragment implements OnClickListener {
 			i.putExtra("kode", kode);
 			
 			//MOVE TO FIRST TIME LAUNCH ONLY
-			Security.savePassword(getActivity(), kode);
+			//Security.savePassword(getActivity(), kode);
 			//Toast.makeText(getActivity().getBaseContext(), "kode: "+String.valueOf(mVisKode.getText()), Toast.LENGTH_LONG).show();
 			startActivity(i);
 		} else {
