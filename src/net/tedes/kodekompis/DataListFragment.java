@@ -4,15 +4,12 @@ import java.util.List;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -70,6 +67,10 @@ public class DataListFragment extends ListFragment implements LoaderManager.Load
 	public void onListItemClick(ListView l, View v, int position, long id){
 		//Hva skjer når et item blir trykket på? 
 		//Detaljefremvisning i ny activity skal vises
+		View view = l.getChildAt(position);
+		LinearLayout hideLayout = (LinearLayout)view.findViewById(R.id.hide_list);
+		Fader.slideUp(getActivity(), hideLayout.getId());
+		
 	}
 
 	@Override
