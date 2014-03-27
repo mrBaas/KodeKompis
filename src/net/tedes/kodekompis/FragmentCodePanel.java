@@ -1,27 +1,19 @@
 package net.tedes.kodekompis;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.crypto.SecretKey;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class FragmentCodePanel extends Fragment implements OnClickListener {
 
 	//Kun for testing
-	TextView mVisKode;
+	private TextView mVisKode;
 	
 	//KodePanel med ImageButtons
 	ImageButton knapp1, knapp2, knapp3, knapp4, knapp5, knapp6, knapp7, knapp8, knapp9, knapp0, slett;
@@ -107,8 +99,6 @@ public class FragmentCodePanel extends Fragment implements OnClickListener {
            case R.id.slett:
         	   slettNummer();
         	   break;
-        	   
-	       
 	   } 
 	}
 	
@@ -118,25 +108,6 @@ public class FragmentCodePanel extends Fragment implements OnClickListener {
 				Fader.FadeIn(getActivity(), slett.getId());
 			}
 			mVisKode.append(String.valueOf(n));
-		
-			
-			//For testing purposes
-//			if(mVisKode.length() == 1) {
-//				String appPassword = "1234";
-//				String feilPassord = "2345";
-//				
-//				String itemStedPlain   = "stad";
-//				String itemBrukerPlain   = "bruker";
-//				String itemPassPlain   = "passord";
-//
-//				DataBolk 		  test1 = new DataBolk("Plain: "+itemStedPlain, itemBrukerPlain, itemPassPlain);
-//				DataBolkEncrypted test2 = new DataBolkEncrypted(test1, appPassword);
-//				
-//				List<DataBolkEncrypted> testlist = new ArrayList<DataBolkEncrypted>();
-//				testlist.add(test2);
-//				InternalStorage.writeListEncrypted(getActivity().getBaseContext(), (ArrayList<DataBolkEncrypted>) testlist);
-//			}
-			
 		} else if (mVisKode.length() == 3){
 			//Loader skal etter hvert hit
 			mVisKode.append(String.valueOf(n));
@@ -144,10 +115,7 @@ public class FragmentCodePanel extends Fragment implements OnClickListener {
 			//Ship kode to ActivityCodeList
 			String kode = String.valueOf(mVisKode.getText());
 			i.putExtra("kode", kode);
-			
-			//MOVE TO FIRST TIME LAUNCH ONLY
-			Security.savePassword(getActivity(), kode);
-			//Toast.makeText(getActivity().getBaseContext(), "kode: "+String.valueOf(mVisKode.getText()), Toast.LENGTH_LONG).show();
+			clearKode();
 			startActivity(i);
 		} else {
 			//Do nothing
@@ -162,8 +130,14 @@ public class FragmentCodePanel extends Fragment implements OnClickListener {
 			String tempText = String.valueOf(mVisKode.getText());
 			mVisKode.setText(tempText.substring(0, tempText.length() - 1));
 			Fader.FadOut(getActivity(), slett.getId());
-		}else {
+		} else {
 			//Do nothing
 		}
 	}
+	
+	private void clearKode(){
+		this.mVisKode.setText("1234567890");
+		this.mVisKode.setText("");
+	}
+	
 }

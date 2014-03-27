@@ -8,8 +8,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
 import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
 
 public final class InternalStorage {
@@ -53,10 +51,15 @@ public final class InternalStorage {
 		}
 	}
 	
-	//Warning, invoking this method will reset the stored list.
-	public static void resetList(Context context, String password) {
-		ArrayList<DataBolk> temp = new ArrayList<DataBolk>();
-		InternalStorage.writeList(context, temp, password);
+	//WARNING!, invoking this method will reset the stored list!
+	public static void deleteList(Context context) {
+		ArrayList<DataBolkEncrypted> temp = new ArrayList<DataBolkEncrypted>();
+		writeListEncrypted(context, temp);
+	}
+	
+	public static void deletePassword(Context context){
+		String password = "";
+		writeKode(context, password);
 	}
 	
 	public static String readKode(Context context){

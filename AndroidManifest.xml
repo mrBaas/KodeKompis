@@ -23,6 +23,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".ActivityCodeList"></activity>
+        <activity 
+        	android:name=".ActivityStartFirst"
+        	android:noHistory="true">
+        </activity>
+        <activity 
+        	android:name=".ActivityStartRegular"
+        	android:noHistory="true">
+        </activity>
     </application>
 
 </manifest>

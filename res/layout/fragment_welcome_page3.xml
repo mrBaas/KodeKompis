@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background_color"
+    android:weightSum="10"
+    android:orientation="vertical" 
+    >
+	
+    <!-- HEADER -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        >
+        <TextView
+	        android:id="@+id/welcome_code_view"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:textSize="34sp"
+	        android:textColor="@color/eb_white"
+	        android:textStyle="bold"
+	        android:gravity="center"
+	         />
+        
+    </LinearLayout>
+    <!-- END HEADER -->
+
+
+	<!-- NUMMER RAD 1 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        
+        <ImageButton
+	        android:id="@+id/welcome_inputNumber1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/code1"
+	        android:padding="10dp"
+	         />
+        
+        <ImageButton
+	        android:id="@+id/welcome_inputNumber2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/code2"
+	        android:padding="10dp" />
+        
+        <ImageButton
+	        android:id="@+id/welcome_inputNumber3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/code3"
+	        android:padding="10dp" />
+        
+    </LinearLayout>
+    <!-- END NUMMER RAD 1 -->
+    
+    
+    <!-- NUMMER RAD 2 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        
+        <ImageButton
+	        android:id="@+id/welcome_inputNumber4"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/code4"
+	        android:padding="10dp" />
+        
+        <ImageButton
+	        android:id="@+id/welcome_inputNumber5"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/code5" 
+	        android:padding="10dp"/>
+        
+        <ImageButton
+	        android:id="@+id/welcome_inputNumber6"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/code6" 
+	        android:padding="10dp"/>
+        
+    </LinearLayout>
+    <!-- END NUMMER RAD 2 -->
+    
+    
+    <!-- NUMMER RAD 3 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        
+        <ImageButton
+	        android:id="@+id/welcome_inputNumber7"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/code7"
+	        android:padding="10dp" />
+        
+        <ImageButton
+	        android:id="@+id/welcome_inputNumber8"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/code8"
+	        android:padding="10dp" />
+        
+        <ImageButton
+	        android:id="@+id/welcome_inputNumber9"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/code9"
+	        android:padding="10dp" />
+        
+    </LinearLayout>
+    <!-- END NUMMER RAD 3 -->
+    
+    
+    <!-- NUMMER RAD 4 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        
+        <ImageButton
+	        android:id="@+id/welcome_ok"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/code0"
+	        android:padding="10dp" />
+        
+        <ImageButton
+	        android:id="@+id/welcome_inputNumber0"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/code0"
+	        android:padding="10dp" />
+        
+        <ImageButton
+	        android:id="@+id/welcome_slett"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/slett"
+	        android:padding="10dp" />
+        
+    </LinearLayout>
+	<!-- END NUMMER RAD 4 -->
+
+</LinearLayout>

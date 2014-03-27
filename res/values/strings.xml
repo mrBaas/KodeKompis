@@ -25,4 +25,10 @@
 	<string name="dialog_text_avbryt">AVBRYT</string>
 	<string name="dialog_text_legg_til">LEGG TIL</string>
 	<!-- END DIALOG -->
+	
+	<!-- WELCOMESCREEN SLIDER -->
+	<string name="welcomestring1">Welcome 1</string>
+	<string name="welcomestring2">Tast inn ønska kode TO gang på *urk* neste skjerm, Morty.</string>
+	<string name="welcomestring3">Welcome 3</string>
+	<!-- END WELCOMESCREEN SLIDER -->
 </resources>

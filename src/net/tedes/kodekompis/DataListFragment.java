@@ -22,7 +22,7 @@ public class DataListFragment extends ListFragment implements LoaderManager.Load
 	public void mottaBolken(DataBolk bolken){
 		mAdapter.addDataBolk(bolken);
 		mAdapter.notifyDataSetChanged();
-		//Make async task here maybe?
+		//TODO: Make async task here maybe?
 		InternalStorage.writeList(getActivity().getBaseContext(), mAdapter.getData(), kode);
 	}
 	
@@ -37,14 +37,17 @@ public class DataListFragment extends ListFragment implements LoaderManager.Load
     		Log.d("Martin", "failedlogins: "+i);
     		Toast.makeText(context, "Failed Logins: "+i, Toast.LENGTH_LONG).show();
     	} else {
+    		//Kode godkjent. Reset failedloginscounter, og inkrementer startcounter.
+    		int startcounter = PreferencesManager.getInt(context, "startcounter");
+			PreferencesManager.setInt(context, "startcounter", ++startcounter);
     		PreferencesManager.setInt(context, "failedlogins", 0);
+    		Toast.makeText(context, "login success", Toast.LENGTH_LONG).show();
     	}
     }
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState){
 		super.onActivityCreated(savedInstanceState);
-		
 		
 		//I utgangspunktet er listen tom
 		setEmptyText("Takk for at du *rap* bruker denne applikasjonen, Morty. Begynn å lagre dine brukernavn og passord ved å trykke på + tegnet, Morty.");
