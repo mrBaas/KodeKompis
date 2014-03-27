@@ -26,9 +26,14 @@
 	<string name="dialog_text_legg_til">LEGG TIL</string>
 	<!-- END DIALOG -->
 	
-	<!-- WELCOMESCREEN SLIDER -->
+	<!-- START FIRST WELCOME SLIDER -->
 	<string name="welcomestring1">Welcome 1</string>
 	<string name="welcomestring2">Tast inn ønska kode TO gang på *urk* neste skjerm, Morty.</string>
 	<string name="welcomestring3">Welcome 3</string>
-	<!-- END WELCOMESCREEN SLIDER -->
+	<!-- END START FIRST WELCOME SLIDER -->
+	
+	<!-- START FAILED -->
+	<string name="startfailed">Ke fan e det som *urhgj* feil deg, Morty? Du skreiv feil førr mange gang, Morty! Det her får konsekvensa, Morty.</string>
+	<!-- START FAILED -->
+	
 </resources>
