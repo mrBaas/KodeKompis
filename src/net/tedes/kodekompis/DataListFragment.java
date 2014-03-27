@@ -4,14 +4,10 @@ import java.util.List;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -25,7 +21,7 @@ public class DataListFragment extends ListFragment implements LoaderManager.Load
 	public void mottaBolken(DataBolk bolken){
 		mAdapter.addDataBolk(bolken);
 		mAdapter.notifyDataSetChanged();
-		//Make async task here maybe?
+		//TODO: Make async task here maybe?
 		InternalStorage.writeList(getActivity().getBaseContext(), mAdapter.getData(), kode);
 	}
 	
@@ -45,14 +41,12 @@ public class DataListFragment extends ListFragment implements LoaderManager.Load
 			PreferencesManager.setInt(context, "startcounter", ++startcounter);
     		PreferencesManager.setInt(context, "failedlogins", 0);
     		Toast.makeText(context, "login success", Toast.LENGTH_LONG).show();
-    		
     	}
     }
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState){
 		super.onActivityCreated(savedInstanceState);
-		
 		
 		//I utgangspunktet er listen tom
 		setEmptyText("Takk for at du *rap* bruker denne applikasjonen, Morty. Begynn å lagre dine brukernavn og passord ved å trykke på + tegnet, Morty.");

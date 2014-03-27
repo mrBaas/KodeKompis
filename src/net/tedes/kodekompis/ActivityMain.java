@@ -2,12 +2,7 @@ package net.tedes.kodekompis;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -23,16 +18,9 @@ public class ActivityMain extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_layout_main);
-		
-		//Henter ut getSupportFragmentManager() i stede for getFragmentManager()
-		//Støtter tidligere android versjoner
-		FragmentManager fm = getSupportFragmentManager();
-		Fragment fragment = fm.findFragmentById(R.id.fragmentContainer);
-		
-		if (fragment == null) {
-			//Chooses between First Launch, or Regular Launch mode
-			selectFragment();
-		}
+				
+		//Chooses between First Launch, or Regular Launch mode
+		selectFragment();
 	}
 	
     private void selectFragment(){
@@ -73,7 +61,7 @@ public class ActivityMain extends FragmentActivity {
 			Log.d("Martin", "check failed logins on start: "+failedlogins);
 			
 			if(failedlogins > 4) {
-				//Do not proceed
+				//TODO: Implement timer or something to keep from repeated attempts.
 				Toast.makeText(getBaseContext(), "Error: Too many failed logins", Toast.LENGTH_LONG).show();
 			} else {
 				//Regular Start

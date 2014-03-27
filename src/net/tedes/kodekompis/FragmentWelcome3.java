@@ -109,24 +109,6 @@ public class FragmentWelcome3 extends Fragment implements OnClickListener {
 				Fader.FadeIn(getActivity(), slett.getId());
 			}
 			mVisKode.append(String.valueOf(n));
-		
-			
-			//For testing purposes
-//			if(mVisKode.length() == 1) {
-//				String appPassword = "1234";
-//				String feilPassord = "2345";
-//				
-//				String itemStedPlain   = "stad";
-//				String itemBrukerPlain   = "bruker";
-//				String itemPassPlain   = "passord";
-//
-//				DataBolk 		  test1 = new DataBolk("Plain: "+itemStedPlain, itemBrukerPlain, itemPassPlain);
-//				DataBolkEncrypted test2 = new DataBolkEncrypted(test1, appPassword);
-//				
-//				List<DataBolkEncrypted> testlist = new ArrayList<DataBolkEncrypted>();
-//				testlist.add(test2);
-//				InternalStorage.writeListEncrypted(getActivity().getBaseContext(), (ArrayList<DataBolkEncrypted>) testlist);
-//			}
 			
 		} else if (mVisKode.length() == 3){
 			mVisKode.append(String.valueOf(n));
@@ -150,20 +132,7 @@ public class FragmentWelcome3 extends Fragment implements OnClickListener {
 					Toast.makeText(getActivity().getBaseContext(), "failed: not equal", Toast.LENGTH_LONG).show();
 					clearKode();
 				}
-				
 			}
-			
-			
-			
-			//Intent i = new Intent(getActivity(), ActivityCodeList.class);
-			//Ship kode to ActivityCodeList
-			//String kode = String.valueOf(mVisKode.getText());
-			//i.putExtra("kode", kode);
-			
-			//MOVE TO FIRST TIME LAUNCH ONLY
-			//Security.savePassword(getActivity(), kode);
-			//Toast.makeText(getActivity().getBaseContext(), "kode: "+String.valueOf(mVisKode.getText()), Toast.LENGTH_LONG).show();
-			//startActivity(i);
 		} else {
 			//Do nothing
 		}	
