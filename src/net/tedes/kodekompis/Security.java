@@ -54,11 +54,12 @@ public class Security {
 		DataBolk bolk;
 		ArrayList<DataBolk> bolks = new ArrayList<DataBolk>();
 		
-		for(int i=0; i<bolksEncrypted.size();i++){
-			bolk = new DataBolk(bolksEncrypted.get(i), password);
-			bolks.add(bolk);
+		if(bolksEncrypted != null) {
+			for(int i=0; i<bolksEncrypted.size();i++){
+				bolk = new DataBolk(bolksEncrypted.get(i), password);
+				bolks.add(bolk);
+			}
 		}
-		//comment
 		return bolks;
 	}
 	
