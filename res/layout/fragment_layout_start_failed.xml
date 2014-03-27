@@ -10,17 +10,17 @@
 		android:padding="16dp"
         android:lineSpacingMultiplier="1.2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/startfailed" 
-        android:layout_weight="3"/>
-       <TextView
+        android:layout_height="0px"
+        android:text="@string/startfailed_message" 
+        android:layout_weight="5"/>
+	<TextView
         android:id="@+id/start_failed_texttimer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0px"
         android:textSize="34sp"
         android:textColor="@color/eb_white"
         android:textStyle="bold"
         android:gravity="center"
-        android:layout_weight="7"/>
+        android:layout_weight="5"/>
 </LinearLayout>
     

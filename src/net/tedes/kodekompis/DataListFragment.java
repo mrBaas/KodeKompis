@@ -41,6 +41,7 @@ public class DataListFragment extends ListFragment implements LoaderManager.Load
     		int startcounter = PreferencesManager.getInt(context, "startcounter");
 			PreferencesManager.setInt(context, "startcounter", ++startcounter);
     		PreferencesManager.setInt(context, "failedlogins", 0);
+    		PreferencesManager.setInt(context, "failedloginsN", 0);
     		Toast.makeText(context, "login success", Toast.LENGTH_LONG).show();
     	}
     }

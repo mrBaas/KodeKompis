@@ -27,13 +27,15 @@
 	<!-- END DIALOG -->
 	
 	<!-- START FIRST WELCOME SLIDER -->
-	<string name="welcomestring1">Welcome 1</string>
+	<string name="welcomestring1">Du må DRÆG skjermen sidelengs, Morty, for å kom tel neste *uuurph* visning, Morty!</string>
 	<string name="welcomestring2">Tast inn ønska kode TO gang på *urk* neste skjerm, Morty.</string>
 	<string name="welcomestring3">Welcome 3</string>
 	<!-- END START FIRST WELCOME SLIDER -->
 	
 	<!-- START FAILED -->
-	<string name="startfailed">Ke fan e det som *urhgj* feil deg, Morty? Du skreiv feil førr mange gang, Morty! Det her får konsekvensa, Morty.</string>
+	<string name="startfailed_message">Ke fan e det som *urhgj* feil deg, Morty? Du skreiv feil førr mange gang, Morty! Det her får konsekvensa, Morty.</string>
+	<string name="startfailed_waitfinished">Ferdig. Går tilbake til innlogging.</string>
+	
 	<!-- START FAILED -->
 	
 </resources>

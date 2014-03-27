@@ -42,6 +42,14 @@ public class ActivityCodeList extends FragmentActivity
 	}
 	
 	@Override
+	protected void onStop() {
+		super.onStop();
+		
+		//Finish activity when out of sight -> returns to login screen on resume.
+		this.finish();
+	}
+	
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
