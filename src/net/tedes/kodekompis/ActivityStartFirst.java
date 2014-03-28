@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.util.SparseArray;
+import android.view.ViewGroup;
 
 public class ActivityStartFirst extends FragmentActivity {
 
@@ -34,11 +36,20 @@ public class ActivityStartFirst extends FragmentActivity {
 	@Override
 	public void onBackPressed() {
 		if (mPager == null || mPager.getCurrentItem() == 0) {
-			// If the user is currently looking at the first step, allow the system to handle the
-			// Back button. This calls finish() on this activity and pops the back stack.
+			//If looking at first slide, go back to previous activity
 			super.onBackPressed();
+		} else if(mPager.getCurrentItem() == 2){
+			//If looking at last page (with code panel)
+			//treat as slettNummer() if any digits have been entered,
+			//otherwise goto previous page.
+			FragmentWelcome3 f = (FragmentWelcome3)((ScreenSlidePagerAdapter) mPagerAdapter).getRegisteredFragment(mPager.getCurrentItem());
+			if(f.getKodeLength() == 0){
+				mPager.setCurrentItem(mPager.getCurrentItem() - 1);
+			} else {
+				f.slettNummer();
+			}
 		} else {
-			// Otherwise, select the previous step.
+			// Otherwise, select the previous page in the welcome slide thing.
 			mPager.setCurrentItem(mPager.getCurrentItem() - 1);
 		}
 	}
@@ -48,6 +59,8 @@ public class ActivityStartFirst extends FragmentActivity {
 	 * sequence.
 	 */
 	private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
+		SparseArray<Fragment> registeredFragments = new SparseArray<Fragment>();
+		
 		public ScreenSlidePagerAdapter(FragmentManager fm) {
 			super(fm);
 		}
@@ -77,5 +90,22 @@ public class ActivityStartFirst extends FragmentActivity {
 			return NUM_PAGES;
 		}
 
+	    @Override
+	    public Object instantiateItem(ViewGroup container, int position) {
+	        Fragment fragment = (Fragment) super.instantiateItem(container, position);
+	        registeredFragments.put(position, fragment);
+	        return fragment;
+	    }
+
+	    @Override
+	    public void destroyItem(ViewGroup container, int position, Object object) {
+	        registeredFragments.remove(position);
+	        super.destroyItem(container, position, object);
+	    }
+
+	    public Fragment getRegisteredFragment(int position) {
+	        return registeredFragments.get(position);
+	    }
+		
 	}
 }

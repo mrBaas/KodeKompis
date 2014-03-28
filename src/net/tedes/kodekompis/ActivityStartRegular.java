@@ -7,17 +7,30 @@ import android.support.v4.app.FragmentManager;
 
 public class ActivityStartRegular extends FragmentActivity {
 	
+	private FragmentCodePanel f;
+	
+	@Override
+	public void onBackPressed() {
+		if (f.getKodeLength() == 0) {
+			//If length of password is zero, go back to previous activity.
+			super.onBackPressed();
+		} else {
+			// Otherwise, delete most recent digit.
+			f.slettNummer();
+		}
+	}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_layout_start_regular);
 		
 		FragmentManager fm = getSupportFragmentManager();
-		Fragment fragment = fm.findFragmentById(R.id.fragmentContainerStartRegular);
+		this.f = (FragmentCodePanel)fm.findFragmentById(R.id.fragmentContainerStartRegular);
 		
-		if (fragment == null) {
-			fragment = new FragmentCodePanel();
-			fm.beginTransaction().add(R.id.fragmentContainerStartRegular, fragment).commit();
+		if (f == null) {
+			f = new FragmentCodePanel();
+			fm.beginTransaction().add(R.id.fragmentContainerStartRegular, f).commit();
 		}
 	}
 

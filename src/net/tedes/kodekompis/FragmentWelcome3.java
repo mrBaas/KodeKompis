@@ -116,7 +116,7 @@ public class FragmentWelcome3 extends Fragment implements OnClickListener {
  	}
     
 	public void addNumberToTextView(int n){
-		int len = kode.length();
+		int len = getKodeLength();
 		if(len < 4) {
 			indicators[len].setImageResource(indicatorOn);
 			kode = kode + String.valueOf(n);
@@ -170,7 +170,7 @@ public class FragmentWelcome3 extends Fragment implements OnClickListener {
 	}
 	
 	public void slettNummer(){
-		int len = kode.length();
+		int len = getKodeLength();
 		if(len > 0){
 			kode = kode.substring(0, kode.length() - 1);
 			indicators[kode.length()].setImageResource(indicatorOff);
@@ -180,6 +180,10 @@ public class FragmentWelcome3 extends Fragment implements OnClickListener {
 		} 
 	}
 
+	public int getKodeLength() {
+		return this.kode.length();
+	}
+	
 	private void clearKode(){
 		this.kode  = "1234567890";
 		this.kode  = "";

@@ -1,7 +1,6 @@
 package net.tedes.kodekompis;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -112,8 +111,8 @@ public class FragmentCodePanel extends Fragment implements OnClickListener {
 	   } 
 	}
 	
-	public void addNumberToTextView(int n){
-		int len = kode.length();
+	private void addNumberToTextView(int n){
+		int len = getKodeLength();;
 		if(len < 4) {
 			indicators[len].setImageResource(indicatorOn);
 			kode = kode + String.valueOf(n);
@@ -139,8 +138,9 @@ public class FragmentCodePanel extends Fragment implements OnClickListener {
 		}
 	}
 	
+	//NB: Also called from "back" button by ActivityStartRegular
 	public void slettNummer(){
-		int len = kode.length();
+		int len = getKodeLength();;
 		if(len > 0){
 			kode = kode.substring(0, kode.length() - 1);
 			indicators[kode.length()].setImageResource(indicatorOff);
@@ -148,6 +148,10 @@ public class FragmentCodePanel extends Fragment implements OnClickListener {
 				Fader.FadOut(getActivity(), slett.getId());
 			}
 		} 
+	}
+	
+	public int getKodeLength() {
+		return this.kode.length();
 	}
 	
 	private void clearKode(){
