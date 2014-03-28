@@ -8,19 +8,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class FragmentWelcome3 extends Fragment implements OnClickListener {
 
-	//Kun for testing
-	private TextView mVisKode;
+	private TextView mTextHeader;
 	
-	//Two strings for holding the desired input password, twice.
-	private String kode1, kode2;
+	//Strings for holding the desired input password, twice.
+	private String kode, kodeConfirm;
+	
+	//Manage indicator lamps for illustrating entered digits
+	private ImageView[] indicators;
+	private int indicatorOff = android.R.drawable.presence_invisible;
+	private int indicatorOn = android.R.drawable.presence_online;
 	
 	//KodePanel med ImageButtons
-	ImageButton knapp1, knapp2, knapp3, knapp4, knapp5, knapp6, knapp7, knapp8, knapp9, knapp0, slett;
+	private ImageButton[] digits;
+	private ImageButton slett;
+	
+	
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -28,136 +36,155 @@ public class FragmentWelcome3 extends Fragment implements OnClickListener {
 		
 	}
 	
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup v = (ViewGroup) inflater.inflate(R.layout.fragment_welcome_page3, container, false);
-
-        mVisKode = (TextView)v.findViewById(R.id.welcome_code_view);
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+		View v = inflater.inflate(R.layout.fragment_welcome_page3, parent, false);
 		
+		kode = "";
+		
+		mTextHeader = (TextView)v.findViewById(R.id.welcome_header);
+		
+		indicators = new ImageView[]{
+				(ImageView)v.findViewById(R.id.indicator1),
+				(ImageView)v.findViewById(R.id.indicator2),
+				(ImageView)v.findViewById(R.id.indicator3),
+				(ImageView)v.findViewById(R.id.indicator4)
+		};
+	
 		//Kobler hele kode-panelet
-		knapp1 = (ImageButton)v.findViewById(R.id.welcome_inputNumber1);
-		knapp2 = (ImageButton)v.findViewById(R.id.welcome_inputNumber2);
-		knapp3 = (ImageButton)v.findViewById(R.id.welcome_inputNumber3);
-		knapp4 = (ImageButton)v.findViewById(R.id.welcome_inputNumber4);
-		knapp5 = (ImageButton)v.findViewById(R.id.welcome_inputNumber5);
-		knapp6 = (ImageButton)v.findViewById(R.id.welcome_inputNumber6);
-		knapp7 = (ImageButton)v.findViewById(R.id.welcome_inputNumber7);
-		knapp8 = (ImageButton)v.findViewById(R.id.welcome_inputNumber8);
-		knapp9 = (ImageButton)v.findViewById(R.id.welcome_inputNumber9);
-		knapp0 = (ImageButton)v.findViewById(R.id.welcome_inputNumber0);
-		slett = (ImageButton)v.findViewById(R.id.welcome_slett);
+		digits = new ImageButton[]{
+				(ImageButton)v.findViewById(R.id.inputNumber0),
+				(ImageButton)v.findViewById(R.id.inputNumber1),
+				(ImageButton)v.findViewById(R.id.inputNumber2),
+				(ImageButton)v.findViewById(R.id.inputNumber3),
+				(ImageButton)v.findViewById(R.id.inputNumber4),
+				(ImageButton)v.findViewById(R.id.inputNumber5),
+				(ImageButton)v.findViewById(R.id.inputNumber6),
+				(ImageButton)v.findViewById(R.id.inputNumber7),
+				(ImageButton)v.findViewById(R.id.inputNumber8),
+				(ImageButton)v.findViewById(R.id.inputNumber9)
+		};
+		
+		slett = (ImageButton)v.findViewById(R.id.slett);
 		
 		//Setter lyttere på hver knapp
-		knapp1.setOnClickListener(this);
-		knapp2.setOnClickListener(this);
-		knapp3.setOnClickListener(this);
-		knapp4.setOnClickListener(this);
-		knapp5.setOnClickListener(this);
-		knapp6.setOnClickListener(this);
-		knapp7.setOnClickListener(this);
-		knapp8.setOnClickListener(this);
-		knapp9.setOnClickListener(this);
-		knapp0.setOnClickListener(this);
+		for (ImageButton i : digits) {
+			i.setOnClickListener(this);
+		}
 		slett.setOnClickListener(this);
-		
 		slett.setVisibility(View.INVISIBLE);
-        
-        return v;
-    }
+		
+		return v;
+	}
     
     public void onClick(View v) {
         switch(v.getId()) {
-            case R.id.welcome_inputNumber1:
+            case R.id.inputNumber1:
          	   addNumberToTextView(1);
          	   break;
-            case R.id.welcome_inputNumber2:
+            case R.id.inputNumber2:
          	   addNumberToTextView(2);
          	   break;
-            case R.id.welcome_inputNumber3:
+            case R.id.inputNumber3:
          	   addNumberToTextView(3);
          	   break;
-            case R.id.welcome_inputNumber4:
+            case R.id.inputNumber4:
          	   addNumberToTextView(4);
          	   break;
-            case R.id.welcome_inputNumber5:
+            case R.id.inputNumber5:
          	   addNumberToTextView(5);
  	           break;
-            case R.id.welcome_inputNumber6:
+            case R.id.inputNumber6:
          	   addNumberToTextView(6);
                 break;
-            case R.id.welcome_inputNumber7:
+            case R.id.inputNumber7:
          	   addNumberToTextView(7);
                 break;
-            case R.id.welcome_inputNumber8:
+            case R.id.inputNumber8:
          	   addNumberToTextView(8);
                 break;
-            case R.id.welcome_inputNumber9:
+            case R.id.inputNumber9:
          	   addNumberToTextView(9);
                 break;
-            case R.id.welcome_inputNumber0:
+            case R.id.inputNumber0:
          	   addNumberToTextView(0);
                 break;
-            case R.id.welcome_slett:
+            case R.id.slett:
          	   slettNummer();
          	   break;
  	   } 
  	}
     
-    public void addNumberToTextView(int n){
-		if(mVisKode.length() < 3){
-			if(mVisKode.length() == 0){
-				Fader.FadeIn(getActivity(), slett.getId());
-			}
-			mVisKode.append(String.valueOf(n));
-			
-		} else if (mVisKode.length() == 3){
-			mVisKode.append(String.valueOf(n));
-			
-			if (kode1 == null) {
-				kode1 = String.valueOf(mVisKode.getText());
-				mVisKode.setText("");
-			} else {
-				kode2 = String.valueOf(mVisKode.getText());
-				
-				if (kode1.equals(kode2)) {
-					Toast.makeText(getActivity().getBaseContext(), "success: equal", Toast.LENGTH_LONG).show();
-					Security.savePassword(getActivity(), kode1);
-					Intent i = new Intent(getActivity(), ActivityCodeList.class);
-					//Ship kode to ActivityCodeList
-					i.putExtra("kode", kode1);
-					clearKode();
-					Toast.makeText(getActivity().getBaseContext(),"Kryptert kode lagret. Plain kode cleared", Toast.LENGTH_LONG).show();
-					startActivity(i);
-				} else {
-					Toast.makeText(getActivity().getBaseContext(), "failed: not equal", Toast.LENGTH_LONG).show();
-					clearKode();
-				}
-			}
+	public void addNumberToTextView(int n){
+		int len = kode.length();
+		if(len < 4) {
+			indicators[len].setImageResource(indicatorOn);
+			kode = kode + String.valueOf(n);
 		} else {
-			//Do nothing
-		}	
+			//Do nothing; input longer than required code
+		}
+		
+		switch (len){
+			case 0:
+				//This is the first digit of the code
+				Fader.FadeIn(getActivity(), slett.getId());
+				break;
+			case 3:
+				//This is the last digit of the code
+				//Loader skal etter hvert hit
+
+				if (kodeConfirm == null || kodeConfirm.equals("")) {
+					//Finished password first time.
+					kodeConfirm = kode;
+					kode = "";
+					for (ImageView i : indicators) {
+						i.setImageResource(indicatorOff);
+					}
+					mTextHeader.setText(getString(R.string.welcome_entersecond));
+					break;
+				} else {
+					if (!kodeConfirm.equals(kode)) {
+						//Finished password second time, but not equal.
+						Toast.makeText(getActivity().getBaseContext(), "failed: not equal", Toast.LENGTH_LONG).show();
+						clearKode();
+						for (ImageView i : indicators) {
+							i.setImageResource(indicatorOff);
+						}
+						mTextHeader.setText(getString(R.string.welcome_enterfirst));
+						break;
+					}
+				}
+				
+				//If this point of the switch is reached, the two finished codes are equal.
+				Toast.makeText(getActivity().getBaseContext(), "success: equal", Toast.LENGTH_LONG).show();
+				Security.savePassword(getActivity(), kodeConfirm);
+				Intent i = new Intent(getActivity(), ActivityCodeList.class);
+				i.putExtra("kode", kodeConfirm);
+				clearKode();
+				Toast.makeText(getActivity().getBaseContext(),"Kryptert kode lagret. Plain kode cleared", Toast.LENGTH_LONG).show();
+				startActivity(i);
+				break;
+			default:
+				//This is any other digits of the code, no special behavior.
+		}
 	}
 	
-	private void slettNummer(){
-		if(mVisKode.length() > 0 && mVisKode.length() != 1){
-			String tempText = String.valueOf(mVisKode.getText());
-			mVisKode.setText(tempText.substring(0, tempText.length() - 1));
-		} else if (mVisKode.length() == 1) {
-			String tempText = String.valueOf(mVisKode.getText());
-			mVisKode.setText(tempText.substring(0, tempText.length() - 1));
-			Fader.FadOut(getActivity(), slett.getId());
-		}else {
-			//Do nothing
-		}
+	public void slettNummer(){
+		int len = kode.length();
+		if(len > 0){
+			kode = kode.substring(0, kode.length() - 1);
+			indicators[kode.length()].setImageResource(indicatorOff);
+			if (len == 1) {
+				Fader.FadOut(getActivity(), slett.getId());
+			}
+		} 
 	}
 
 	private void clearKode(){
-		this.kode1 = "1234567890";
-		this.kode1 = null;
-		this.kode2 = "1234567890";
-		this.kode2 = null;
-		this.mVisKode.setText("1234567890");
-		this.mVisKode.setText("");
+		this.kode  = "1234567890";
+		this.kode  = "";
+		this.kodeConfirm = "1234567890";
+		this.kodeConfirm = "";
 	}
 	
     

@@ -14,18 +14,62 @@
         android:layout_weight="4"
         >
         <TextView
-	        android:id="@+id/welcome_code_view"
+	        android:id="@+id/welcome_header"
 	        android:layout_width="match_parent"
 	        android:layout_height="match_parent"
-	        android:textSize="34sp"
+	        android:textSize="16sp"
 	        android:textColor="@color/eb_white"
 	        android:textStyle="bold"
 	        android:gravity="center"
+	        android:text="@string/welcome_enterfirst"
 	         />
         
     </LinearLayout>
     <!-- END HEADER -->
 
+
+<!-- PIN INDICATORS -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        
+        <ImageView
+	        android:id="@+id/indicator1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@android:drawable/presence_invisible"
+	        android:padding="10dp" />
+        
+        <ImageView
+	        android:id="@+id/indicator2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@android:drawable/presence_invisible"
+	        android:padding="10dp" />
+        
+        <ImageView
+	        android:id="@+id/indicator3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@android:drawable/presence_invisible"
+	        android:padding="10dp" />
+	        
+		<ImageView
+	        android:id="@+id/indicator4"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@android:drawable/presence_invisible"
+	        android:padding="10dp" />
+        
+    </LinearLayout>
+    <!-- END PIN INDICATORS -->
 
 	<!-- NUMMER RAD 1 -->
     <LinearLayout
@@ -36,7 +80,7 @@
         >
         
         <ImageButton
-	        android:id="@+id/welcome_inputNumber1"
+	        android:id="@+id/inputNumber1"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:background="@null"
@@ -45,7 +89,7 @@
 	         />
         
         <ImageButton
-	        android:id="@+id/welcome_inputNumber2"
+	        android:id="@+id/inputNumber2"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:background="@null"
@@ -53,7 +97,7 @@
 	        android:padding="10dp" />
         
         <ImageButton
-	        android:id="@+id/welcome_inputNumber3"
+	        android:id="@+id/inputNumber3"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:background="@null"
@@ -73,7 +117,7 @@
         >
         
         <ImageButton
-	        android:id="@+id/welcome_inputNumber4"
+	        android:id="@+id/inputNumber4"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:background="@null"
@@ -81,7 +125,7 @@
 	        android:padding="10dp" />
         
         <ImageButton
-	        android:id="@+id/welcome_inputNumber5"
+	        android:id="@+id/inputNumber5"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:background="@null"
@@ -89,7 +133,7 @@
 	        android:padding="10dp"/>
         
         <ImageButton
-	        android:id="@+id/welcome_inputNumber6"
+	        android:id="@+id/inputNumber6"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:background="@null"
@@ -109,7 +153,7 @@
         >
         
         <ImageButton
-	        android:id="@+id/welcome_inputNumber7"
+	        android:id="@+id/inputNumber7"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:background="@null"
@@ -117,7 +161,7 @@
 	        android:padding="10dp" />
         
         <ImageButton
-	        android:id="@+id/welcome_inputNumber8"
+	        android:id="@+id/inputNumber8"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:background="@null"
@@ -125,7 +169,7 @@
 	        android:padding="10dp" />
         
         <ImageButton
-	        android:id="@+id/welcome_inputNumber9"
+	        android:id="@+id/inputNumber9"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:background="@null"
@@ -144,8 +188,15 @@
         android:gravity="center"
         >
         
+        <ImageView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:src="@drawable/whitespace"
+	        android:padding="10dp" />
+        
         <ImageButton
-	        android:id="@+id/welcome_ok"
+	        android:id="@+id/inputNumber0"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:background="@null"
@@ -153,15 +204,7 @@
 	        android:padding="10dp" />
         
         <ImageButton
-	        android:id="@+id/welcome_inputNumber0"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:background="@null"
-	        android:src="@drawable/code0"
-	        android:padding="10dp" />
-        
-        <ImageButton
-	        android:id="@+id/welcome_slett"
+	        android:id="@+id/slett"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:background="@null"

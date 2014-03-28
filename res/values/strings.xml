@@ -4,6 +4,10 @@
     <string name="app_name">KodeKompis</string>
     <string name="action_settings">Settings</string>
     
+    <!-- CODEPANEL -->
+    <string name="codepanel_header">Trøkk inn koden din</string>
+    <!-- END CODEPANEL -->
+    
     <!-- DATABOLK MODELL -->
     <string name="sted_hint">URL/SYSTEM</string>
     <string name="bruker_hint">> Brukernavn</string>
@@ -29,7 +33,8 @@
 	<!-- START FIRST WELCOME SLIDER -->
 	<string name="welcomestring1">Du må DRÆG skjermen sidelengs, Morty, for å kom tel neste *uuurph* visning, Morty!</string>
 	<string name="welcomestring2">Tast inn ønska kode TO gang på *urk* neste skjerm, Morty.</string>
-	<string name="welcomestring3">Welcome 3</string>
+	<string name="welcome_enterfirst">Trøkk inn *gyahrp* kodn du vil ha, Morty.</string>
+	<string name="welcome_entersecond">Gjenta SAMME kodn, Morty.</string>
 	<!-- END START FIRST WELCOME SLIDER -->
 	
 	<!-- START FAILED -->
