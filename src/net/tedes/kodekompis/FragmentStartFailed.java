@@ -14,17 +14,11 @@ public class FragmentStartFailed extends Fragment {
 	//Holds number of seconds left before successfully waited.
 	private TextView mTextTimer;
 	private CountDownTimer timer;
+	private boolean mFinished;
 	
 	//holds how many consecutive sets of multiple failures due to password attempts.
 	private int n;
 
-	@Override
-	public void onStop() {
-		super.onStop();
-		Log.d("Martin","timer.cancel()");
-		timer.cancel();
-		getActivity().finish();
-	}
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -35,6 +29,7 @@ public class FragmentStartFailed extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_layout_start_failed, parent, false);
 		
+		mFinished = false;
 		mTextTimer = (TextView)v.findViewById(R.id.start_failed_texttimer);
 
 		n = PreferencesManager.getInt(getActivity().getBaseContext(), "failedloginsN");
@@ -48,6 +43,7 @@ public class FragmentStartFailed extends Fragment {
 
 			 public void onFinish() {
 			     mTextTimer.setText(getString(R.string.startfailed_waitfinished));
+			     mFinished = true;
 			     
 			     //Increment cumulative failure count, to increase penalty next time
 			     //(Do this upon successful wait, not on creation, to avoid issues with cancel.)
@@ -61,4 +57,11 @@ public class FragmentStartFailed extends Fragment {
 		return v;
 	}
 	
+	public CountDownTimer getTimer() {
+		return this.timer;
+	}
+	
+	public boolean isFinished(){
+		return this.mFinished;
+	}
 }
