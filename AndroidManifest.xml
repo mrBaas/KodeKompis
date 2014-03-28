@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityCodeList"></activity>
+        <activity android:name=".ActivityDataList"></activity>
         <activity 
         	android:name=".ActivityStartFirst"
         	android:noHistory="true">

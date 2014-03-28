@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentManager;
 
 public class ActivityStartRegular extends FragmentActivity {
 	
-	private FragmentCodePanel f;
+	private FragmentStartRegular f;
 	
 	@Override
 	public void onBackPressed() {
@@ -26,10 +26,10 @@ public class ActivityStartRegular extends FragmentActivity {
 		setContentView(R.layout.activity_layout_start_regular);
 		
 		FragmentManager fm = getSupportFragmentManager();
-		this.f = (FragmentCodePanel)fm.findFragmentById(R.id.fragmentContainerStartRegular);
+		this.f = (FragmentStartRegular)fm.findFragmentById(R.id.fragmentContainerStartRegular);
 		
 		if (f == null) {
-			f = new FragmentCodePanel();
+			f = new FragmentStartRegular();
 			fm.beginTransaction().add(R.id.fragmentContainerStartRegular, f).commit();
 		}
 	}

@@ -6,12 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class FragmentWelcome2 extends Fragment {
+public class FragmentStartFirst1 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
-                R.layout.fragment_welcome_page2, container, false);
+                R.layout.fragment_layout_start_first1, container, false);
 
         return rootView;
     }

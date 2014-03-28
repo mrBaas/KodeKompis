@@ -11,6 +11,7 @@
         android:lineSpacingMultiplier="1.2"
         android:layout_width="match_parent"
         android:layout_height="0px"
+        android:textColor="@color/eb_white"
         android:text="@string/startfailed_message" 
         android:layout_weight="5"/>
 	<TextView

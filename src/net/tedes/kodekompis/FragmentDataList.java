@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class DataListFragment extends ListFragment implements LoaderManager.LoaderCallbacks<List<DataBolk>> {
+public class FragmentDataList extends ListFragment implements LoaderManager.LoaderCallbacks<List<DataBolk>> {
 
 	private CustomMainArrayAdapter mAdapter;
 	private String kode;
@@ -51,7 +51,7 @@ public class DataListFragment extends ListFragment implements LoaderManager.Load
 		super.onActivityCreated(savedInstanceState);
 		
 		//I utgangspunktet er listen tom
-		setEmptyText("Takk for at du *rap* bruker denne applikasjonen, Morty. Begynn å lagre dine brukernavn og passord ved å trykke på + tegnet, Morty.");
+		setEmptyText(getString(R.string.datalist_empty));
 		
 		//Tomt adapter blir opprettet for å vise data i listen.
 		mAdapter = new CustomMainArrayAdapter(getActivity());

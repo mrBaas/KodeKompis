@@ -42,7 +42,7 @@ public class ActivityStartFirst extends FragmentActivity {
 			//If looking at last page (with code panel)
 			//treat as slettNummer() if any digits have been entered,
 			//otherwise goto previous page.
-			FragmentWelcome3 f = (FragmentWelcome3)((ScreenSlidePagerAdapter) mPagerAdapter).getRegisteredFragment(mPager.getCurrentItem());
+			FragmentStartFirst3 f = (FragmentStartFirst3)((ScreenSlidePagerAdapter) mPagerAdapter).getRegisteredFragment(mPager.getCurrentItem());
 			if(f.getKodeLength() == 0){
 				mPager.setCurrentItem(mPager.getCurrentItem() - 1);
 			} else {
@@ -70,13 +70,13 @@ public class ActivityStartFirst extends FragmentActivity {
 			switch (position){
 			case 0:
 				//Toast.makeText(getBaseContext(), "case 0", Toast.LENGTH_LONG).show();
-				return new FragmentWelcome1();
+				return new FragmentStartFirst1();
 			case 1:
 				//Toast.makeText(getBaseContext(), "case 1", Toast.LENGTH_LONG).show();
-				return new FragmentWelcome2();
+				return new FragmentStartFirst2();
 			case 2:
 				//Toast.makeText(getBaseContext(), "case 2", Toast.LENGTH_LONG).show();
-				return new FragmentWelcome3();
+				return new FragmentStartFirst3();
 			default:
 				Log.e("Martin", "MainActivity PagerAdapter out of bounds. Pos: "+position);
 				throw new RuntimeException();

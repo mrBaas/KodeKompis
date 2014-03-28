@@ -11,7 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class FragmentCodePanel extends Fragment implements OnClickListener {
+public class FragmentStartRegular extends Fragment implements OnClickListener {
 
 	private TextView mTextHeader;
 	
@@ -34,7 +34,7 @@ public class FragmentCodePanel extends Fragment implements OnClickListener {
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_layout_code, parent, false);
+		View v = inflater.inflate(R.layout.fragment_layout_start_regular, parent, false);
 		
 		kode = "";
 		
@@ -128,7 +128,7 @@ public class FragmentCodePanel extends Fragment implements OnClickListener {
 			case 3:
 				//This is the last digit of the code
 				//Loader skal etter hvert hit
-				Intent i = new Intent(getActivity(), ActivityCodeList.class);
+				Intent i = new Intent(getActivity(), ActivityDataList.class);
 				i.putExtra("kode", kode);
 				clearKode();
 				startActivity(i);

@@ -17,7 +17,7 @@
 	        android:id="@+id/codepanel_header"
 	        android:layout_width="match_parent"
 	        android:layout_height="match_parent"
-	        android:textSize="16sp"
+	        android:textSize="20sp"
 	        android:textColor="@color/eb_white"
 	        android:textStyle="bold"
 	        android:gravity="center"

@@ -38,7 +38,7 @@ public class FragmentStartFailed extends Fragment {
 		timer = new CountDownTimer(Tedes.FAILED_LOGINS_WAIT*1000*(n+1), 1000) {
 
 			 public void onTick(long millisUntilFinished) {
-			     mTextTimer.setText("Vent: " + (millisUntilFinished / 1000) + " sekunder.");
+			     mTextTimer.setText("Vent: " + (millisUntilFinished / 1000) + " sekunder");
 			 }
 
 			 public void onFinish() {

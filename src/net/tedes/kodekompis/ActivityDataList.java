@@ -10,10 +10,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class ActivityCodeList extends FragmentActivity 
+public class ActivityDataList extends FragmentActivity 
 					implements FragmentLeggTilListe.OnNewBolkFinished {
 	
-	private DataListFragment datalistFragment;
+	private FragmentDataList datalistFragment;
 	private String kode;
 	
 	@Override
@@ -67,8 +67,8 @@ public class ActivityCodeList extends FragmentActivity
 		Fragment fragment = fm.findFragmentById(R.id.fragmentContainer);
 		
 		if (fragment == null) {
-			fragment = new DataListFragment();
-			datalistFragment = (DataListFragment)fragment;
+			fragment = new FragmentDataList();
+			datalistFragment = (FragmentDataList)fragment;
 			datalistFragment.setKode(kode, getBaseContext());
 			fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
 		}

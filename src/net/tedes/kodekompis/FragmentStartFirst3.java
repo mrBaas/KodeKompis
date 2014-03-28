@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class FragmentWelcome3 extends Fragment implements OnClickListener {
+public class FragmentStartFirst3 extends Fragment implements OnClickListener {
 
 	private TextView mTextHeader;
 	
@@ -38,7 +38,7 @@ public class FragmentWelcome3 extends Fragment implements OnClickListener {
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_welcome_page3, parent, false);
+		View v = inflater.inflate(R.layout.fragment_layout_start_first3, parent, false);
 		
 		kode = "";
 		
@@ -158,7 +158,7 @@ public class FragmentWelcome3 extends Fragment implements OnClickListener {
 				//If this point of the switch is reached, the two finished codes are equal.
 				Toast.makeText(getActivity().getBaseContext(), "success: equal", Toast.LENGTH_LONG).show();
 				Security.savePassword(getActivity(), kodeConfirm);
-				Intent i = new Intent(getActivity(), ActivityCodeList.class);
+				Intent i = new Intent(getActivity(), ActivityDataList.class);
 				i.putExtra("kode", kodeConfirm);
 				clearKode();
 				Toast.makeText(getActivity().getBaseContext(),"Kryptert kode lagret. Plain kode cleared", Toast.LENGTH_LONG).show();
