@@ -67,7 +67,7 @@ public class FragmentStartFirst3 extends Fragment implements OnClickListener {
 		
 		slett = (ImageButton)v.findViewById(R.id.slett);
 		
-		//Setter lyttere på hver knapp
+		//Setter lyttere på hver knapp.
 		for (ImageButton i : digits) {
 			i.setOnClickListener(this);
 		}
