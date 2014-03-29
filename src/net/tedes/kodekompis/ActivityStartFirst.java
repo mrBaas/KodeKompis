@@ -82,7 +82,7 @@ public class ActivityStartFirst extends FragmentActivity {
 				throw new RuntimeException();
 			}
 
-			//return new FragmentWelcome();
+			//Her står det en jævla kommentar.
 		}
 
 		@Override
