@@ -3,15 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_background_color"
-    android:weightSum="10"
     android:orientation="vertical" 
     >
 	
     <!-- HEADER -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_height="wrap_content"
         >
         <TextView
 	        android:id="@+id/welcome_header"
@@ -213,5 +211,32 @@
         
     </LinearLayout>
 	<!-- END NUMMER RAD 4 -->
+
+	<!-- PREVIOUS / NEXT BUTTONS -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:gravity="center|bottom"
+        android:orientation="horizontal"
+        >
+        
+        <!-- android:src="@drawable/buttonsource" -->
+        <Button
+	        android:id="@+id/buttonPrevious"
+	        android:layout_width="100dp"
+	        android:layout_height="wrap_content"
+	        android:padding="10dp"
+	        android:text="@string/welcome_button_prev"
+	        />
+        <Button
+	        android:id="@+id/buttonNext"
+	        android:layout_width="100dp"
+	        android:layout_height="wrap_content"
+	        android:padding="10dp"
+	        android:text="@string/welcome_button_next"
+	        />
+    </LinearLayout>
+    <!-- END PREVIOUS / NEXT BUTTONS -->
 
 </LinearLayout>

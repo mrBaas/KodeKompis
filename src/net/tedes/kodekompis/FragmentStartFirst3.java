@@ -1,5 +1,6 @@
 package net.tedes.kodekompis;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,6 +30,10 @@ public class FragmentStartFirst3 extends Fragment implements OnClickListener {
 	private ImageButton[] digits;
 	private ImageButton slett;
 	
+	//Callback for ActivityStartFirst,
+	//with Buttons for navigating Previous/Next in the StartFirst Slides.
+	private PageNavigator mCallback;
+	Button bPrev, bNext;
 	
 	
 	@Override
@@ -35,6 +41,20 @@ public class FragmentStartFirst3 extends Fragment implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		
 	}
+	
+	@Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mCallback = (PageNavigator) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement PageNavigator");
+        }
+    }
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -67,6 +87,9 @@ public class FragmentStartFirst3 extends Fragment implements OnClickListener {
 		
 		slett = (ImageButton)v.findViewById(R.id.slett);
 		
+        bPrev = (Button)v.findViewById(R.id.buttonPrevious);
+        bNext = (Button)v.findViewById(R.id.buttonNext);
+        
 		//Setter lyttere på hver knapp.
 		for (ImageButton i : digits) {
 			i.setOnClickListener(this);
@@ -74,11 +97,20 @@ public class FragmentStartFirst3 extends Fragment implements OnClickListener {
 		slett.setOnClickListener(this);
 		slett.setVisibility(View.INVISIBLE);
 		
+        bPrev.setOnClickListener(this);
+        bNext.setOnClickListener(this);
+		
 		return v;
 	}
     
     public void onClick(View v) {
         switch(v.getId()) {
+	        case R.id.buttonPrevious:
+	    		mCallback.pagePrevious();
+	    		break;
+	    	case R.id.buttonNext:
+	    		mCallback.pageNext();
+	    		break;
             case R.id.inputNumber1:
          	   addNumberToTextView(1);
          	   break;

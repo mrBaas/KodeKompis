@@ -11,7 +11,8 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.view.ViewGroup;
 
-public class ActivityStartFirst extends FragmentActivity {
+public class ActivityStartFirst extends FragmentActivity 
+			implements PageNavigator{
 
 	private static final int NUM_PAGES = 3;
 	//The pager widget, handles animation and allows swiping
@@ -26,7 +27,7 @@ public class ActivityStartFirst extends FragmentActivity {
 		setContentView(R.layout.activity_layout_start_first);
 		FragmentManager fm = getSupportFragmentManager();
 
-		// Instantiate a ViewPager and a PagerAdapter for FragmentWelcome.
+		// Instantiate a ViewPager and a PagerAdapter for FragmentStartFirst fragments.
 		mPager = (ViewPager) findViewById(R.id.pager);
 		mPager.setPageTransformer(true, new DepthPageTransformer());
 		mPagerAdapter = new ScreenSlidePagerAdapter(fm);
@@ -44,16 +45,26 @@ public class ActivityStartFirst extends FragmentActivity {
 			//otherwise goto previous page.
 			FragmentStartFirst3 f = (FragmentStartFirst3)((ScreenSlidePagerAdapter) mPagerAdapter).getRegisteredFragment(mPager.getCurrentItem());
 			if(f.getKodeLength() == 0){
-				mPager.setCurrentItem(mPager.getCurrentItem() - 1);
+				pagePrevious();
 			} else {
 				f.slettNummer();
 			}
 		} else {
 			// Otherwise, select the previous page in the welcome slide thing.
-			mPager.setCurrentItem(mPager.getCurrentItem() - 1);
+			pagePrevious();
 		}
 	}
 
+	@Override
+	public void pagePrevious() {
+		mPager.setCurrentItem(mPager.getCurrentItem()-1, true);
+	}
+	
+	@Override
+	public void pageNext() {
+		mPager.setCurrentItem(mPager.getCurrentItem()+1, true);
+	}
+	
 	/**
 	 * A simple pager adapter that represents ScreenSlidePageFragment objects, in
 	 * sequence.
@@ -70,7 +81,9 @@ public class ActivityStartFirst extends FragmentActivity {
 			switch (position){
 			case 0:
 				//Toast.makeText(getBaseContext(), "case 0", Toast.LENGTH_LONG).show();
-				return new FragmentStartFirst1();
+				FragmentStartFirst1 f = new FragmentStartFirst1();
+				//f.getButtonPrev().setEnabled(false);
+				return f;
 			case 1:
 				//Toast.makeText(getBaseContext(), "case 1", Toast.LENGTH_LONG).show();
 				return new FragmentStartFirst2();

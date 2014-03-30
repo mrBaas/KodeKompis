@@ -39,6 +39,8 @@
 	<!-- END DIALOG -->
 	
 	<!-- START FIRST (WELCOME SLIDER) -->
+	<string name="welcome_button_prev">Forrige</string>
+	<string name="welcome_button_next">Neste</string>
 	<string name="welcomestring1">
 	    Velkommen til KodeKompis!\n\n
 	    KodeKompis er en applikasjon som hjelper deg med å holde kontroll på dine brukernavn og passord,
