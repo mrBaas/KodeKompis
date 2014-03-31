@@ -1,0 +1,68 @@
+<!-- fragment_welcome_page2.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:background="@color/main_background_color"
+	>
+
+    <LinearLayout
+            android:id="@+id/buttons"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            >
+	        <Button
+		        android:id="@+id/buttonPrevious"
+		        android:layout_width="100dp"
+		        android:layout_height="wrap_content"
+		        android:padding="10dp"
+		        android:textColor="@color/eb_white"
+		        android:text="@string/welcome_button_prev"
+		        />
+	        <Button
+		        android:id="@+id/buttonNext"
+		        android:layout_width="100dp"
+		        android:layout_height="wrap_content"
+		        android:padding="10dp"
+		        android:textColor="@color/eb_white"
+		        android:text="@string/welcome_button_next"
+		        />
+    </LinearLayout>
+
+    <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@id/buttons"
+            android:background="@color/main_background_color"
+            >
+         <!--Scrollable content here-->
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                >
+			<ImageView
+		        android:id="@+id/pageImageTop"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:gravity="center"
+		        android:background="@null"
+		        android:src="@null"
+		        android:padding="10dp"
+		        />                
+            <TextView style="?android:textAppearanceMedium"
+                android:id="@+id/pageText"
+		        android:padding="16dp"
+		        android:gravity="left"
+		        android:lineSpacingMultiplier="1.2"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:textColor="@color/eb_white"
+		        />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
+	

@@ -8,8 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class FragmentStartFirst2 extends Fragment implements OnClickListener{
+	
+	private TextView mText;
 	
 	//Callback for ActivityStartFirst,
 	//with Buttons for navigating Previous/Next in the StartFirst Slides.
@@ -19,7 +22,10 @@ public class FragmentStartFirst2 extends Fragment implements OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
-                R.layout.fragment_layout_start_first2, container, false);
+                R.layout.fragment_layout_start_first_textpage, container, false);
+        
+        mText = (TextView)rootView.findViewById(R.id.pageText);
+        mText.setText(getString(R.string.welcomestring2));
         
         bPrev = (Button)rootView.findViewById(R.id.buttonPrevious);
         bNext = (Button)rootView.findViewById(R.id.buttonNext);

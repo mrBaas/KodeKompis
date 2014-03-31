@@ -81,12 +81,14 @@ public class ActivityStartFirst extends FragmentActivity
 			switch (position){
 			case 0:
 				//Toast.makeText(getBaseContext(), "case 0", Toast.LENGTH_LONG).show();
-				FragmentStartFirst1 f = new FragmentStartFirst1();
+				FragmentStartFirst1 f1 = FragmentStartFirst1.newInstance(R.string.welcomestring1, R.drawable.code1);
 				//f.getButtonPrev().setEnabled(false);
-				return f;
+				return f1;
 			case 1:
 				//Toast.makeText(getBaseContext(), "case 1", Toast.LENGTH_LONG).show();
-				return new FragmentStartFirst2();
+				FragmentStartFirst1 f2 = FragmentStartFirst1.newInstance(R.string.welcomestring2, R.drawable.code2);
+				//return new FragmentStartFirst2();
+				return f2;
 			case 2:
 				//Toast.makeText(getBaseContext(), "case 2", Toast.LENGTH_LONG).show();
 				return new FragmentStartFirst3();

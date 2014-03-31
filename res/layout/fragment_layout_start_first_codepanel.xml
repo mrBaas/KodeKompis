@@ -227,6 +227,7 @@
 	        android:layout_width="100dp"
 	        android:layout_height="wrap_content"
 	        android:padding="10dp"
+	        android:textColor="@color/eb_white"
 	        android:text="@string/welcome_button_prev"
 	        />
         <Button
@@ -234,6 +235,7 @@
 	        android:layout_width="100dp"
 	        android:layout_height="wrap_content"
 	        android:padding="10dp"
+	        android:textColor="@color/eb_white"
 	        android:text="@string/welcome_button_next"
 	        />
     </LinearLayout>

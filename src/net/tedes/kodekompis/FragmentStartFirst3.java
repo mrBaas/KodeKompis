@@ -58,7 +58,7 @@ public class FragmentStartFirst3 extends Fragment implements OnClickListener {
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_layout_start_first3, parent, false);
+		View v = inflater.inflate(R.layout.fragment_layout_start_first_codepanel, parent, false);
 		
 		kode = "";
 		
@@ -89,6 +89,9 @@ public class FragmentStartFirst3 extends Fragment implements OnClickListener {
 		
         bPrev = (Button)v.findViewById(R.id.buttonPrevious);
         bNext = (Button)v.findViewById(R.id.buttonNext);
+        
+      //Disable "next" button on last slide
+        bNext.setEnabled(false);
         
 		//Setter lyttere på hver knapp.
 		for (ImageButton i : digits) {
