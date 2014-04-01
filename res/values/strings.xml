@@ -30,7 +30,7 @@
 	<string name="dialog_header">Legg til liste</string>
 	<string name="dialog_sted_valg">Beskrivelse:</string>
 	<string name="dialog_sted_hint">Fyll inn</string>
-	<string name="dialog_bruker_valg">Bruker:</string>
+	<string name="dialog_bruker_valg">Brukernavn:</string>
 	<string name="dialog_bruker_hint">Fyll inn</string>
 	<string name="dialog_passord_valg">Passord:</string>
 	<string name="dialog_pass_hint">Fyll inn</string>
