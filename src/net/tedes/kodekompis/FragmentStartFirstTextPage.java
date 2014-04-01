@@ -11,10 +11,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class FragmentStartFirst1 extends Fragment implements OnClickListener {
+public class FragmentStartFirstTextPage extends Fragment implements OnClickListener {
 
-	public static final FragmentStartFirst1 newInstance(int sourceText, int sourceImg) {
-		FragmentStartFirst1 fragment = new FragmentStartFirst1();
+	//Expected format: R.string.stringsourcevariable, R.drawable.imagesourcevariable
+	//Use 0 (int) to feed empty sources into fragment.
+	public static final FragmentStartFirstTextPage newInstance(int sourceText, int sourceImg) {
+		FragmentStartFirstTextPage fragment = new FragmentStartFirstTextPage();
 
         final Bundle args = new Bundle(2);
         args.putInt(Tedes.EXTRA_START_FIRST_TEXTSOURCE, sourceText);
@@ -27,7 +29,9 @@ public class FragmentStartFirst1 extends Fragment implements OnClickListener {
 	//Callback for ActivityStartFirst,
 	//with Buttons for navigating Previous/Next in the StartFirst Slides.
 	private PageNavigator mCallback;
-	Button bPrev, bNext;
+	private Button bPrev, bNext;
+	private boolean bPrevEnabled = true;
+	private boolean bNextEnabled = true;
 	
 	private int		 mTextSource;
 	private TextView mText;
@@ -38,7 +42,9 @@ public class FragmentStartFirst1 extends Fragment implements OnClickListener {
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mTextSource = getArguments().getInt(Tedes.EXTRA_START_FIRST_TEXTSOURCE);
+        
+        //Handle extra variables passed in by newInstance method.
+        mTextSource     = getArguments().getInt(Tedes.EXTRA_START_FIRST_TEXTSOURCE);
         mImageTopSource = getArguments().getInt(Tedes.EXTRA_START_FIRST_IMGSOURCE);
     }
 	
@@ -50,8 +56,6 @@ public class FragmentStartFirst1 extends Fragment implements OnClickListener {
         mImageTop = (ImageView)rootView.findViewById(R.id.pageImageTop);
         mImageTop.setImageResource(mImageTopSource);
         
-        //R.string.welcomestring1
-        
         mText = (TextView)rootView.findViewById(R.id.pageText);
         mText.setText(getString(mTextSource));
         
@@ -61,9 +65,9 @@ public class FragmentStartFirst1 extends Fragment implements OnClickListener {
         bPrev.setOnClickListener(this);
         bNext.setOnClickListener(this);
         
-        //Disable "previous" button on first slide
-        bPrev.setEnabled(false);
-        
+        bPrev.setEnabled(bPrevEnabled);
+        bNext.setEnabled(bNextEnabled);
+                
         return rootView;
     }
     
@@ -90,6 +94,22 @@ public class FragmentStartFirst1 extends Fragment implements OnClickListener {
         	case R.id.buttonNext:
         		mCallback.pageNext();
         		break;
+		}
+	}
+	
+	//May be called prior to onCreateView (usually is) 
+	public void setButtonPrevEnabled(boolean enabled){
+		this.bPrevEnabled = enabled;
+		if(bPrev != null){
+			this.bPrev.setEnabled(enabled);
+		}
+	}
+	
+	//May be called prior to onCreateView (usually is) 
+	public void setButtonNextEnabled(boolean enabled){
+		this.bNextEnabled = enabled;
+		if(bNext != null){
+			this.bNext.setEnabled(enabled);
 		}
 	}
 }

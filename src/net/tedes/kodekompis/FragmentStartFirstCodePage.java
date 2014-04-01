@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class FragmentStartFirst3 extends Fragment implements OnClickListener {
+public class FragmentStartFirstCodePage extends Fragment implements OnClickListener {
 
 	private TextView mTextHeader;
 	
@@ -33,7 +33,9 @@ public class FragmentStartFirst3 extends Fragment implements OnClickListener {
 	//Callback for ActivityStartFirst,
 	//with Buttons for navigating Previous/Next in the StartFirst Slides.
 	private PageNavigator mCallback;
-	Button bPrev, bNext;
+	private Button bPrev, bNext;
+	private boolean bPrevEnabled = true;
+	private boolean bNextEnabled = true;
 	
 	
 	@Override
@@ -90,8 +92,8 @@ public class FragmentStartFirst3 extends Fragment implements OnClickListener {
         bPrev = (Button)v.findViewById(R.id.buttonPrevious);
         bNext = (Button)v.findViewById(R.id.buttonNext);
         
-      //Disable "next" button on last slide
-        bNext.setEnabled(false);
+        bPrev.setEnabled(bPrevEnabled);
+        bNext.setEnabled(bNextEnabled);
         
 		//Setter lyttere på hver knapp.
 		for (ImageButton i : digits) {
@@ -226,5 +228,18 @@ public class FragmentStartFirst3 extends Fragment implements OnClickListener {
 		this.kodeConfirm = "";
 	}
 	
+	public void setButtonPrevEnabled(boolean enabled){
+		this.bPrevEnabled = enabled;
+		if(bPrev != null){
+			this.bPrev.setEnabled(enabled);
+		}
+	}
+	
+	public void setButtonNextEnabled(boolean enabled){
+		this.bNextEnabled = enabled;
+		if(bNext != null){
+			this.bNext.setEnabled(enabled);
+		}
+	}
     
 }

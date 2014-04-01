@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 public class ActivityStartFirst extends FragmentActivity 
 			implements PageNavigator{
 
-	private static final int NUM_PAGES = 3;
+	private static final int NUM_PAGES = 4;
 	//The pager widget, handles animation and allows swiping
 	private ViewPager mPager;
 
@@ -43,7 +43,7 @@ public class ActivityStartFirst extends FragmentActivity
 			//If looking at last page (with code panel)
 			//treat as slettNummer() if any digits have been entered,
 			//otherwise goto previous page.
-			FragmentStartFirst3 f = (FragmentStartFirst3)((ScreenSlidePagerAdapter) mPagerAdapter).getRegisteredFragment(mPager.getCurrentItem());
+			FragmentStartFirstCodePage f = (FragmentStartFirstCodePage)((ScreenSlidePagerAdapter) mPagerAdapter).getRegisteredFragment(mPager.getCurrentItem());
 			if(f.getKodeLength() == 0){
 				pagePrevious();
 			} else {
@@ -79,22 +79,17 @@ public class ActivityStartFirst extends FragmentActivity
 		@Override
 		public Fragment getItem(int position) {
 			switch (position){
-			case 0:
-				//Toast.makeText(getBaseContext(), "case 0", Toast.LENGTH_LONG).show();
-				FragmentStartFirst1 f1 = FragmentStartFirst1.newInstance(R.string.welcomestring1, R.drawable.code1);
-				//f.getButtonPrev().setEnabled(false);
-				return f1;
-			case 1:
-				//Toast.makeText(getBaseContext(), "case 1", Toast.LENGTH_LONG).show();
-				FragmentStartFirst1 f2 = FragmentStartFirst1.newInstance(R.string.welcomestring2, R.drawable.code2);
-				//return new FragmentStartFirst2();
-				return f2;
-			case 2:
-				//Toast.makeText(getBaseContext(), "case 2", Toast.LENGTH_LONG).show();
-				return new FragmentStartFirst3();
-			default:
-				Log.e("Martin", "MainActivity PagerAdapter out of bounds. Pos: "+position);
-				throw new RuntimeException();
+				case 0:
+					return FragmentStartFirstTextPage.newInstance(R.string.welcomestring1, R.drawable.code1);
+				case 1:
+					return FragmentStartFirstTextPage.newInstance(R.string.welcomestring2, 0);
+				case 2:
+					return FragmentStartFirstTextPage.newInstance(R.string.welcomestring3, 0);
+				case 3:
+					return new FragmentStartFirstCodePage();
+				default:
+					Log.e("Martin", "MainActivity PagerAdapter out of bounds. Pos: "+position);
+					throw new RuntimeException();
 			}
 
 			//Her står det en jævla kommentar.
@@ -109,6 +104,21 @@ public class ActivityStartFirst extends FragmentActivity
 	    public Object instantiateItem(ViewGroup container, int position) {
 	        Fragment fragment = (Fragment) super.instantiateItem(container, position);
 	        registeredFragments.put(position, fragment);
+	        
+	        //Disable "previous" button on first, and "next" button on last
+	        switch (position){
+				case 0:
+					//First page
+					((FragmentStartFirstTextPage) fragment).setButtonPrevEnabled(false);
+					break;
+				case NUM_PAGES-1:
+					//Last page
+					((FragmentStartFirstCodePage) fragment).setButtonNextEnabled(false);
+					break;
+				default:
+					//Do nothing
+				}
+					
 	        return fragment;
 	    }
 
@@ -121,6 +131,6 @@ public class ActivityStartFirst extends FragmentActivity
 	    public Fragment getRegisteredFragment(int position) {
 	        return registeredFragments.get(position);
 	    }
-		
+	    
 	}
 }
