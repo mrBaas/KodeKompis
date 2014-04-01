@@ -55,21 +55,17 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog_create, container);
         
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         Window window = getDialog().getWindow();
         window.requestFeature(Window.FEATURE_NO_TITLE); 
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         
-      
-        
-        
-        mAvbryt = (Button)view.findViewById(R.id.dialog_button_avbryt);
+        mAvbryt  = (Button)view.findViewById(R.id.dialog_button_avbryt);
         mLeggTil = (Button)view.findViewById(R.id.dialog_button_legg_til);
         
-        mSted = (EditText)view.findViewById(R.id.dialog_input_sted);
+        mSted   = (EditText)view.findViewById(R.id.dialog_input_sted);
         mBruker = (EditText)view.findViewById(R.id.dialog_input_bruker);
-        mPass = (EditText)view.findViewById(R.id.dialog_input_passord);
+        mPass   = (EditText)view.findViewById(R.id.dialog_input_passord);
         
         mAvbryt.setOnClickListener(this);
         mLeggTil.setOnClickListener(this);
