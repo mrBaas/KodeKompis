@@ -52,7 +52,7 @@
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
 			        android:background="@null"
-			        android:src="@drawable/tedes_user"
+			        android:src="@drawable/tedes_sted"
 			        android:padding="2dp"
 			        />
 		        <TextView
@@ -150,7 +150,7 @@
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
 			        android:background="@null"
-			        android:src="@drawable/tedes_user"
+			        android:src="@drawable/tedes_pass"
 			        android:padding="2dp"
 			        />
 		        <TextView
