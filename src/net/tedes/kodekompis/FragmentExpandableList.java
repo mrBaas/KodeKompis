@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -115,6 +116,17 @@ public class FragmentExpandableList extends Fragment implements LoaderManager.Lo
         // setting list adapter
         expListView.setAdapter(listAdapter);
 		
+        expListView.setOnGroupExpandListener(new OnGroupExpandListener() {
+            int previousGroup = -1;
+
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                if(groupPosition != previousGroup)
+                    expListView.collapseGroup(previousGroup);
+                previousGroup = groupPosition;
+            }
+        });
+        
 		//Dersom feil passord, masker stedsverdier.
 		//TODO: Redo
 		//if(!korrektKode) { mAdapter.maskStedValues();	}
