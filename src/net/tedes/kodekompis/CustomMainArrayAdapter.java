@@ -79,10 +79,9 @@ public class CustomMainArrayAdapter extends ArrayAdapter<DataBolk> {
 		}
 		
 		DataBolk item = getItem(position);
-		//Todo: Mat inn ikon istedetfor "Bruker:" etc.
 		((TextView)view.findViewById(R.id.dataBolk_sted)).setText(item.getmSted());
-		((TextView)view.findViewById(R.id.dataBolk_bruker)).setText("Bruker: " + item.getmBrukernavn());
-		((TextView)view.findViewById(R.id.dataBolk_passord)).setText("Passord: " + item.getmPassord());
+		((TextView)view.findViewById(R.id.dataBolk_bruker)).setText(item.getmBrukernavn());
+		((TextView)view.findViewById(R.id.dataBolk_passord)).setText(item.getmPassord());
 		
 		//saved
 		return view;
