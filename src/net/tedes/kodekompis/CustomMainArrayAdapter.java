@@ -40,7 +40,7 @@ public class CustomMainArrayAdapter extends ArrayAdapter<DataBolk> {
 	//Maskering av Sted-verdi. Merk at den fortsatt ligger lagret i klartekst i internminnet.
 	public void maskStedValues(){
 		ArrayList<DataBolk> bolks = getData();
-		DataBolk bolk;
+		//DataBolk bolk;
 		String sted, nySted,s1,s2,s3;
 		for(int i = 0; i < bolks.size(); i++){
 			sted = bolks.get(i).getmSted();
@@ -59,7 +59,7 @@ public class CustomMainArrayAdapter extends ArrayAdapter<DataBolk> {
 				nySted = s1+s2+s3;
 				bolks.get(i).setmSted(nySted);
 			}
-			bolks.get(i).setmSted("Not Available");
+			//bolks.get(i).setmSted("Not Available");
 		}
 	}
 	

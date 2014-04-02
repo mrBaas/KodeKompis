@@ -23,8 +23,8 @@ public class FragmentStartFirstCodePage extends Fragment implements OnClickListe
 	
 	//Manage indicator lamps for illustrating entered digits
 	private ImageView[] indicators;
-	private int indicatorOff = android.R.drawable.presence_invisible;
-	private int indicatorOn = android.R.drawable.presence_online;
+	private int indicatorOff = Tedes.ICON_LOGINLIGHT_OFF;
+	private int indicatorOn  = Tedes.ICON_LOGINLIGHT_ON;
 	
 	//KodePanel med ImageButtons
 	private ImageButton[] digits;

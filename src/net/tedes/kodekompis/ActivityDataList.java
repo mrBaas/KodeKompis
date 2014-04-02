@@ -13,12 +13,12 @@ import android.widget.Toast;
 public class ActivityDataList extends FragmentActivity 
 					implements FragmentLeggTilListe.OnNewBolkFinished {
 	
-	private FragmentDataList datalistFragment;
+	private FragmentExpandableList listFragment;
 	private String kode;
 	
 	@Override
 	public void sendBolkenVidere(DataBolk bolken) {
-		datalistFragment.mottaBolken(bolken);
+		listFragment.mottaBolken(bolken);
 	}
 	
 	@Override
@@ -67,9 +67,10 @@ public class ActivityDataList extends FragmentActivity
 		Fragment fragment = fm.findFragmentById(R.id.fragmentContainer);
 		
 		if (fragment == null) {
-			fragment = new FragmentDataList();
-			datalistFragment = (FragmentDataList)fragment;
-			datalistFragment.setKode(kode, getBaseContext());
+			//fragment = new FragmentDataList();
+			fragment = new FragmentExpandableList();
+			listFragment = (FragmentExpandableList)fragment;
+			listFragment.setKode(kode, getBaseContext());
 			fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
 		}
 	}
