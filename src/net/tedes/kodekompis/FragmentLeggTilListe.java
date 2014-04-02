@@ -1,10 +1,15 @@
 package net.tedes.kodekompis;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,8 +22,34 @@ import android.widget.EditText;
 public class FragmentLeggTilListe extends DialogFragment implements OnClickListener {
 	
 	private OnNewBolkFinished mCallback;
+	private DataBolk bolken;
+	
+	private Button mAvbryt;
+	private Button mLeggTil;
+	
+	private EditText mSted;
+	private EditText mBruker;
+	private EditText mPass;
+	
+	//TextWatcher
+    final TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3){}
 
-    // Container Activity must implement this interface
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            checkInput();
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {}
+    };
+
+    public FragmentLeggTilListe() {
+        //Empty constructor required for DialogFragment
+    }
+
+    //Container Activity must implement this interface
     public interface OnNewBolkFinished {
         public void sendBolkenVidere(DataBolk bolken);
     }
@@ -28,27 +59,13 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         super.onAttach(activity);
         
         // This makes sure that the container activity has implemented
-        // the callback interface. If not, it throws an exception
+        // the callback interface. If not, it throws an exception.
         try {
             mCallback = (OnNewBolkFinished) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnNewBolkFinished");
         }
-    }
-
-	
-	private DataBolk bolken;
-	
-	private Button mAvbryt;
-	private Button mLeggTil;
-	
-	private EditText mSted;
-	private EditText mBruker;
-	private EditText mPass;
-
-    public FragmentLeggTilListe() {
-        // Empty constructor required for DialogFragment
     }
 
     @Override
@@ -70,6 +87,14 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         mAvbryt.setOnClickListener(this);
         mLeggTil.setOnClickListener(this);
         
+        //Add listeners to EditText fields, to enable "Legg Til" button when all fields populated.
+        mSted.addTextChangedListener(textWatcher);
+        mBruker.addTextChangedListener(textWatcher);
+        mPass.addTextChangedListener(textWatcher);
+
+        //Run once to disable "Legg Til" button if any EditText field is empty.
+        checkInput();
+
         return view;
     }
 
@@ -87,4 +112,24 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         		break;
 		}
 	}
+	
+	@SuppressLint("NewApi")
+	private void checkInput(){
+
+        String s1 = mSted.getText().toString();
+        String s2 = mBruker.getText().toString();
+        String s3 = mPass.getText().toString();
+
+        //Method isEmpty() (more efficient) is not available prior to Android version 9.
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD){
+        	mLeggTil.setEnabled(!s1.isEmpty() && !s2.isEmpty() && !s3.isEmpty());
+        } else {
+        	if (s1.length() > 0 && s2.length() > 0 && s3.length() > 0) {
+                mLeggTil.setEnabled(true);
+            } else {
+            	mLeggTil.setEnabled(false);
+            }
+        } 
+        
+    }
 }

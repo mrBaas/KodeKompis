@@ -61,35 +61,15 @@ public class FragmentExpandableList extends Fragment implements LoaderManager.Lo
 	public void onActivityCreated(Bundle savedInstanceState){
 		super.onActivityCreated(savedInstanceState);
  
-        
-		
-		//I utgangspunktet er listen tom
-		//setEmptyText(getString(R.string.datalist_empty));
-		
-		//Tomt adapter blir opprettet for å vise data i listen.
-		//mAdapter = new CustomMainArrayAdapter(getActivity());
-	
-		//setListAdapter(mAdapter);
-		
-		//Progress loader
-		//setListShown(false);
-		
-		//Forbereder loader. Enten kobles til eksisterenede
-		//eller start ny.
+		//Start loader to fetch and decrypt stored data.
 		getLoaderManager().initLoader(0, null, this);
 		
 	}
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_layout_expandablelist, parent, false);
-		
-		// get the listview
         expListView = (ExpandableListView) v.findViewById(R.id.lvExp);
  
-        
-        
-        //TODO:Enable
-        //getLoaderManager().initLoader(0, null, this);
 		return v;
 	}
 	
@@ -111,11 +91,11 @@ public class FragmentExpandableList extends Fragment implements LoaderManager.Lo
 	@Override
 	public void onLoadFinished(Loader<List<DataBolk>> arg0, List<DataBolk> data) { 
         listAdapter = new ExpandableListAdapter(getActivity(), data);
-        //data.add(new DataBolk("sted", "bruker", "pass"));
  
-        // setting list adapter
+        //Setting list adapter
         expListView.setAdapter(listAdapter);
 		
+        //Adding listener to Group elements (parent nodes), to keep only one Group expanded.
         expListView.setOnGroupExpandListener(new OnGroupExpandListener() {
             int previousGroup = -1;
 
