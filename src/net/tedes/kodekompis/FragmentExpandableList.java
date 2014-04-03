@@ -21,7 +21,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class FragmentExpandableList extends Fragment implements LoaderManager.LoaderCallbacks<List<DataBolk>> {
+public class FragmentExpandableList extends Fragment
+			implements LoaderManager.LoaderCallbacks<List<DataBolk>> {
 
 	private ExpandableListAdapter listAdapter;
     private ExpandableListView expListView;
@@ -33,6 +34,13 @@ public class FragmentExpandableList extends Fragment implements LoaderManager.Lo
 	
 	public void mottaBolken(DataBolk bolken){
 		listAdapter.addDataBolk(bolken);
+		listAdapter.notifyDataSetChanged();
+		//TODO: Make async task here maybe?
+		InternalStorage.writeList(getActivity().getBaseContext(), (ArrayList<DataBolk>)listAdapter.getData(), kode);
+	}
+	
+	public void updateDataBolk(DataBolk bolken){
+		listAdapter.updateDataBolk(bolken);
 		listAdapter.notifyDataSetChanged();
 		//TODO: Make async task here maybe?
 		InternalStorage.writeList(getActivity().getBaseContext(), (ArrayList<DataBolk>)listAdapter.getData(), kode);
@@ -99,16 +107,16 @@ public class FragmentExpandableList extends Fragment implements LoaderManager.Lo
 		
         //Adding listener to Group elements (parent nodes), to keep only one Group expanded.
         expListView.setOnGroupExpandListener(new OnGroupExpandListener() {
-            //int previousGroup = -1;
 
             @Override
             public void onGroupExpand(int groupPosition) {
+            	//NB: groupPosition is consequent,
+            	//but the arrangement of Views inside the List is NOT.
+            	//Storing Views inside adapter to interact with caused unexpected behavior.
             	
-            	//Show editButton on expanded group.
-            	//Log.d("Martin", "onGroupExpand groupPosition: "+groupPosition);
-            	//((ImageButton)listAdapter.getGroupView(groupPosition).findViewById(R.id.listitem_editbutton)).setVisibility(View.VISIBLE);
-            	//Log.d("Martin", "Expanded and Enabled: "+groupPosition);
-                
+            	//Storing previous active Group for closing caused misbehavior with rapid clicking.
+            	//Solved by iterating through all list Group elements instead.
+            	
                 for(int i = 0; i < listAdapter.getGroupCount(); i++){
                 	if(i != groupPosition) {
                 		//((ImageButton)listAdapter.getGroupView(i).findViewById(R.id.listitem_editbutton)).setVisibility(View.INVISIBLE);
@@ -116,17 +124,6 @@ public class FragmentExpandableList extends Fragment implements LoaderManager.Lo
                 		//Log.d("Martin", "Collapsed and Disabled: "+i);
                 	}
                 }
-                
-                //if(groupPosition != previousGroup && previousGroup != -1) {
-                	//TODO: Stresstest to see if problems with fast clicks.
-                	//Might have to change to a loop. i < listAdapter.getGroupCount(), and i!=groupPos.
-                    //expListView.collapseGroup(previousGroup);
-                    
-                    //Disable editButton on previously expanded Group.
-                    //editButton = (ImageButton)listAdapter.getGroupView(previousGroup).findViewById(R.id.listitem_editbutton);
-                    //editButton.setVisibility(View.INVISIBLE);
-                //}
-                //previousGroup = groupPosition;
             }
         });
         

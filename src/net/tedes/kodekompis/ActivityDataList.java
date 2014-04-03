@@ -11,14 +11,32 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 public class ActivityDataList extends FragmentActivity 
-					implements FragmentLeggTilListe.OnNewBolkFinished {
+					implements FragmentLeggTilListe.BolkManager,
+							   ExpandableListAdapter.EditDialog {
 	
 	private FragmentExpandableList listFragment;
 	private String kode;
 	
 	@Override
-	public void sendBolkenVidere(DataBolk bolken) {
+	public void addDataBolk(DataBolk bolken) {
 		listFragment.mottaBolken(bolken);
+	}
+	
+	@Override
+	public void updateDataBolk(DataBolk bolken) {
+		listFragment.updateDataBolk(bolken);
+	}
+	
+	@Override
+	public void openEditDialog(DataBolk bolken) {
+		FragmentManager fm = getSupportFragmentManager();
+		boolean check = Security.comparePassword(getBaseContext(), kode);
+		if(check){
+			FragmentLeggTilListe leggTil = FragmentLeggTilListe.editBolk(bolken);
+	        leggTil.show(fm, "fragment_dialog_create");
+		} else {
+			//Do nothing, wrong password.
+		}
 	}
 	
 	@Override

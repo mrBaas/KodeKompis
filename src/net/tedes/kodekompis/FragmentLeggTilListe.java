@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,11 +22,14 @@ import android.widget.EditText;
 
 public class FragmentLeggTilListe extends DialogFragment implements OnClickListener {
 	
-	private OnNewBolkFinished mCallback;
+	private BolkManager mCallback;
 	private DataBolk bolken;
 	
 	private Button mAvbryt;
 	private Button mLeggTil;
+	
+	private boolean existing = false;
+	private DataBolk existingBolk;
 	
 	private EditText mSted;
 	private EditText mBruker;
@@ -48,10 +52,22 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
     public FragmentLeggTilListe() {
         //Empty constructor required for DialogFragment
     }
+    
+    //Expected format: 
+  	public static final FragmentLeggTilListe editBolk(DataBolk bolk) {
+  		FragmentLeggTilListe fragment = new FragmentLeggTilListe();
+
+		final Bundle args = new Bundle(1);
+		args.putSerializable(Tedes.EXTRA_DIALOG_EDIT_DATABOLK, bolk);
+		fragment.setArguments(args);
+
+        return fragment;
+      }
 
     //Container Activity must implement this interface
-    public interface OnNewBolkFinished {
-        public void sendBolkenVidere(DataBolk bolken);
+    public interface BolkManager {
+        public void addDataBolk(DataBolk bolken);
+        public void updateDataBolk(DataBolk bolken);
     }
 
     @Override
@@ -61,13 +77,27 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception.
         try {
-            mCallback = (OnNewBolkFinished) activity;
+            mCallback = (BolkManager) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnNewBolkFinished");
         }
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        
+        //Handle extra variables passed in by newInstance method.
+        if (getArguments() != null) {
+        	DataBolk bolk = (DataBolk)getArguments().getSerializable(Tedes.EXTRA_DIALOG_EDIT_DATABOLK);
+        	if(bolk != null) {
+        		this.existing 		= true;
+        		this.existingBolk	= bolk;
+            }
+        }
+    }
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog_create, container);
@@ -83,6 +113,13 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         mSted   = (EditText)view.findViewById(R.id.dialog_input_sted);
         mBruker = (EditText)view.findViewById(R.id.dialog_input_bruker);
         mPass   = (EditText)view.findViewById(R.id.dialog_input_passord);
+        
+        if(existing) {
+        	mSted.setText(existingBolk.getmSted());
+        	mBruker.setText(existingBolk.getmBrukernavn());
+        	mPass.setText(existingBolk.getmPassord());
+        	mLeggTil.setText(R.string.dialog_text_submit_edit);
+        }
         
         mAvbryt.setOnClickListener(this);
         mLeggTil.setOnClickListener(this);
@@ -106,8 +143,15 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         		getDialog().dismiss();
         		break;
         	case R.id.dialog_button_legg_til:
-        		bolken = new DataBolk(mSted.getText().toString(), mBruker.getText().toString(), mPass.getText().toString());
-        		mCallback.sendBolkenVidere(bolken);
+        		if(existing) {
+        			existingBolk.setmSted(mSted.getText().toString());
+        			existingBolk.setmBrukernavn(mSted.getText().toString());
+        			existingBolk.setmPassord(mSted.getText().toString());
+        			mCallback.updateDataBolk(existingBolk);
+        		} else {
+	        		bolken = new DataBolk(mSted.getText().toString(), mBruker.getText().toString(), mPass.getText().toString());
+	        		mCallback.addDataBolk(bolken);
+        		}
         		getDialog().dismiss();
         		break;
 		}

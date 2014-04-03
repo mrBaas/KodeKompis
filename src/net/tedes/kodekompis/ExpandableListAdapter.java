@@ -2,8 +2,12 @@ package net.tedes.kodekompis;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import net.tedes.kodekompis.FragmentLeggTilListe.BolkManager;
  
 import android.content.Context;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,14 +20,30 @@ import android.widget.Toast;
  
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
  
+	private EditDialog mCallback;
+	
 	private Context _context;
 	private List<DataBolk> bolkList;
 	private List<View> groupViewList;
  
+	//Container Activity must implement this interface
+    public interface EditDialog {
+        public void openEditDialog(DataBolk bolken);
+    }
+	
     public ExpandableListAdapter(Context context, List<DataBolk> bolks) {
         this._context = context;
         this.bolkList = bolks;
         this.groupViewList = new ArrayList<View>();
+        
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception.
+        try {
+            mCallback = (EditDialog) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement EditDialog");
+        }
     }
  
 //    public void setData(List<DataBolk> data) {
@@ -37,6 +57,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     
     public void addDataBolk(DataBolk bolk){
     	this.bolkList.add(bolk);
+    }
+    
+    public void updateDataBolk(DataBolk bolk) {
+    	//Using equals method defined in DataBolk, relying on UUID.
+    	int index = this.bolkList.indexOf(bolk);
+    	this.bolkList.set(index, bolk);
     }
     
     public List<DataBolk> getData() {
@@ -101,7 +127,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     }
  
     @Override
-    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+    public View getGroupView(final int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
          
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -111,7 +137,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         int visible = isExpanded ? View.VISIBLE : View.INVISIBLE;
         final String headerTitle = ((DataBolk)getGroup(groupPosition)).getmSted();
         TextView listItemHeader = (TextView) convertView.findViewById(R.id.listitem_header);
-        //lblListHeader.setTypeface(null, Typeface.BOLD);
         listItemHeader.setText(headerTitle);
         
         //Focusable false needed to be able to click
@@ -123,6 +148,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             @Override
             public void onClick(View view) {
                 Toast.makeText(_context,headerTitle+" image clicked",Toast.LENGTH_LONG).show();
+                mCallback.openEditDialog((DataBolk)getGroup(groupPosition));
+                
             }
         });
         Log.d("Martin", "Added groupPosition: "+groupPosition);

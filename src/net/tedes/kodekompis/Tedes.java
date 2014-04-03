@@ -22,5 +22,8 @@ public final class Tedes {
 	public static final String EXTRA_START_FIRST_TEXTSOURCE = "startfirst_textsource";
 	public static final String EXTRA_START_FIRST_IMGSOURCE = "startfirst_imgsource";
 	
+	//Name of extra arguments to pass into LeggTil dialog fragment, for editing exisiting DataBolk
+	public static final String EXTRA_DIALOG_EDIT_DATABOLK = "dialog_edit_databolk";
+	
 	
 }

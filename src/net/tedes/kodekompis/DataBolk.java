@@ -28,6 +28,26 @@ public class DataBolk implements Serializable {
 		this.mPassord 		= Security.dekrypter(bolk.getmPassord(), password);
 	}
 	
+	//Needed to be able to use methods for comparing DataBolk objects.
+	public boolean equals(Object obj) {
+		if(this == obj)
+			return true;
+		if((obj == null) || (obj.getClass() != this.getClass()))
+			return false;
+		//Object must be DataBolk at this point
+		DataBolk test = (DataBolk)obj;
+		
+		//Object is considered the identical if UUID value is the same.
+		return (mId.compareTo(test.mId) == 0);
+	}
+
+	//Needed to be able to use methods for comparing DataBolk objects.
+	public int hashCode() {
+		int hash = 7;
+		hash = 31 * hash + mId.hashCode();
+		return hash;
+	}
+	
 	public String getmSted() {
 		return mSted;
 	}
