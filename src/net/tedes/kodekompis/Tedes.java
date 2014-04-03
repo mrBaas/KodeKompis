@@ -8,6 +8,7 @@ public final class Tedes {
 	public static final int ICON_STED = R.drawable.tedes_sted;
 	public static final int ICON_USER = R.drawable.tedes_user;
 	public static final int ICON_PASS = R.drawable.tedes_pass;
+	public static final int ICON_TRASH = R.drawable.tedes_trash;
 	
 	//How many reloads of ActivityMain will trigger reset of all important variables
 	public static final int DEBUG_RESET = 10;

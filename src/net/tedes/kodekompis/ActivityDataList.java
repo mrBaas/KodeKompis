@@ -18,7 +18,12 @@ public class ActivityDataList extends FragmentActivity
 	
 	@Override
 	public void addDataBolk(DataBolk bolken) {
-		listFragment.mottaBolken(bolken);
+		listFragment.addDataBolk(bolken);
+	}
+	
+	@Override
+	public void deleteDataBolk(DataBolk bolken) {
+		listFragment.deleteDataBolk(bolken);
 	}
 	
 	@Override

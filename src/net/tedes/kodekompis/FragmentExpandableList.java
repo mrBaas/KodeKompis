@@ -27,8 +27,15 @@ public class FragmentExpandableList extends Fragment
 	private String kode;
 	private boolean korrektKode;
 	
-	public void mottaBolken(DataBolk bolken){
+	public void addDataBolk(DataBolk bolken){
 		listAdapter.addDataBolk(bolken);
+		listAdapter.notifyDataSetChanged();
+		//TODO: Make async task here maybe?
+		InternalStorage.writeList(getActivity().getBaseContext(), (ArrayList<DataBolk>)listAdapter.getData(), kode);
+	}
+	
+	public void deleteDataBolk(DataBolk bolken){
+		listAdapter.deleteDataBolk(bolken);
 		listAdapter.notifyDataSetChanged();
 		//TODO: Make async task here maybe?
 		InternalStorage.writeList(getActivity().getBaseContext(), (ArrayList<DataBolk>)listAdapter.getData(), kode);

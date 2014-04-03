@@ -50,6 +50,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     	this.bolkList.add(bolk);
     }
     
+    public void deleteDataBolk(DataBolk bolk){
+    	this.bolkList.remove(bolk);
+    }
+    
     public void updateDataBolk(DataBolk bolk) {
     	//Using equals method defined in DataBolk, relying on UUID.
     	int index = this.bolkList.indexOf(bolk);

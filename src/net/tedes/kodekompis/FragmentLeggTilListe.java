@@ -17,6 +17,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class FragmentLeggTilListe extends DialogFragment implements OnClickListener {
@@ -113,6 +114,9 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         	mBruker.setText(existingBolk.getmBrukernavn());
         	mPass.setText(existingBolk.getmPassord());
         	mLeggTil.setText(R.string.dialog_text_submit_edit);
+        	ImageButton mButtonTrash = (ImageButton)view.findViewById(R.id.dialog_trash);
+        	mButtonTrash.setImageResource(Tedes.ICON_TRASH);
+        	mButtonTrash.setOnClickListener(this);
         }
         
         mAvbryt.setOnClickListener(this);
@@ -136,6 +140,11 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         		//Do Something
         		getDialog().dismiss();
         		break;
+        	case R.id.dialog_trash:
+        		mCallback.deleteDataBolk(existingBolk);
+        		getDialog().dismiss();
+        		break;
+        		
         	case R.id.dialog_button_legg_til:
         		if(existing) {
         			existingBolk.setmSted(mSted.getText().toString());
