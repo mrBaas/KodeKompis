@@ -12,7 +12,7 @@ import android.util.SparseArray;
 import android.view.ViewGroup;
 
 public class ActivityStartFirst extends FragmentActivity 
-			implements PageNavigator{
+			implements InterfacePageNavigator{
 
 	private static final int NUM_PAGES = 4;
 	//The pager widget, handles animation and allows swiping

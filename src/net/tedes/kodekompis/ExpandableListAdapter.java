@@ -2,12 +2,8 @@ package net.tedes.kodekompis;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import net.tedes.kodekompis.FragmentLeggTilListe.BolkManager;
  
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,16 +16,11 @@ import android.widget.Toast;
  
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
  
-	private EditDialog mCallback;
+	private InterfaceEditDialog mCallback;
 	
 	private Context _context;
 	private List<DataBolk> bolkList;
 	private List<View> groupViewList;
- 
-	//Container Activity must implement this interface
-    public interface EditDialog {
-        public void openEditDialog(DataBolk bolken);
-    }
 	
     public ExpandableListAdapter(Context context, List<DataBolk> bolks) {
         this._context = context;
@@ -39,7 +30,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception.
         try {
-            mCallback = (EditDialog) context;
+            mCallback = (InterfaceEditDialog) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
                     + " must implement EditDialog");

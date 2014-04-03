@@ -8,11 +8,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 public class ActivityDataList extends FragmentActivity 
-					implements FragmentLeggTilListe.BolkManager,
-							   ExpandableListAdapter.EditDialog {
+					implements InterfaceBolkManager,
+							   InterfaceEditDialog {
 	
 	private FragmentExpandableList listFragment;
 	private String kode;

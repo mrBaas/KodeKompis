@@ -28,7 +28,7 @@ public class FragmentStartFirstTextPage extends Fragment implements OnClickListe
 	
 	//Callback for ActivityStartFirst,
 	//with Buttons for navigating Previous/Next in the StartFirst Slides.
-	private PageNavigator mCallback;
+	private InterfacePageNavigator mCallback;
 	private Button bPrev, bNext;
 	private boolean bPrevEnabled = true;
 	private boolean bNextEnabled = true;
@@ -78,7 +78,7 @@ public class FragmentStartFirstTextPage extends Fragment implements OnClickListe
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception
         try {
-            mCallback = (PageNavigator) activity;
+            mCallback = (InterfacePageNavigator) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement PageNavigator");

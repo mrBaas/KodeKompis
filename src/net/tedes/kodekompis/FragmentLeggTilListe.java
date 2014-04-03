@@ -1,7 +1,6 @@
 package net.tedes.kodekompis;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -10,7 +9,6 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,7 +20,7 @@ import android.widget.EditText;
 
 public class FragmentLeggTilListe extends DialogFragment implements OnClickListener {
 	
-	private BolkManager mCallback;
+	private InterfaceBolkManager mCallback;
 	private DataBolk bolken;
 	
 	private Button mAvbryt;
@@ -64,12 +62,6 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         return fragment;
       }
 
-    //Container Activity must implement this interface
-    public interface BolkManager {
-        public void addDataBolk(DataBolk bolken);
-        public void updateDataBolk(DataBolk bolken);
-    }
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -77,10 +69,10 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception.
         try {
-            mCallback = (BolkManager) activity;
+            mCallback = (InterfaceBolkManager) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " must implement OnNewBolkFinished");
+                    + " must implement BolkManager");
         }
     }
 
@@ -88,7 +80,7 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        //Handle extra variables passed in by newInstance method.
+        //Handle extra variables passed in by newInstance (editBolk) method.
         if (getArguments() != null) {
         	DataBolk bolk = (DataBolk)getArguments().getSerializable(Tedes.EXTRA_DIALOG_EDIT_DATABOLK);
         	if(bolk != null) {
@@ -145,8 +137,8 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         	case R.id.dialog_button_legg_til:
         		if(existing) {
         			existingBolk.setmSted(mSted.getText().toString());
-        			existingBolk.setmBrukernavn(mSted.getText().toString());
-        			existingBolk.setmPassord(mSted.getText().toString());
+        			existingBolk.setmBrukernavn(mBruker.getText().toString());
+        			existingBolk.setmPassord(mPass.getText().toString());
         			mCallback.updateDataBolk(existingBolk);
         		} else {
 	        		bolken = new DataBolk(mSted.getText().toString(), mBruker.getText().toString(), mPass.getText().toString());
