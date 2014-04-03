@@ -28,6 +28,7 @@
 	
 	<!-- DIALOG -->
 	<string name="dialog_header">Legg til i liste</string>
+	<string name="dialog_header_edit">Endre element i liste</string>
 	<string name="dialog_sted_valg">Beskrivelse:</string>
 	<string name="dialog_sted_hint">Fyll inn</string>
 	<string name="dialog_bruker_valg">Brukernavn/epost:</string>

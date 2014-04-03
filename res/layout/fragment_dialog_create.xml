@@ -15,6 +15,7 @@
         
         <!-- HEADER -->
         <TextView
+            android:id="@+id/dialog_topheader"
             android:padding="10dp"
             android:background="@drawable/dialog_header_shape"
 	        android:text="@string/dialog_header"

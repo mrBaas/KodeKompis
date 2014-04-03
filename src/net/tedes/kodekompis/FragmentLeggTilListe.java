@@ -17,6 +17,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class FragmentLeggTilListe extends DialogFragment implements OnClickListener {
 	
@@ -106,7 +107,8 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         mBruker = (EditText)view.findViewById(R.id.dialog_input_bruker);
         mPass   = (EditText)view.findViewById(R.id.dialog_input_passord);
         
-        if(existing) {
+        if(existing){
+        	((TextView)view.findViewById(R.id.dialog_topheader)).setText(R.string.dialog_header_edit);
         	mSted.setText(existingBolk.getmSted());
         	mBruker.setText(existingBolk.getmBrukernavn());
         	mPass.setText(existingBolk.getmPassord());
