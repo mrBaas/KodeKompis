@@ -1,23 +1,29 @@
 package net.tedes.kodekompis;
 
+import java.util.ArrayList;
 import java.util.List;
  
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
  
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
  
 	private Context _context;
 	private List<DataBolk> bolkList;
+	private List<View> groupViewList;
  
     public ExpandableListAdapter(Context context, List<DataBolk> bolks) {
         this._context = context;
         this.bolkList = bolks;
+        this.groupViewList = new ArrayList<View>();
     }
  
 //    public void setData(List<DataBolk> data) {
@@ -96,19 +102,38 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
  
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        String headerTitle = ((DataBolk)getGroup(groupPosition)).getmSted();
+         
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.list_group, null);
         }
- 
+        
+        int visible = isExpanded ? View.VISIBLE : View.INVISIBLE;
+        final String headerTitle = ((DataBolk)getGroup(groupPosition)).getmSted();
         TextView listItemHeader = (TextView) convertView.findViewById(R.id.listitem_header);
         //lblListHeader.setTypeface(null, Typeface.BOLD);
         listItemHeader.setText(headerTitle);
- 
+        
+        //Focusable false needed to be able to click
+        //on Group and Button inside group.parent seperately.
+        ImageButton editButton = (ImageButton)convertView.findViewById(R.id.listitem_editbutton);
+        editButton.setFocusable(false);
+        editButton.setVisibility(visible);
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(_context,headerTitle+" image clicked",Toast.LENGTH_LONG).show();
+            }
+        });
+        Log.d("Martin", "Added groupPosition: "+groupPosition);
+        
         return convertView;
     }
  
+    public View getGroupView(int groupPosition) {
+    	return groupViewList.get(groupPosition);
+    }
+    
     @Override
     public boolean hasStableIds() {
         return false;

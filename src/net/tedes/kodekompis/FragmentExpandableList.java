@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnGroupExpandListener;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -69,6 +70,7 @@ public class FragmentExpandableList extends Fragment implements LoaderManager.Lo
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_layout_expandablelist, parent, false);
         expListView = (ExpandableListView) v.findViewById(R.id.lvExp);
+        //expListView.setItemsCanFocus(true);
  
 		return v;
 	}
@@ -97,13 +99,34 @@ public class FragmentExpandableList extends Fragment implements LoaderManager.Lo
 		
         //Adding listener to Group elements (parent nodes), to keep only one Group expanded.
         expListView.setOnGroupExpandListener(new OnGroupExpandListener() {
-            int previousGroup = -1;
+            //int previousGroup = -1;
 
             @Override
             public void onGroupExpand(int groupPosition) {
-                if(groupPosition != previousGroup)
-                    expListView.collapseGroup(previousGroup);
-                previousGroup = groupPosition;
+            	
+            	//Show editButton on expanded group.
+            	//Log.d("Martin", "onGroupExpand groupPosition: "+groupPosition);
+            	//((ImageButton)listAdapter.getGroupView(groupPosition).findViewById(R.id.listitem_editbutton)).setVisibility(View.VISIBLE);
+            	//Log.d("Martin", "Expanded and Enabled: "+groupPosition);
+                
+                for(int i = 0; i < listAdapter.getGroupCount(); i++){
+                	if(i != groupPosition) {
+                		//((ImageButton)listAdapter.getGroupView(i).findViewById(R.id.listitem_editbutton)).setVisibility(View.INVISIBLE);
+                		expListView.collapseGroup(i);
+                		//Log.d("Martin", "Collapsed and Disabled: "+i);
+                	}
+                }
+                
+                //if(groupPosition != previousGroup && previousGroup != -1) {
+                	//TODO: Stresstest to see if problems with fast clicks.
+                	//Might have to change to a loop. i < listAdapter.getGroupCount(), and i!=groupPos.
+                    //expListView.collapseGroup(previousGroup);
+                    
+                    //Disable editButton on previously expanded Group.
+                    //editButton = (ImageButton)listAdapter.getGroupView(previousGroup).findViewById(R.id.listitem_editbutton);
+                    //editButton.setVisibility(View.INVISIBLE);
+                //}
+                //previousGroup = groupPosition;
             }
         });
         
