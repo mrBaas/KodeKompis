@@ -32,6 +32,11 @@ public class ActivityDataList extends FragmentActivity
 	}
 	
 	@Override
+	public void sortDataBolkList(DataBolk.SortMethod sortMethod) {
+		listFragment.sortDataBolkList(sortMethod);
+	}
+	
+	@Override
 	public void openEditDialog(DataBolk bolken) {
 		FragmentManager fm = getSupportFragmentManager();
 		boolean check = Security.comparePassword(getBaseContext(), kode);
@@ -52,14 +57,24 @@ public class ActivityDataList extends FragmentActivity
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		FragmentManager fm = getSupportFragmentManager();
 		boolean check = Security.comparePassword(getBaseContext(), kode);
-		if(check){
-			FragmentLeggTilListe leggTil = new FragmentLeggTilListe();
-	        leggTil.show(fm, "fragment_dialog_create");
-		} else {
-			//Do nothing, wrong password.
+		if(!check){
+			return true;
 		}
+		
+		switch (item.getItemId()) {
+			case R.id.menu_leggtil:
+				FragmentManager fm = getSupportFragmentManager();
+				FragmentLeggTilListe leggTil = new FragmentLeggTilListe();
+			    leggTil.show(fm, "fragment_dialog_create");
+			case R.id.menu_sort:
+				DataBolk.SortMethod smCurr = PreferencesManager.getSortMethod(this, Tedes.DATABOLK_SORTING_METHOD);
+				DataBolk.SortMethod smNext = DataBolk.SortMethod.getNext(smCurr);
+				PreferencesManager.setSortMethod(this, Tedes.DATABOLK_SORTING_METHOD, smNext);
+				sortDataBolkList(smNext);
+				
+		}
+		
 		return true;
 	}
 	

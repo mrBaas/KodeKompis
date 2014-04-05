@@ -10,6 +10,7 @@ public class DataBolkEncrypted implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private UUID mId;
+	private int mNumber;
 	private String mSted;
 	private String mBrukernavn;
 	private String mPassord;
@@ -25,10 +26,11 @@ public class DataBolkEncrypted implements Serializable {
 		byte[] salt1 = Security.generateSalt();
 		byte[] salt2 = Security.generateSalt();
 		
-		this.mId 			= bolk.getmId();
-		this.mSted 			= bolk.getmSted();
-		this.mBrukernavn 	= Security.krypter(bolk.getmBrukernavn(), Security.generateKey(password, salt1), salt1);
-		this.mPassord		= Security.krypter(bolk.getmPassord(), Security.generateKey(password, salt2), salt2);
+		this.mId 			= bolk.getId();
+		this.mSted 			= bolk.getSted();
+		this.mNumber		= bolk.getNumber();
+		this.mBrukernavn 	= Security.krypter(bolk.getBrukernavn(), Security.generateKey(password, salt1), salt1);
+		this.mPassord		= Security.krypter(bolk.getPassord(), Security.generateKey(password, salt2), salt2);
 	}
 
 	public String getmSted() {
@@ -56,9 +58,11 @@ public class DataBolkEncrypted implements Serializable {
 	}
 
 	public UUID getmId() {
-		return mId;
+		return this.mId;
 	}
 	
-	
+	public int getNumber() {
+		return this.mNumber;
+	}
 	
 }

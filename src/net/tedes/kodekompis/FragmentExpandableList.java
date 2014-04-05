@@ -29,6 +29,7 @@ public class FragmentExpandableList extends Fragment
 	
 	public void addDataBolk(DataBolk bolken){
 		listAdapter.addDataBolk(bolken);
+		listAdapter.sortDataBolkList(PreferencesManager.getSortMethod(getActivity(), Tedes.DATABOLK_SORTING_METHOD));
 		listAdapter.notifyDataSetChanged();
 		//TODO: Make async task here maybe?
 		InternalStorage.writeList(getActivity().getBaseContext(), (ArrayList<DataBolk>)listAdapter.getData(), kode);
@@ -39,6 +40,11 @@ public class FragmentExpandableList extends Fragment
 		listAdapter.notifyDataSetChanged();
 		//TODO: Make async task here maybe?
 		InternalStorage.writeList(getActivity().getBaseContext(), (ArrayList<DataBolk>)listAdapter.getData(), kode);
+	}
+	
+	public void sortDataBolkList(DataBolk.SortMethod sortMethod) {
+        listAdapter.sortDataBolkList(sortMethod);
+        listAdapter.notifyDataSetChanged();
 	}
 	
 	public void updateDataBolk(DataBolk bolken){
@@ -54,16 +60,16 @@ public class FragmentExpandableList extends Fragment
     	this.korrektKode = Security.comparePassword(context, kode);
     	Log.d("Martin", "kode: "+kode+", korrektkode: "+korrektKode);
     	if(!korrektKode){
-    		int i = PreferencesManager.getInt(context, "failedlogins");
-    		PreferencesManager.setInt(context, "failedlogins", ++i);
+    		int i = PreferencesManager.getInt(context, Tedes.FAILED_LOGINS);
+    		PreferencesManager.setInt(context, Tedes.FAILED_LOGINS, ++i);
     		Log.d("Martin", "failedlogins: "+i);
     		Toast.makeText(context, "Failed Logins: "+i, Toast.LENGTH_LONG).show();
     	} else {
     		//Kode godkjent. Reset failedloginscounter, og inkrementer startcounter.
-    		int startcounter = PreferencesManager.getInt(context, "startcounter");
-			PreferencesManager.setInt(context, "startcounter", ++startcounter);
-    		PreferencesManager.setInt(context, "failedlogins", 0);
-    		PreferencesManager.setInt(context, "failedloginsN", 0);
+    		int startcounter = PreferencesManager.getInt(context, Tedes.START_COUNTER);
+			PreferencesManager.setInt(context, Tedes.START_COUNTER, ++startcounter);
+    		PreferencesManager.setInt(context, Tedes.FAILED_LOGINS, 0);
+    		PreferencesManager.setInt(context, Tedes.FAILED_LOGINS_ITERATOR, 0);
     		Toast.makeText(context, "login success", Toast.LENGTH_LONG).show();
     	}
     }
@@ -103,7 +109,7 @@ public class FragmentExpandableList extends Fragment
 	@Override
 	public void onLoadFinished(Loader<List<DataBolk>> arg0, List<DataBolk> data) { 
         listAdapter = new ExpandableListAdapter(getActivity(), data);
- 
+        
         //Setting list adapter
         expListView.setAdapter(listAdapter);
 		

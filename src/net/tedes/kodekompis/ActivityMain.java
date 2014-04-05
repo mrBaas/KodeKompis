@@ -26,24 +26,25 @@ public class ActivityMain extends FragmentActivity {
     private void selectActivity(){
     	
     	//FOR DEBUG PURPOSES: EVERY (Tedes.DEBUG_RESET) LOADS, RESET TO FIRST TIME USE
-    	int debugcounter = PreferencesManager.getInt(getBaseContext(), "debugcounter");
+    	int debugcounter = PreferencesManager.getInt(getBaseContext(), Tedes.DEBUG_COUNTER);
     	Toast.makeText(getBaseContext(), "debugcounter: "+debugcounter+" (reset on "+Tedes.DEBUG_RESET+")", Toast.LENGTH_LONG).show();
     	if(debugcounter > 9){
     		InternalStorage.deleteList(getBaseContext());
     		InternalStorage.deletePassword(getBaseContext());
-    		PreferencesManager.setInt(getBaseContext(), "debugcounter", 1);
-    		PreferencesManager.setInt(getBaseContext(), "startcounter", 0);
-    		PreferencesManager.setInt(getBaseContext(), "failedlogins", 0);
-    		PreferencesManager.setInt(getBaseContext(), "failedloginsN", 0);
+    		PreferencesManager.setInt(getBaseContext(), Tedes.DEBUG_COUNTER, 1);
+    		PreferencesManager.setInt(getBaseContext(), Tedes.START_COUNTER, 0);
+    		PreferencesManager.setInt(getBaseContext(), Tedes.DATABOLK_COUNTER, 0);
+    		PreferencesManager.setInt(getBaseContext(), Tedes.FAILED_LOGINS, 0);
+    		PreferencesManager.setInt(getBaseContext(), Tedes.FAILED_LOGINS_ITERATOR, 0);
     		Toast.makeText(getBaseContext(), "Debug: Reset system", Toast.LENGTH_LONG).show();
     	} else {
-    		PreferencesManager.setInt(getBaseContext(), "debugcounter", ++debugcounter);
+    		PreferencesManager.setInt(getBaseContext(), Tedes.DEBUG_COUNTER, ++debugcounter);
     	}
     	//END DEBUG PURPOSES
     	
     	
     	//Check how many times the application has been launched by correct password.
-		int startcounter = PreferencesManager.getInt(getBaseContext(), "startcounter");
+		int startcounter = PreferencesManager.getInt(getBaseContext(), Tedes.START_COUNTER);
 		Log.d("Martin", "startcounter: "+startcounter);
 		
 		if(startcounter == 0) {
@@ -54,7 +55,7 @@ public class ActivityMain extends FragmentActivity {
 			
 		} else {
 			//Check how many consecutive failed logins
-			int failedlogins = PreferencesManager.getInt(getBaseContext(), "failedlogins");
+			int failedlogins = PreferencesManager.getInt(getBaseContext(), Tedes.FAILED_LOGINS);
 			Log.d("Martin", "check failed logins on start: "+failedlogins);
 			
 			if(failedlogins >= Tedes.FAILED_LOGINS_MAX) {

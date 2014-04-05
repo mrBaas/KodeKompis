@@ -35,4 +35,20 @@ public class PreferencesManager {
 	    editor.commit();
 	}
 	
+	public static DataBolk.SortMethod getSortMethod(Context context, String prefname) {
+		SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+	    String myEnumString = prefs.getString(prefname, DataBolk.SortMethod.ADDED.toString());
+	    return DataBolk.SortMethod.toMyEnum(myEnumString);
+	}
+	
+	
+	public static void setSortMethod(Context context, String prefname, DataBolk.SortMethod myEnum) {
+		SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+	    SharedPreferences.Editor editor = settings.edit();
+	    editor.putString(prefname, myEnum.toString());
+	    editor.commit();
+	}
+
+	
+	
 }

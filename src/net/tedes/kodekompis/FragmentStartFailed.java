@@ -32,7 +32,7 @@ public class FragmentStartFailed extends Fragment {
 		mFinished = false;
 		mTextTimer = (TextView)v.findViewById(R.id.start_failed_texttimer);
 
-		n = PreferencesManager.getInt(getActivity().getBaseContext(), "failedloginsN");
+		n = PreferencesManager.getInt(getActivity().getBaseContext(), Tedes.FAILED_LOGINS_ITERATOR);
 		
 		//Add (Tedes.FAILED_LOGINS_WAIT) more seconds to wait for every round of failures.
 		timer = new CountDownTimer(Tedes.FAILED_LOGINS_WAIT*1000*(n+1), 1000) {
@@ -48,8 +48,8 @@ public class FragmentStartFailed extends Fragment {
 			     //Increment cumulative failure count, to increase penalty next time
 			     //(Do this upon successful wait, not on creation, to avoid issues with cancel.)
 			     Log.d("Martin","timer finished and failedlogins reset.");
-			     PreferencesManager.setInt(getActivity().getBaseContext(), "failedloginsN", ++n);
-			     PreferencesManager.setInt(getActivity().getBaseContext(), "failedlogins", 0);
+			     PreferencesManager.setInt(getActivity().getBaseContext(), Tedes.FAILED_LOGINS_ITERATOR, ++n);
+			     PreferencesManager.setInt(getActivity().getBaseContext(), Tedes.FAILED_LOGINS, 0);
 			     getActivity().finish();
 			 }
 			}.start();

@@ -1,8 +1,10 @@
 package net.tedes.kodekompis;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
  
+
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -64,12 +66,33 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     	return this.bolkList;
     }
     
+    public void sortDataBolkList(DataBolk.SortMethod sm){
+    	switch(sm) {
+			case ADDED:
+				Collections.sort(this.bolkList, DataBolk.COMPARE_BY_NUMBER); 
+				break;
+			case ADDED_REVERSE:
+				Collections.sort(this.bolkList, DataBolk.COMPARE_BY_NUMBER_REVERSE); 
+				break;
+			case ALPHA:
+				Collections.sort(this.bolkList, DataBolk.COMPARE_BY_STED); 
+				break;
+			case ALPHA_REVERSE:
+				Collections.sort(this.bolkList, DataBolk.COMPARE_BY_STED_REVERSE); 
+				break;
+			default:
+				break;
+    	
+    	}
+    	
+    }
+    
     @Override
     public Object getChild(int groupPosition, int childPosition) {
     	if(childPosition == 1) {
-    		return this.bolkList.get(groupPosition).getmPassord();
+    		return this.bolkList.get(groupPosition).getPassord();
     	} else {
-    		return this.bolkList.get(groupPosition).getmBrukernavn();
+    		return this.bolkList.get(groupPosition).getBrukernavn();
     	}
     }
  
@@ -130,7 +153,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
         
         int visible = isExpanded ? View.VISIBLE : View.INVISIBLE;
-        final String headerTitle = ((DataBolk)getGroup(groupPosition)).getmSted();
+        final String headerTitle = ((DataBolk)getGroup(groupPosition)).getSted();
         TextView listItemHeader = (TextView) convertView.findViewById(R.id.listitem_header);
         listItemHeader.setText(headerTitle);
         

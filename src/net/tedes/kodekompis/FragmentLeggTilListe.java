@@ -110,9 +110,9 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         
         if(existing){
         	((TextView)view.findViewById(R.id.dialog_topheader)).setText(R.string.dialog_header_edit);
-        	mSted.setText(existingBolk.getmSted());
-        	mBruker.setText(existingBolk.getmBrukernavn());
-        	mPass.setText(existingBolk.getmPassord());
+        	mSted.setText(existingBolk.getSted());
+        	mBruker.setText(existingBolk.getBrukernavn());
+        	mPass.setText(existingBolk.getPassord());
         	mLeggTil.setText(R.string.dialog_text_submit_edit);
         	ImageButton mButtonTrash = (ImageButton)view.findViewById(R.id.dialog_trash);
         	mButtonTrash.setImageResource(Tedes.ICON_TRASH);
@@ -147,12 +147,12 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         		
         	case R.id.dialog_button_legg_til:
         		if(existing) {
-        			existingBolk.setmSted(mSted.getText().toString());
-        			existingBolk.setmBrukernavn(mBruker.getText().toString());
-        			existingBolk.setmPassord(mPass.getText().toString());
+        			existingBolk.setSted(mSted.getText().toString());
+        			existingBolk.setBrukernavn(mBruker.getText().toString());
+        			existingBolk.setPassord(mPass.getText().toString());
         			mCallback.updateDataBolk(existingBolk);
         		} else {
-	        		bolken = new DataBolk(mSted.getText().toString(), mBruker.getText().toString(), mPass.getText().toString());
+	        		bolken = new DataBolk(getActivity(), mSted.getText().toString(), mBruker.getText().toString(), mPass.getText().toString());
 	        		mCallback.addDataBolk(bolken);
         		}
         		getDialog().dismiss();

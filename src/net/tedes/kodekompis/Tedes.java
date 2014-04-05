@@ -10,11 +10,23 @@ public final class Tedes {
 	public static final int ICON_PASS = R.drawable.tedes_pass;
 	public static final int ICON_TRASH = R.drawable.tedes_trash;
 	
+	//SharedPreferences id string for keeping track of number of starts before reset
+	public static final String DEBUG_COUNTER = "debugcounter";
+	
 	//How many reloads of ActivityMain will trigger reset of all important variables
 	public static final int DEBUG_RESET = 10;
 	
+	//SharedPreferences id string for keeping track of number of application starts (successful logins)
+	public static final String START_COUNTER = "startcounter";
+	
 	//Amount of failed attempts required before punishment by timer
 	public static final int FAILED_LOGINS_MAX = 3;
+	
+	//SharedPreferences id string to keep track of failed logins (out of MAX)
+	public static final String FAILED_LOGINS = "failedlogins";
+	
+	//SharedPreferences id string to keep track of how many consecutive times failedlogins reach MAX.
+	public static final String FAILED_LOGINS_ITERATOR = "failedloginsN"; 
 	
 	//Seconds to wait when failing too many times and being punished by timer
 	public static final int FAILED_LOGINS_WAIT = 30; 
@@ -23,7 +35,13 @@ public final class Tedes {
 	public static final String EXTRA_START_FIRST_TEXTSOURCE = "startfirst_textsource";
 	public static final String EXTRA_START_FIRST_IMGSOURCE = "startfirst_imgsource";
 	
-	//Name of extra arguments to pass into LeggTil dialog fragment, for editing exisiting DataBolk
+	//SharedPreferences id string to keep track of how many DataBolks added. Used only for sorting purposes, as elements may be deleted.
+	public static final String DATABOLK_COUNTER = "databolkcounter";
+	
+	//SharedPreferences id string to keep track of active sort method on list view.
+	public static final String DATABOLK_SORTING_METHOD = "dbl_sortingmethod";
+	
+	//Name of extra arguments to pass into LeggTil dialog fragment, for editing existing DataBolk
 	public static final String EXTRA_DIALOG_EDIT_DATABOLK = "dialog_edit_databolk";
 	
 	

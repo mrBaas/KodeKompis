@@ -43,10 +43,10 @@ public class CustomMainArrayAdapter extends ArrayAdapter<DataBolk> {
 		//DataBolk bolk;
 		String sted, nySted,s1,s2,s3;
 		for(int i = 0; i < bolks.size(); i++){
-			sted = bolks.get(i).getmSted();
+			sted = bolks.get(i).getSted();
 			int j = sted.length();
 			if(j < 5){
-				bolks.get(i).setmSted("****");
+				bolks.get(i).setSted("****");
 			} else {
 				s1 = sted.substring(0, 2);
 			
@@ -57,7 +57,7 @@ public class CustomMainArrayAdapter extends ArrayAdapter<DataBolk> {
 				s3 = sted.substring(j-2,j);
 				
 				nySted = s1+s2+s3;
-				bolks.get(i).setmSted(nySted);
+				bolks.get(i).setSted(nySted);
 			}
 			//bolks.get(i).setmSted("Not Available");
 		}
@@ -79,9 +79,9 @@ public class CustomMainArrayAdapter extends ArrayAdapter<DataBolk> {
 		}
 		
 		DataBolk item = getItem(position);
-		((TextView)view.findViewById(R.id.dataBolk_sted)).setText(item.getmSted());
-		((TextView)view.findViewById(R.id.dataBolk_bruker)).setText(item.getmBrukernavn());
-		((TextView)view.findViewById(R.id.dataBolk_passord)).setText(item.getmPassord());
+		((TextView)view.findViewById(R.id.dataBolk_sted)).setText(item.getSted());
+		((TextView)view.findViewById(R.id.dataBolk_bruker)).setText(item.getBrukernavn());
+		((TextView)view.findViewById(R.id.dataBolk_passord)).setText(item.getPassord());
 		
 		//saved
 		return view;
