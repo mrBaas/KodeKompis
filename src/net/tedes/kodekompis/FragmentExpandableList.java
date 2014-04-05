@@ -109,6 +109,7 @@ public class FragmentExpandableList extends Fragment
 	@Override
 	public void onLoadFinished(Loader<List<DataBolk>> arg0, List<DataBolk> data) { 
         listAdapter = new ExpandableListAdapter(getActivity(), data);
+        listAdapter.sortDataBolkList(PreferencesManager.getSortMethod(getActivity(), Tedes.DATABOLK_SORTING_METHOD));
         
         //Setting list adapter
         expListView.setAdapter(listAdapter);
