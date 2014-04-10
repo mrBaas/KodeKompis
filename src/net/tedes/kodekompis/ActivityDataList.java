@@ -13,6 +13,7 @@ public class ActivityDataList extends FragmentActivity
 					implements InterfaceBolkManager,
 							   InterfaceEditDialog {
 	
+	private Menu menu;
 	private FragmentExpandableList listFragment;
 	private String kode;
 	
@@ -52,6 +53,7 @@ public class ActivityDataList extends FragmentActivity
 	public boolean onCreateOptionsMenu(Menu menu){
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.add_input, menu);
+		this.menu = menu;
 		return super.onCreateOptionsMenu(menu);
 	}
 	
@@ -67,12 +69,17 @@ public class ActivityDataList extends FragmentActivity
 				FragmentManager fm = getSupportFragmentManager();
 				FragmentLeggTilListe leggTil = new FragmentLeggTilListe();
 			    leggTil.show(fm, "fragment_dialog_create");
+			    break;
 			case R.id.menu_sort:
 				DataBolk.SortMethod smCurr = PreferencesManager.getSortMethod(this, Tedes.DATABOLK_SORTING_METHOD);
 				DataBolk.SortMethod smNext = DataBolk.SortMethod.getNext(smCurr);
 				PreferencesManager.setSortMethod(this, Tedes.DATABOLK_SORTING_METHOD, smNext);
 				sortDataBolkList(smNext);
-				
+				menu.findItem(R.id.menu_sort).setIcon(DataBolk.SortMethod.getIcon(smNext));
+				break;
+			default:
+				//Do nothing
+				break;	
 		}
 		
 		return true;

@@ -111,6 +111,21 @@ public class DataBolk implements Serializable {
 			 }
 		 }
 		 
+		 public static int getIcon(SortMethod sm) {
+			 switch (sm) {
+			 	case ALPHA:
+			 		return Tedes.ICON_SORT_ALPHA;
+			 	case ALPHA_REVERSE:
+			 		return Tedes.ICON_SORT_ALPHA_REVERSE;
+			 	case ADDED:
+			 		return Tedes.ICON_SORT_ADDED;
+			 	case ADDED_REVERSE:
+			 		return Tedes.ICON_SORT_ADDED_REVERSE;
+			 	default:
+			 		return Tedes.ICON_SORT_ADDED;
+			 }
+		 }
+		 
 		 public static SortMethod toMyEnum (String myEnumString) {
 			 try {
 				 return valueOf(myEnumString);
@@ -119,16 +134,15 @@ public class DataBolk implements Serializable {
 				 return ADDED;
 			 }
 		 }
-		 
 	}
 	
-	public static Comparator<DataBolk> COMPARE_BY_NUMBER = new Comparator<DataBolk>() {
+	public static Comparator<DataBolk> COMPARE_BY_NUMBER_REVERSE = new Comparator<DataBolk>() {
         public int compare(DataBolk one, DataBolk other) {
             return one.mNumber - other.mNumber;
         }
     };
     
-    public static Comparator<DataBolk> COMPARE_BY_NUMBER_REVERSE = new Comparator<DataBolk>() {
+    public static Comparator<DataBolk> COMPARE_BY_NUMBER = new Comparator<DataBolk>() {
         public int compare(DataBolk one, DataBolk other) {
             return other.mNumber - one.mNumber;
         }
