@@ -35,6 +35,7 @@ public class PreferencesManager {
 	    editor.commit();
 	}
 	
+	//Returns ADDED as default sorting method, if nothing have been selected yet.
 	public static DataBolk.SortMethod getSortMethod(Context context, String prefname) {
 		SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 	    String myEnumString = prefs.getString(prefname, DataBolk.SortMethod.ADDED.toString());
