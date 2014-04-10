@@ -39,7 +39,7 @@ public class ActivityStartFirst extends FragmentActivity
 		if (mPager == null || mPager.getCurrentItem() == 0) {
 			//If looking at first slide, go back to previous activity
 			super.onBackPressed();
-		} else if(mPager.getCurrentItem() == 2){
+		} else if(mPager.getCurrentItem() == NUM_PAGES-1){
 			//If looking at last page (with code panel)
 			//treat as slettNummer() if any digits have been entered,
 			//otherwise goto previous page.
@@ -78,18 +78,23 @@ public class ActivityStartFirst extends FragmentActivity
 
 		@Override
 		public Fragment getItem(int position) {
-			switch (position){
-				case 0:
-					return FragmentStartFirstTextPage.newInstance(R.string.welcomestring1, R.drawable.code1);
-				case 1:
-					return FragmentStartFirstTextPage.newInstance(R.string.welcomestring2, 0);
-				case 2:
-					return FragmentStartFirstTextPage.newInstance(R.string.welcomestring3, 0);
-				case 3:
-					return new FragmentStartFirstCodePage();
-				default:
-					Log.e("Martin", "MainActivity PagerAdapter out of bounds. Pos: "+position);
-					throw new RuntimeException();
+			Fragment f = getRegisteredFragment(position);
+			if (f != null) {
+				return f;
+			} else {
+				switch (position){
+					case 0:
+						return FragmentStartFirstTextPage.newInstance(R.string.welcomestring1, R.drawable.code1);
+					case 1:
+						return FragmentStartFirstTextPage.newInstance(R.string.welcomestring2, 0);
+					case 2:
+						return FragmentStartFirstTextPage.newInstance(R.string.welcomestring3, 0);
+					case 3:
+						return new FragmentStartFirstCodePage();
+					default:
+						Log.e("Martin", "MainActivity PagerAdapter out of bounds. Pos: "+position);
+						throw new RuntimeException();
+				}
 			}
 
 			//Her står det en jævla kommentar.
@@ -102,30 +107,40 @@ public class ActivityStartFirst extends FragmentActivity
 
 	    @Override
 	    public Object instantiateItem(ViewGroup container, int position) {
-	        Fragment fragment = (Fragment) super.instantiateItem(container, position);
-	        registeredFragments.put(position, fragment);
-	        
-	        //Disable "previous" button on first, and "next" button on last
-	        switch (position){
-				case 0:
-					//First page
-					((FragmentStartFirstTextPage) fragment).setButtonPrevEnabled(false);
-					break;
-				case NUM_PAGES-1:
-					//Last page
-					((FragmentStartFirstCodePage) fragment).setButtonNextEnabled(false);
-					break;
-				default:
-					//Do nothing
-				}
-					
-	        return fragment;
+	    	Fragment f = getRegisteredFragment(position);
+	    	if(f != null) {
+	    		return f;
+	    	} else {
+		        Fragment fragment = (Fragment) super.instantiateItem(container, position);
+		        registeredFragments.put(position, fragment);
+		        
+		        //Disable "previous" button on first, and "next" button on last
+		        switch (position){
+					case 0:
+						//First page
+						((FragmentStartFirstTextPage) fragment).setButtonPrevEnabled(false);
+						break;
+					case NUM_PAGES-1:
+						//Last page
+						((FragmentStartFirstCodePage) fragment).setButtonNextEnabled(false);
+						break;
+					default:
+						//Do nothing
+					}
+						
+		        return fragment;
+	    	}
 	    }
 
 	    @Override
 	    public void destroyItem(ViewGroup container, int position, Object object) {
-	        registeredFragments.remove(position);
-	        super.destroyItem(container, position, object);
+	    	if(position != NUM_PAGES-1) {
+		        registeredFragments.remove(position);
+		        super.destroyItem(container, position, object);
+	    	} else {
+	    		//Do not destroy CodePage fragment just because the stupid adapter wants to.
+	    		//Alternatively save state and use it when creating another CodePage fragment
+	    	}
 	    }
 
 	    public Fragment getRegisteredFragment(int position) {

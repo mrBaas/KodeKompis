@@ -72,7 +72,7 @@ public class Fader {
 
 			@Override
 			public void onAnimationEnd(Animation arg0) {
-				v.setVisibility(View.GONE);
+				v.setVisibility(View.INVISIBLE);
 			}
 
 			@Override

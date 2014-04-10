@@ -231,12 +231,20 @@
 	        android:text="@string/welcome_button_prev"
 	        />
         <Button
+	        android:id="@+id/buttonRedo"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:padding="10dp"
+	        android:textColor="@color/eb_white"
+	        android:text="@string/welcome_button_redo"
+	        />
+        <Button
 	        android:id="@+id/buttonNext"
 	        android:layout_width="100dp"
 	        android:layout_height="wrap_content"
 	        android:padding="10dp"
 	        android:textColor="@color/eb_white"
-	        android:text="@string/welcome_button_next"
+	        android:text="@string/welcome_button_confirm"
 	        />
     </LinearLayout>
     <!-- END PREVIOUS / NEXT BUTTONS -->

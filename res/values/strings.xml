@@ -24,6 +24,7 @@
     
     <!-- MENU -->
 	<string name="legg_til">Legg til</string>
+	<string name="sort">Sorter</string>
 	<!-- END MENU -->
 	
 	<!-- DIALOG -->
@@ -42,12 +43,15 @@
 	
 	<!-- START FIRST (WELCOME SLIDER) -->
 	<string name="welcome_button_prev">Forrige</string>
+	<string name="welcome_button_redo">Start på nytt</string>
 	<string name="welcome_button_next">Neste</string>
+	<string name="welcome_button_confirm">Bekreft</string>
 	<string name="welcomestring1">Velkommen til KodeKompis!</string>
 	<string name="welcomestring2">KodeKompis er en applikasjon som hjelper deg med å holde kontroll på dine brukernavn og passord, beskyttet av en PIN-kode som du selv velger.\n\nAlle brukernavn og passord som du skriver inn blir lagret på denne enheten gjennom sikker kryptering, og kan kun leses ut i klartekst ved å bruke riktig PIN-kode ved innlogging.</string>
 	<string name="welcomestring3">På neste skjerm vil du bli spurt om å velge din PIN-kode (4 siffer) for tilgang til dine brukernavn og passord, tast samme kode to ganger etter hverandre for å bekrefte valg av kode.\n\nTips:\nVelg en kode som du vil huske; om du glemmer koden vil du ikke ha noen muligheter til å hente ut informasjonen du har lagret, og gjentatte feilede innloggingsforsøk vil straffes med økende lengde utelåsning.\nHusk at dine brukerdata ikke blir tryggere enn ditt eget valg av PIN-kode, helst unngå valg som "1234" eller "0000".</string>
 	<string name="welcome_enterfirst">Velg din PIN-kode</string>
-	<string name="welcome_entersecond">Bekreft valg ved å gjenta samme kode</string>
+	<string name="welcome_entersecond">Gjenta samme PIN-kode</string>
+	<string name="welcome_finish">Bekreft valg, eller start på nytt</string>
 	<!-- END START FIRST (WELCOME SLIDER) -->
 	
 	<!-- START FAILED (COUNTDOWNTIMER)-->

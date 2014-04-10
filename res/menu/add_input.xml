@@ -7,7 +7,7 @@
           />
     <item android:id="@+id/menu_leggtil"
           android:icon="@drawable/leggtil"
-          android:title="@string/legg_til"
+          android:title="@string/sort"
           android:showAsAction="ifRoom"
           />
 </menu>

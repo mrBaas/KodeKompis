@@ -33,7 +33,7 @@ public class FragmentStartFirstCodePage extends Fragment implements OnClickListe
 	//Callback for ActivityStartFirst,
 	//with Buttons for navigating Previous/Next in the StartFirst Slides.
 	private InterfacePageNavigator mCallback;
-	private Button bPrev, bNext;
+	private Button bPrev, bNext, bRedo;
 	private boolean bPrevEnabled = true;
 	private boolean bNextEnabled = true;
 	
@@ -91,9 +91,13 @@ public class FragmentStartFirstCodePage extends Fragment implements OnClickListe
 		
         bPrev = (Button)v.findViewById(R.id.buttonPrevious);
         bNext = (Button)v.findViewById(R.id.buttonNext);
+        bRedo = (Button)v.findViewById(R.id.buttonRedo);
         
         bPrev.setEnabled(bPrevEnabled);
         bNext.setEnabled(bNextEnabled);
+        
+        //Hide redo button until needed
+        bRedo.setVisibility(View.GONE);
         
 		//Setter lyttere på hver knapp.
 		for (ImageButton i : digits) {
@@ -104,6 +108,7 @@ public class FragmentStartFirstCodePage extends Fragment implements OnClickListe
 		
         bPrev.setOnClickListener(this);
         bNext.setOnClickListener(this);
+        bRedo.setOnClickListener(this);
 		
 		return v;
 	}
@@ -114,7 +119,22 @@ public class FragmentStartFirstCodePage extends Fragment implements OnClickListe
 	    		mCallback.pagePrevious();
 	    		break;
 	    	case R.id.buttonNext:
-	    		mCallback.pageNext();
+	    		Security.savePassword(getActivity(), kodeConfirm);
+				Intent i = new Intent(getActivity(), ActivityDataList.class);
+				i.putExtra("kode", kodeConfirm);
+				clearKode();
+				Toast.makeText(getActivity().getBaseContext(),"Kryptert kode lagret. Plain kode cleared", Toast.LENGTH_LONG).show();
+				startActivity(i);
+	    		break;
+	    	case R.id.buttonRedo:
+	    		setButtonNextEnabled(false);
+	    		Toast.makeText(getActivity().getBaseContext(), "Redo button clicked", Toast.LENGTH_LONG).show();
+				clearKode();
+				for (ImageView j : indicators) {
+					j.setImageResource(indicatorOff);
+				}
+				bRedo.setVisibility(View.GONE);
+				mTextHeader.setText(getString(R.string.welcome_enterfirst));
 	    		break;
             case R.id.inputNumber1:
          	   addNumberToTextView(1);
@@ -178,15 +198,18 @@ public class FragmentStartFirstCodePage extends Fragment implements OnClickListe
 						i.setImageResource(indicatorOff);
 					}
 					mTextHeader.setText(getString(R.string.welcome_entersecond));
+					bRedo.setVisibility(View.VISIBLE);
+					Fader.FadOut(getActivity(), slett.getId());
 					break;
 				} else {
 					if (!kodeConfirm.equals(kode)) {
 						//Finished password second time, but not equal.
-						Toast.makeText(getActivity().getBaseContext(), "failed: not equal", Toast.LENGTH_LONG).show();
+						Toast.makeText(getActivity().getBaseContext(), "Ulik kode. Prøv igjen.", Toast.LENGTH_LONG).show();
 						clearKode();
 						for (ImageView i : indicators) {
 							i.setImageResource(indicatorOff);
 						}
+						bRedo.setVisibility(View.GONE);
 						mTextHeader.setText(getString(R.string.welcome_enterfirst));
 						break;
 					}
@@ -194,12 +217,11 @@ public class FragmentStartFirstCodePage extends Fragment implements OnClickListe
 				
 				//If this point of the switch is reached, the two finished codes are equal.
 				Toast.makeText(getActivity().getBaseContext(), "success: equal", Toast.LENGTH_LONG).show();
-				Security.savePassword(getActivity(), kodeConfirm);
-				Intent i = new Intent(getActivity(), ActivityDataList.class);
-				i.putExtra("kode", kodeConfirm);
-				clearKode();
-				Toast.makeText(getActivity().getBaseContext(),"Kryptert kode lagret. Plain kode cleared", Toast.LENGTH_LONG).show();
-				startActivity(i);
+				mTextHeader.setText(getString(R.string.welcome_finish));
+				setButtonNextEnabled(true);
+				Fader.FadOut(getActivity(), slett.getId());
+				//TODO: Make happen indicate etc
+				
 				break;
 			default:
 				//This is any other digits of the code, no special behavior.
@@ -207,14 +229,16 @@ public class FragmentStartFirstCodePage extends Fragment implements OnClickListe
 	}
 	
 	public void slettNummer(){
-		int len = getKodeLength();
-		if(len > 0){
-			kode = kode.substring(0, kode.length() - 1);
-			indicators[kode.length()].setImageResource(indicatorOff);
-			if (len == 1) {
-				Fader.FadOut(getActivity(), slett.getId());
-			}
-		} 
+		if(!bNextEnabled) {
+			int len = getKodeLength();
+			if(len > 0){
+				kode = kode.substring(0, kode.length() - 1);
+				indicators[kode.length()].setImageResource(indicatorOff);
+				if (len == 1) {
+					Fader.FadOut(getActivity(), slett.getId());
+				}
+			} 
+		}
 	}
 
 	public int getKodeLength() {
@@ -222,6 +246,9 @@ public class FragmentStartFirstCodePage extends Fragment implements OnClickListe
 	}
 	
 	private void clearKode(){
+		if (slett.getVisibility() == View.VISIBLE) {
+			Fader.FadOut(getActivity(), slett.getId());
+		}
 		this.kode  = "1234567890";
 		this.kode  = "";
 		this.kodeConfirm = "1234567890";
