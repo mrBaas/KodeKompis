@@ -41,6 +41,15 @@
 	<string name="dialog_text_submit_edit">LAGRE</string>
 	<!-- END DIALOG -->
 	
+	<!-- DELETE DIALOG -->
+	<string name="dialog_delete_title">Slett element</string>
+	<string name="dialog_delete_message">Er du sikker på at du vil slette dette elementet fra listen?</string>
+	<string name="dialog_delete_cancel">AVBRYT</string>
+	<string name="dialog_delete_confirm">SLETT</string>
+	
+	
+	<!-- END DELETE DIALOG -->
+	
 	<!-- START FIRST (WELCOME SLIDER) -->
 	<string name="welcome_button_prev">Forrige</string>
 	<string name="welcome_button_redo">Start på nytt</string>
