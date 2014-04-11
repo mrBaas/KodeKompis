@@ -38,7 +38,7 @@
 	<string name="dialog_pass_hint">Fyll inn</string>
 	<string name="dialog_text_avbryt">AVBRYT</string>
 	<string name="dialog_text_legg_til">LAGRE</string>
-	<string name="dialog_text_submit_edit">LAGRE ENDRINGER</string>
+	<string name="dialog_text_submit_edit">LAGRE</string>
 	<!-- END DIALOG -->
 	
 	<!-- START FIRST (WELCOME SLIDER) -->

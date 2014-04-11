@@ -2,10 +2,19 @@
     android:id="@+id/add_dataBolk"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:layout_gravity="center"
+	android:layout_gravity="center|top"
 	android:background="@color/main_background_color"
 	>
-		
+	<ScrollView
+	    android:id="@+id/dialog_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >	
     <LinearLayout 
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -137,6 +146,7 @@
    			android:paddingLeft="5dp"
    			android:paddingRight="5dp"
 		    android:layout_marginTop="10dp"
+		    android:layout_marginBottom="10dp"
 		    android:layout_marginLeft="5dp"
 		    android:layout_marginRight="5dp"
 		    >
@@ -175,6 +185,12 @@
 		        android:singleLine="true"
 		        />
    		</LinearLayout>
+   		<Button 
+	        android:id="@+id/dialog_button_dummy"
+	        android:layout_width="120dp" 
+	        android:layout_height="wrap_content"
+	        android:visibility="invisible"
+	        />
 	</LinearLayout>
     
    	<LinearLayout 
@@ -212,4 +228,6 @@
 			android:src="@null"
 	        />
 	</LinearLayout>
+	</RelativeLayout>
+	</ScrollView>
 </RelativeLayout>

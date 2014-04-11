@@ -2,6 +2,8 @@ package net.tedes.kodekompis;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -28,7 +30,6 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
 	private Button mAvbryt;
 	private Button mLeggTil;
 	
-	private boolean existing = false;
 	private DataBolk existingBolk;
 	
 	private EditText mSted;
@@ -86,7 +87,6 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         if (getArguments() != null) {
         	DataBolk bolk = (DataBolk)getArguments().getSerializable(Tedes.EXTRA_DIALOG_EDIT_DATABOLK);
         	if(bolk != null) {
-        		this.existing 		= true;
         		this.existingBolk	= bolk;
             }
         }
@@ -100,6 +100,7 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         window.requestFeature(Window.FEATURE_NO_TITLE); 
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         
         mAvbryt  = (Button)view.findViewById(R.id.dialog_button_avbryt);
         mLeggTil = (Button)view.findViewById(R.id.dialog_button_legg_til);
@@ -108,7 +109,7 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         mBruker = (EditText)view.findViewById(R.id.dialog_input_bruker);
         mPass   = (EditText)view.findViewById(R.id.dialog_input_passord);
         
-        if(existing){
+        if(existingBolk != null){
         	((TextView)view.findViewById(R.id.dialog_topheader)).setText(R.string.dialog_header_edit);
         	mSted.setText(existingBolk.getSted());
         	mBruker.setText(existingBolk.getBrukernavn());
@@ -141,12 +142,28 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         		getDialog().dismiss();
         		break;
         	case R.id.dialog_trash:
-        		mCallback.deleteDataBolk(existingBolk);
-        		getDialog().dismiss();
+        		new AlertDialog.Builder(getActivity())
+        	    .setTitle("Slett element")
+        	    .setMessage("Er du sikker på at du vil slette dette elementet?")
+        	    .setPositiveButton("SLETT", new DialogInterface.OnClickListener() {
+        	        public void onClick(DialogInterface dialog, int which) { 
+        	            // continue with delete
+        	        	mCallback.deleteDataBolk(existingBolk);
+        	        	getDialog().dismiss();
+        	        }
+        	     })
+        	    .setNegativeButton("AVBRYT", new DialogInterface.OnClickListener() {
+        	        public void onClick(DialogInterface dialog, int which) { 
+        	            // do nothing
+        	        	//dismiss();
+        	        }
+        	     })
+        	    .setIcon(android.R.drawable.ic_dialog_alert)
+        	    .show();
         		break;
         		
         	case R.id.dialog_button_legg_til:
-        		if(existing) {
+        		if(existingBolk != null) {
         			existingBolk.setSted(mSted.getText().toString());
         			existingBolk.setBrukernavn(mBruker.getText().toString());
         			existingBolk.setPassord(mPass.getText().toString());
