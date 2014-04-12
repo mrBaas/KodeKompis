@@ -10,14 +10,14 @@ import java.io.StreamCorruptedException;
 import java.util.ArrayList;
 import android.content.Context;
 
-public final class InternalStorage {
+public final class ManageStorage {
 
-	private InternalStorage() {}
+	private ManageStorage() {}
 	private static final String FILENAME_OBJECTLIST = "tedesliste";
 	private static final String FILENAME_KODELIST = "rotliste";
 
 	public static ArrayList<DataBolk> readList(Context context, String password) {
-		ArrayList<DataBolk> bolks = Security.dekrypterListe(readListEncrypted(context), password);
+		ArrayList<DataBolk> bolks = ManageSecurity.dekrypterListe(readListEncrypted(context), password);
 		return bolks;
 	}
 	
@@ -39,7 +39,7 @@ public final class InternalStorage {
 	}
 	
 	public static void writeList(Context context, ArrayList<DataBolk> bolks, String password){
-		ArrayList<DataBolkEncrypted> bolksEncrypted = Security.krypterListe(bolks, password);
+		ArrayList<DataBolkEncrypted> bolksEncrypted = ManageSecurity.krypterListe(bolks, password);
 		writeListEncrypted(context, bolksEncrypted);
 	}
 	

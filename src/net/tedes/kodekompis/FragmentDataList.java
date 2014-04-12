@@ -23,25 +23,25 @@ public class FragmentDataList extends ListFragment implements LoaderManager.Load
 		mAdapter.addDataBolk(bolken);
 		mAdapter.notifyDataSetChanged();
 		//TODO: Make async task here maybe?
-		InternalStorage.writeList(getActivity().getBaseContext(), mAdapter.getData(), kode);
+		ManageStorage.writeList(getActivity().getBaseContext(), mAdapter.getData(), kode);
 	}
 	
     public void setKode(String kode, Context context) {
     	this.kode = kode;
     	Log.d("Martin", "setKode kode: "+kode);
-    	this.korrektKode = Security.comparePassword(context, kode);
+    	this.korrektKode = ManageSecurity.comparePassword(context, kode);
     	Log.d("Martin", "kode: "+kode+", korrektkode: "+korrektKode);
     	if(!korrektKode){
-    		int i = PreferencesManager.getInt(context, "failedlogins");
-    		PreferencesManager.setInt(context, "failedlogins", ++i);
+    		int i = ManagePreferences.getInt(context, "failedlogins");
+    		ManagePreferences.setInt(context, "failedlogins", ++i);
     		Log.d("Martin", "failedlogins: "+i);
     		Toast.makeText(context, "Failed Logins: "+i, Toast.LENGTH_LONG).show();
     	} else {
     		//Kode godkjent. Reset failedloginscounter, og inkrementer startcounter.
-    		int startcounter = PreferencesManager.getInt(context, "startcounter");
-			PreferencesManager.setInt(context, "startcounter", ++startcounter);
-    		PreferencesManager.setInt(context, "failedlogins", 0);
-    		PreferencesManager.setInt(context, "failedloginsN", 0);
+    		int startcounter = ManagePreferences.getInt(context, "startcounter");
+			ManagePreferences.setInt(context, "startcounter", ++startcounter);
+    		ManagePreferences.setInt(context, "failedlogins", 0);
+    		ManagePreferences.setInt(context, "failedloginsN", 0);
     		Toast.makeText(context, "login success", Toast.LENGTH_LONG).show();
     	}
     }

@@ -23,14 +23,14 @@ public class DataBolkEncrypted implements Serializable {
 //	}
 	
 	public DataBolkEncrypted(DataBolk bolk, String password) {
-		byte[] salt1 = Security.generateSalt();
-		byte[] salt2 = Security.generateSalt();
+		byte[] salt1 = ManageSecurity.generateSalt();
+		byte[] salt2 = ManageSecurity.generateSalt();
 		
 		this.mId 			= bolk.getId();
 		this.mSted 			= bolk.getSted();
 		this.mNumber		= bolk.getNumber();
-		this.mBrukernavn 	= Security.krypter(bolk.getBrukernavn(), Security.generateKey(password, salt1), salt1);
-		this.mPassord		= Security.krypter(bolk.getPassord(), Security.generateKey(password, salt2), salt2);
+		this.mBrukernavn 	= ManageSecurity.krypter(bolk.getBrukernavn(), ManageSecurity.generateKey(password, salt1), salt1);
+		this.mPassord		= ManageSecurity.krypter(bolk.getPassord(), ManageSecurity.generateKey(password, salt2), salt2);
 	}
 
 	public String getmSted() {

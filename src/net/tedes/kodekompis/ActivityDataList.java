@@ -40,7 +40,7 @@ public class ActivityDataList extends FragmentActivity
 	@Override
 	public void openEditDialog(DataBolk bolken) {
 		FragmentManager fm = getSupportFragmentManager();
-		boolean check = Security.comparePassword(getBaseContext(), kode);
+		boolean check = ManageSecurity.comparePassword(getBaseContext(), kode);
 		if(check){
 			FragmentLeggTilListe leggTil = FragmentLeggTilListe.editBolk(bolken);
 	        leggTil.show(fm, "fragment_dialog_create");
@@ -59,7 +59,7 @@ public class ActivityDataList extends FragmentActivity
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		boolean check = Security.comparePassword(getBaseContext(), kode);
+		boolean check = ManageSecurity.comparePassword(getBaseContext(), kode);
 		if(!check){
 			return true;
 		}
@@ -71,9 +71,9 @@ public class ActivityDataList extends FragmentActivity
 			    leggTil.show(fm, "fragment_dialog_create");
 			    break;
 			case R.id.menu_sort:
-				DataBolk.SortMethod smCurr = PreferencesManager.getSortMethod(this, Tedes.DATABOLK_SORTING_METHOD);
+				DataBolk.SortMethod smCurr = ManagePreferences.getSortMethod(this, Tedes.DATABOLK_SORTING_METHOD);
 				DataBolk.SortMethod smNext = DataBolk.SortMethod.getNext(smCurr);
-				PreferencesManager.setSortMethod(this, Tedes.DATABOLK_SORTING_METHOD, smNext);
+				ManagePreferences.setSortMethod(this, Tedes.DATABOLK_SORTING_METHOD, smNext);
 				sortDataBolkList(smNext);
 				menu.findItem(R.id.menu_sort).setIcon(DataBolk.SortMethod.getIcon(smNext));
 				break;

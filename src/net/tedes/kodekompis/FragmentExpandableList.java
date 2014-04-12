@@ -34,10 +34,10 @@ public class FragmentExpandableList extends Fragment
 	
 	public void addDataBolk(DataBolk bolken){
 		listAdapter.addDataBolk(bolken);
-		listAdapter.sortDataBolkList(PreferencesManager.getSortMethod(getActivity(), Tedes.DATABOLK_SORTING_METHOD));
+		listAdapter.sortDataBolkList(ManagePreferences.getSortMethod(getActivity(), Tedes.DATABOLK_SORTING_METHOD));
 		listAdapter.notifyDataSetChanged();
 		//TODO: Make async task here maybe?
-		InternalStorage.writeList(getActivity().getBaseContext(), (ArrayList<DataBolk>)listAdapter.getData(), kode);
+		ManageStorage.writeList(getActivity().getBaseContext(), (ArrayList<DataBolk>)listAdapter.getData(), kode);
 	}
 	
 	public void deleteDataBolk(DataBolk bolken){
@@ -45,7 +45,7 @@ public class FragmentExpandableList extends Fragment
 		listAdapter.deleteDataBolk(bolken);
 		listAdapter.notifyDataSetChanged();
 		//TODO: Make async task here maybe?
-		InternalStorage.writeList(getActivity().getBaseContext(), (ArrayList<DataBolk>)listAdapter.getData(), kode);
+		ManageStorage.writeList(getActivity().getBaseContext(), (ArrayList<DataBolk>)listAdapter.getData(), kode);
 	}
 	
 	public void sortDataBolkList(DataBolk.SortMethod sortMethod) {
@@ -57,25 +57,25 @@ public class FragmentExpandableList extends Fragment
 		listAdapter.updateDataBolk(bolken);
 		listAdapter.notifyDataSetChanged();
 		//TODO: Make async task here maybe?
-		InternalStorage.writeList(getActivity().getBaseContext(), (ArrayList<DataBolk>)listAdapter.getData(), kode);
+		ManageStorage.writeList(getActivity().getBaseContext(), (ArrayList<DataBolk>)listAdapter.getData(), kode);
 	}
 	
     public void setKode(String kode, Context context) {
     	this.kode = kode;
     	Log.d("Martin", "setKode kode: "+kode);
-    	this.korrektKode = Security.comparePassword(context, kode);
+    	this.korrektKode = ManageSecurity.comparePassword(context, kode);
     	Log.d("Martin", "kode: "+kode+", korrektkode: "+korrektKode);
     	if(!korrektKode){
-    		int i = PreferencesManager.getInt(context, Tedes.FAILED_LOGINS);
-    		PreferencesManager.setInt(context, Tedes.FAILED_LOGINS, ++i);
+    		int i = ManagePreferences.getInt(context, Tedes.FAILED_LOGINS);
+    		ManagePreferences.setInt(context, Tedes.FAILED_LOGINS, ++i);
     		Log.d("Martin", "failedlogins: "+i);
     		Toast.makeText(context, "Failed Logins: "+i, Toast.LENGTH_LONG).show();
     	} else {
     		//Kode godkjent. Reset failedloginscounter, og inkrementer startcounter.
-    		int startcounter = PreferencesManager.getInt(context, Tedes.START_COUNTER);
-			PreferencesManager.setInt(context, Tedes.START_COUNTER, ++startcounter);
-    		PreferencesManager.setInt(context, Tedes.FAILED_LOGINS, 0);
-    		PreferencesManager.setInt(context, Tedes.FAILED_LOGINS_ITERATOR, 0);
+    		int startcounter = ManagePreferences.getInt(context, Tedes.START_COUNTER);
+			ManagePreferences.setInt(context, Tedes.START_COUNTER, ++startcounter);
+    		ManagePreferences.setInt(context, Tedes.FAILED_LOGINS, 0);
+    		ManagePreferences.setInt(context, Tedes.FAILED_LOGINS_ITERATOR, 0);
     		Toast.makeText(context, "login success", Toast.LENGTH_LONG).show();
     	}
     }
@@ -154,15 +154,14 @@ public class FragmentExpandableList extends Fragment
 		
 		switch (menuItem.getItemId()) {
 			case R.id.list_contextmenu_copy_user:
-				Toast.makeText(getActivity(), "kopier bruker: " + mBruker, Toast.LENGTH_LONG).show();
-				//TODO: Implement functionality.
+				Toast.makeText(getActivity(), "Brukernavn " + mBruker + " kopiert til utklippstavle", Toast.LENGTH_LONG).show();
+				ManageClipboard.setClipboard(getActivity(), mBruker);
 				return true;
 			case R.id.list_contextmenu_copy_pass:
-				Toast.makeText(getActivity(), "kopier passord: " + mPass, Toast.LENGTH_LONG).show();
-				//TODO: Implement functionality.
+				Toast.makeText(getActivity(), "Brukernavn " + mPass + " kopiert til utklippstavle", Toast.LENGTH_LONG).show();
+				ManageClipboard.setClipboard(getActivity(), mBruker);
 				return true;
 			case R.id.list_contextmenu_edit:
-				Toast.makeText(getActivity(), "rediger: " + mSted, Toast.LENGTH_LONG).show();
 				// OKEI; DEN FETTA HER UNDER, DEN E EN SEXY HOOK! SJÅ PÅ DEN!
 				// Få adapteret tel å rop på sin aktivitet gjennom et interface, 
 				// som så opprett et parallellt fragment ferdigutfylt me informasjon herfra,
@@ -172,7 +171,7 @@ public class FragmentExpandableList extends Fragment
 				listAdapter.getCallback().openEditDialog(bolk);
 				return true;
 			case R.id.list_contextmenu_delete:
-				Toast.makeText(getActivity(), "slett: " + mSted, Toast.LENGTH_LONG).show();
+				Toast.makeText(getActivity(), "Element " + mSted + " slettet", Toast.LENGTH_LONG).show();
 				//TODO: Implement confirmation dialog.
 				deleteDataBolk(bolk);
 				return true;
@@ -190,7 +189,7 @@ public class FragmentExpandableList extends Fragment
 	@Override
 	public void onLoadFinished(Loader<List<DataBolk>> arg0, List<DataBolk> data) { 
         listAdapter = new ExpandableListAdapter(getActivity(), data);
-        listAdapter.sortDataBolkList(PreferencesManager.getSortMethod(getActivity(), Tedes.DATABOLK_SORTING_METHOD));
+        listAdapter.sortDataBolkList(ManagePreferences.getSortMethod(getActivity(), Tedes.DATABOLK_SORTING_METHOD));
         
         //Setting list adapter
         expListView.setAdapter(listAdapter);

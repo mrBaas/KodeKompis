@@ -222,10 +222,13 @@
 	    
 	    <ImageButton 
 	        android:id="@+id/dialog_trash"
-	        android:layout_width="wrap_content" 
-	        android:layout_height="wrap_content"
+	        android:layout_width="40dp" 
+	        android:layout_height="40dp"
+	        android:paddingBottom="3dp"
+	        android:scaleType="fitCenter"
+			android:adjustViewBounds="true"
 	        android:background="@null"
-			android:src="@null"
+			android:src="@drawable/tedes_trash"
 	        />
 	</LinearLayout>
 	</RelativeLayout>

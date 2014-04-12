@@ -23,8 +23,8 @@ public class DataBolk implements Serializable {
 		this.mId = UUID.randomUUID();
 		
 		//Get and increase the DataBolk counter which keeps track of how many DataBolks have been saved in total.
-		int dbc = PreferencesManager.getInt(context, Tedes.DATABOLK_COUNTER)+1;
-		PreferencesManager.setInt(context, Tedes.DATABOLK_COUNTER, dbc);
+		int dbc = ManagePreferences.getInt(context, Tedes.DATABOLK_COUNTER)+1;
+		ManagePreferences.setInt(context, Tedes.DATABOLK_COUNTER, dbc);
 		
 		this.mNumber = dbc;
 		this.mSted = sted;
@@ -37,8 +37,8 @@ public class DataBolk implements Serializable {
 		this.mId 			= bolk.getmId();
 		this.mNumber 		= bolk.getNumber();
 		this.mSted 			= bolk.getmSted();
-		this.mBrukernavn 	= Security.dekrypter(bolk.getmBrukernavn(), password);
-		this.mPassord 		= Security.dekrypter(bolk.getmPassord(), password);
+		this.mBrukernavn 	= ManageSecurity.dekrypter(bolk.getmBrukernavn(), password);
+		this.mPassord 		= ManageSecurity.dekrypter(bolk.getmPassord(), password);
 	}
 	
 	//Needed to be able to use methods for comparing DataBolk objects.

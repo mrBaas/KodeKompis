@@ -21,7 +21,7 @@ public class DataListLoader extends AsyncTaskLoader<List<DataBolk>> {
 			//Metode som laster inn data i bakgrunnen
 
 			//Hent og dekrypter data
-			ArrayList<DataBolk> entries = InternalStorage.readList(getContext(), kode);
+			ArrayList<DataBolk> entries = ManageStorage.readList(getContext(), kode);
 			
 			return entries;
 			

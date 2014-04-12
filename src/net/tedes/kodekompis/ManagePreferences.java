@@ -3,7 +3,7 @@ package net.tedes.kodekompis;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class PreferencesManager {
+public class ManagePreferences {
 
 	public static final String PREFS_NAME = "Tedespreferanser";
 	

@@ -22,7 +22,7 @@ import javax.crypto.spec.SecretKeySpec;
 import android.content.Context;
 import android.util.Base64;
 
-public class Security {
+public class ManageSecurity {
 	
 	//These final values could eventually be written to preferences upon first start.
 	private static final int SALT_BYTE_SIZE = 32;
@@ -175,12 +175,12 @@ public class Security {
 		SecretKey key = generateKey(password, salt);
 		String hash   = krypter(password, key, salt);
 		
-		InternalStorage.writeKode(context, hash);
+		ManageStorage.writeKode(context, hash);
 	}
 	
 	public static boolean comparePassword(Context context, String password) {
-		String hash = InternalStorage.readKode(context);
-		String savedPassword = Security.kodeDekrypter(hash, password);
+		String hash = ManageStorage.readKode(context);
+		String savedPassword = ManageSecurity.kodeDekrypter(hash, password);
 		if(savedPassword == null){
 			return false;
 		} else {

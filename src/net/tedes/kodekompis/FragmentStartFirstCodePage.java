@@ -119,7 +119,7 @@ public class FragmentStartFirstCodePage extends Fragment implements OnClickListe
 	    		mCallback.pagePrevious();
 	    		break;
 	    	case R.id.buttonNext:
-	    		Security.savePassword(getActivity(), kodeConfirm);
+	    		ManageSecurity.savePassword(getActivity(), kodeConfirm);
 				Intent i = new Intent(getActivity(), ActivityDataList.class);
 				i.putExtra("kode", kodeConfirm);
 				clearKode();
