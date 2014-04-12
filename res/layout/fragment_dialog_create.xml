@@ -230,6 +230,7 @@
 			android:adjustViewBounds="true"
 	        android:background="@null"
 			android:src="@drawable/tedes_trash"
+			android:visibility="gone"
 	        />
 	</LinearLayout>
 	</RelativeLayout>

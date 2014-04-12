@@ -41,6 +41,20 @@ public class DataBolk implements Serializable {
 		this.mPassord 		= ManageSecurity.dekrypter(bolk.getmPassord(), password);
 	}
 	
+	//Used for creating tutorial databolk with predefined content
+	public DataBolk(Context context) {
+		this.mId = UUID.randomUUID();
+				
+		//Get and increase the DataBolk counter which keeps track of how many DataBolks have been saved in total.
+		int dbc = ManagePreferences.getInt(context, Tedes.DATABOLK_COUNTER)+1;
+		ManagePreferences.setInt(context, Tedes.DATABOLK_COUNTER, dbc);
+		
+		this.mNumber = dbc;
+		this.mSted = context.getString(R.string.databolk_default_sted);
+		this.mBrukernavn = context.getString(R.string.databolk_default_user);
+		this.mPassord = context.getString(R.string.databolk_default_pass);
+	}
+	
 	//Needed to be able to use methods for comparing DataBolk objects.
 	public boolean equals(Object obj) {
 		if(this == obj)

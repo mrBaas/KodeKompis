@@ -16,6 +16,12 @@
     
     <!-- END DATALIST -->
     
+    <!-- DATABOLK TUTORIAL DEFAULT -->
+    <string name="databolk_default_sted">KodeKompis Eksempel</string>
+    <string name="databolk_default_user">Dette er mitt brukernavn</string>
+    <string name="databolk_default_pass">Og dette er mitt passord</string>
+    <!-- END DATABOLK TUTORIAL DEFAULT -->
+    
     <!-- DATABOLK MODELL -->
     <string name="sted_hint">URL/SYSTEM</string>
     <string name="bruker_hint">> Brukernavn</string>

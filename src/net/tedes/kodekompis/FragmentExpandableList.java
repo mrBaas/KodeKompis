@@ -26,6 +26,7 @@ public class FragmentExpandableList extends Fragment
 
 	private ExpandableListAdapter listAdapter;
     private ExpandableListView expListView;
+    private DataBolk tutorialBolk;
     	
     
 	//private CustomMainArrayAdapter mAdapter;
@@ -73,10 +74,21 @@ public class FragmentExpandableList extends Fragment
     	} else {
     		//Kode godkjent. Reset failedloginscounter, og inkrementer startcounter.
     		int startcounter = ManagePreferences.getInt(context, Tedes.START_COUNTER);
+    		
+    		if(startcounter == 0) {
+    			//First successful login, generate tutorial DataBolk
+    			tutorialBolk = new DataBolk(context);
+    			
+    		}
+    		
 			ManagePreferences.setInt(context, Tedes.START_COUNTER, ++startcounter);
     		ManagePreferences.setInt(context, Tedes.FAILED_LOGINS, 0);
     		ManagePreferences.setInt(context, Tedes.FAILED_LOGINS_ITERATOR, 0);
     		Toast.makeText(context, "login success", Toast.LENGTH_LONG).show();
+    		
+    		//Can not have loader here due to fragment possibly not attached to activity yet, somehow.
+    		//Could potentially perform some of this code in onActivityCreated instead.
+    		//getLoaderManager().initLoader(0, null, this);
     	}
     }
 	
@@ -195,8 +207,18 @@ public class FragmentExpandableList extends Fragment
 	} 
 
 	@Override
-	public void onLoadFinished(Loader<List<DataBolk>> arg0, List<DataBolk> data) { 
+	public void onLoadFinished(Loader<List<DataBolk>> arg0, List<DataBolk> data) {
+		
         listAdapter = new ExpandableListAdapter(getActivity(), data);
+        
+        //Check for tutorial databolk created on first start
+        //(Yes, I know, not the most efficient; read from memory, check, write to memory if true.
+        //But we also would like to allow the user to delete the tutorial bolk and have an empty list.)
+        //Could possibly differentiate between null and empty list object in internal storage instead.
+  		if(tutorialBolk != null) {
+  			addDataBolk(tutorialBolk);
+  		}
+        
         listAdapter.sortDataBolkList(ManagePreferences.getSortMethod(getActivity(), Tedes.DATABOLK_SORTING_METHOD));
         
         //Setting list adapter

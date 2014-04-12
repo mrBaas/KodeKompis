@@ -116,7 +116,7 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         	mPass.setText(existingBolk.getPassord());
         	mLeggTil.setText(R.string.dialog_text_submit_edit);
         	ImageButton mButtonTrash = (ImageButton)view.findViewById(R.id.dialog_trash);
-        	mButtonTrash.setImageResource(Tedes.ICON_TRASH);
+        	mButtonTrash.setVisibility(View.VISIBLE);
         	mButtonTrash.setOnClickListener(this);
         }
         
