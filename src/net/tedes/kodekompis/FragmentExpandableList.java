@@ -152,14 +152,20 @@ public class FragmentExpandableList extends Fragment
 		String mBruker = (String)listAdapter.getChild(groupPos, 0);
 		String mPass   = (String)listAdapter.getChild(groupPos, 1);
 		
+		String st1, st2;
+		
 		switch (menuItem.getItemId()) {
 			case R.id.list_contextmenu_copy_user:
-				Toast.makeText(getActivity(), "Brukernavn " + mBruker + " kopiert til utklippstavle", Toast.LENGTH_LONG).show();
+				st1 = getString(R.string.list_contextmenu_toast_copy_user);
+				st2 = getString(R.string.list_contextmenu_toast_copy_end);
+				Toast.makeText(getActivity(), st1 + mBruker + st2, Toast.LENGTH_LONG).show();
 				ManageClipboard.setClipboard(getActivity(), mBruker);
 				return true;
 			case R.id.list_contextmenu_copy_pass:
-				Toast.makeText(getActivity(), "Brukernavn " + mPass + " kopiert til utklippstavle", Toast.LENGTH_LONG).show();
-				ManageClipboard.setClipboard(getActivity(), mBruker);
+				st1 = getString(R.string.list_contextmenu_toast_copy_pass);
+				st2 = getString(R.string.list_contextmenu_toast_copy_end);
+				Toast.makeText(getActivity(), st1 + mPass + st2, Toast.LENGTH_LONG).show();
+				ManageClipboard.setClipboard(getActivity(), mPass);
 				return true;
 			case R.id.list_contextmenu_edit:
 				// OKEI; DEN FETTA HER UNDER, DEN E EN SEXY HOOK! SJÅ PÅ DEN!
@@ -171,12 +177,14 @@ public class FragmentExpandableList extends Fragment
 				listAdapter.getCallback().openEditDialog(bolk);
 				return true;
 			case R.id.list_contextmenu_delete:
-				Toast.makeText(getActivity(), "Element " + mSted + " slettet", Toast.LENGTH_LONG).show();
+				st1 = getString(R.string.list_contextmenu_toast_delete_beg);
+				st2 = getString(R.string.list_contextmenu_toast_delete_end);
+				Toast.makeText(getActivity(), st1 + mSted + st2, Toast.LENGTH_LONG).show();
 				//TODO: Implement confirmation dialog.
 				deleteDataBolk(bolk);
 				return true;
 			default:
-				Toast.makeText(getActivity(), "default", Toast.LENGTH_LONG).show();
+				Toast.makeText(getActivity(), "feil valg", Toast.LENGTH_LONG).show();
 				return super.onContextItemSelected(menuItem);
 		  }
 	}

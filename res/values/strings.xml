@@ -32,6 +32,13 @@
 	<string name="list_contextmenu_copy_pass">Kopier passord</string>
 	<string name="list_contextmenu_edit">Rediger</string>
 	<string name="list_contextmenu_delete">Slett</string>
+	
+	<!-- &#160; is nonbreaking space, to avoid trimming of space in beginning/end of string -->
+	<string name="list_contextmenu_toast_copy_user">Brukernavn&#160;</string>
+	<string name="list_contextmenu_toast_copy_pass">Passord&#160;</string>
+	<string name="list_contextmenu_toast_copy_end">&#160;kopiert til utklippstavle</string>
+	<string name="list_contextmenu_toast_delete_beg">Element&#160;</string>
+	<string name="list_contextmenu_toast_delete_end">&#160;slettet</string>
 	<!-- END LIST CONTEXTMENU -->
 	
 	<!-- DIALOG -->

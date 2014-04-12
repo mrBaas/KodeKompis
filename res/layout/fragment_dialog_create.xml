@@ -84,6 +84,7 @@
 		        android:textSize="20sp"
 		        android:hint="@string/dialog_sted_hint"
 		        android:singleLine="true"
+		        android:inputType="textCapSentences"
 		        />
 	    </LinearLayout>
 	    
