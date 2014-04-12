@@ -9,10 +9,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
 import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.Toast;
 
@@ -21,7 +26,7 @@ public class FragmentExpandableList extends Fragment
 
 	private ExpandableListAdapter listAdapter;
     private ExpandableListView expListView;
-	
+    	
     
 	//private CustomMainArrayAdapter mAdapter;
 	private String kode;
@@ -36,6 +41,7 @@ public class FragmentExpandableList extends Fragment
 	}
 	
 	public void deleteDataBolk(DataBolk bolken){
+		//TODO: Implement confirmation dialog here, rather than several other places. Return true/false on delete instead.
 		listAdapter.deleteDataBolk(bolken);
 		listAdapter.notifyDataSetChanged();
 		//TODO: Make async task here maybe?
@@ -86,6 +92,10 @@ public class FragmentExpandableList extends Fragment
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_layout_expandablelist, parent, false);
         expListView = (ExpandableListView) v.findViewById(R.id.lvExp);
+        
+        //Adding context menu for longclicks on list elements
+        registerForContextMenu(expListView);
+        
         //expListView.setItemsCanFocus(true);
  
 		return v;
@@ -101,6 +111,77 @@ public class FragmentExpandableList extends Fragment
 //		
 //	}
 
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo);
+		
+		MenuInflater inflater = getActivity().getMenuInflater();
+		inflater.inflate(R.menu.menu_list_contextmenu, menu);
+		
+		ExpandableListView.ExpandableListContextMenuInfo info =	(ExpandableListView.ExpandableListContextMenuInfo) menuInfo;
+		
+		int group = ExpandableListView.getPackedPositionGroup(info.packedPosition);
+		
+		
+		// If we want to trigger longpress only on list children, uncomment below
+//		int type  = ExpandableListView.getPackedPositionType(info.packedPosition);
+//		int child = ExpandableListView.getPackedPositionChild(info.packedPosition);
+//		if (type == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
+//			String content = (String)listAdapter.getChild(group, child);
+//			menu.setHeaderTitle(content);
+//		}
+		
+		menu.setHeaderTitle(((DataBolk)listAdapter.getGroup(group)).getSted());
+	}
+	
+	public boolean onContextItemSelected(MenuItem menuItem) {
+		ExpandableListContextMenuInfo info = (ExpandableListContextMenuInfo) menuItem.getMenuInfo();
+		
+		int groupPos = ExpandableListView.getPackedPositionGroup(info.packedPosition);
+		
+		// If we want to trigger longpress only on list children, uncomment below
+//		int groupPos = 0, childPos = 0;
+//		int type = ExpandableListView.getPackedPositionType(info.packedPosition);
+//		if (type == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
+//			groupPos = ExpandableListView.getPackedPositionGroup(info.packedPosition);
+//			childPos = ExpandableListView.getPackedPositionChild(info.packedPosition);
+//		}
+		
+		// Pull values from the adapter
+		DataBolk bolk  = (DataBolk)listAdapter.getGroup(groupPos);
+		String mSted   = (String)bolk.getSted();
+		String mBruker = (String)listAdapter.getChild(groupPos, 0);
+		String mPass   = (String)listAdapter.getChild(groupPos, 1);
+		
+		switch (menuItem.getItemId()) {
+			case R.id.list_contextmenu_copy_user:
+				Toast.makeText(getActivity(), "kopier bruker: " + mBruker, Toast.LENGTH_LONG).show();
+				//TODO: Implement functionality.
+				return true;
+			case R.id.list_contextmenu_copy_pass:
+				Toast.makeText(getActivity(), "kopier passord: " + mPass, Toast.LENGTH_LONG).show();
+				//TODO: Implement functionality.
+				return true;
+			case R.id.list_contextmenu_edit:
+				Toast.makeText(getActivity(), "rediger: " + mSted, Toast.LENGTH_LONG).show();
+				// OKEI; DEN FETTA HER UNDER, DEN E EN SEXY HOOK! SJÅ PÅ DEN!
+				// Få adapteret tel å rop på sin aktivitet gjennom et interface, 
+				// som så opprett et parallellt fragment ferdigutfylt me informasjon herfra,
+				// som e henta fra adapteret. Det nye fragmentet tar inn ny informasjon fra bruker,
+				// send det telbake tel aktivitetn, som dytt det telbake inn HIT, som så send det telbake tel
+				// adapteret. Ei linja. /benner.
+				listAdapter.getCallback().openEditDialog(bolk);
+				return true;
+			case R.id.list_contextmenu_delete:
+				Toast.makeText(getActivity(), "slett: " + mSted, Toast.LENGTH_LONG).show();
+				//TODO: Implement confirmation dialog.
+				deleteDataBolk(bolk);
+				return true;
+			default:
+				Toast.makeText(getActivity(), "default", Toast.LENGTH_LONG).show();
+				return super.onContextItemSelected(menuItem);
+		  }
+	}
+	
 	@Override
 	public Loader<List<DataBolk>> onCreateLoader(int arg0, Bundle arg1) {
 		return new DataListLoader(getActivity(), kode);

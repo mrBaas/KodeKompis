@@ -27,6 +27,13 @@
 	<string name="sort">Sorter</string>
 	<!-- END MENU -->
 	
+	<!-- LIST CONTEXTMENU -->
+	<string name="list_contextmenu_copy_user">Kopier brukernavn</string>
+	<string name="list_contextmenu_copy_pass">Kopier passord</string>
+	<string name="list_contextmenu_edit">Rediger</string>
+	<string name="list_contextmenu_delete">Slett</string>
+	<!-- END LIST CONTEXTMENU -->
+	
 	<!-- DIALOG -->
 	<string name="dialog_header">Legg til i liste</string>
 	<string name="dialog_header_edit">Endre element i liste</string>
