@@ -215,8 +215,8 @@
 	<!-- PREVIOUS / NEXT BUTTONS -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dip"
         android:layout_weight="1"
+        android:layout_height="0dp"
         android:gravity="center|bottom"
         android:orientation="horizontal"
         >
@@ -224,26 +224,34 @@
         <!-- android:src="@drawable/buttonsource" -->
         <Button
 	        android:id="@+id/buttonPrevious"
-	        android:layout_width="100dp"
+	        android:gravity="center|right"
+	        android:layout_weight="1"
+	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
-	        android:padding="10dp"
-	        android:textColor="@color/eb_white"
+	        android:paddingRight="15dp"
+	        android:background="@drawable/tedes_button_prev"
+	        android:textColor="@color/main_background_color"
 	        android:text="@string/welcome_button_prev"
 	        />
         <Button
 	        android:id="@+id/buttonRedo"
-	        android:layout_width="wrap_content"
+	        android:gravity="center"
+	        android:layout_weight="1"
+	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
-	        android:padding="10dp"
-	        android:textColor="@color/eb_white"
+	        android:background="@drawable/tedes_button_general"
+	        android:textColor="@color/main_background_color"
 	        android:text="@string/welcome_button_redo"
 	        />
         <Button
 	        android:id="@+id/buttonNext"
-	        android:layout_width="100dp"
+	        android:gravity="center|left"
+	        android:layout_weight="1"
+	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
-	        android:padding="10dp"
-	        android:textColor="@color/eb_white"
+	        android:paddingLeft="15dp"
+	        android:background="@drawable/tedes_button_next"
+	        android:textColor="@color/main_background_color"
 	        android:text="@string/welcome_button_confirm"
 	        />
     </LinearLayout>
