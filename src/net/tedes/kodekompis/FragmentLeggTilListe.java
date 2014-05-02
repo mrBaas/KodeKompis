@@ -142,24 +142,12 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         		getDialog().dismiss();
         		break;
         	case R.id.dialog_trash:
-        		//Ask for delete confirmation
-        		new AlertDialog.Builder(getActivity())
-        	    .setTitle(R.string.dialog_delete_title)
-        	    .setMessage(R.string.dialog_delete_message)
-        	    .setPositiveButton(R.string.dialog_delete_confirm, new DialogInterface.OnClickListener() {
-        	        public void onClick(DialogInterface dialog, int which) { 
-        	            //Continue with delete and close LeggTil dialog
-        	        	mCallback.deleteDataBolk(existingBolk);
-        	        	getDialog().dismiss();
-        	        }
-        	     })
-        	    .setNegativeButton(R.string.dialog_delete_cancel, new DialogInterface.OnClickListener() {
-        	        public void onClick(DialogInterface dialog, int which) { 
-        	            //Do nothing, this dialog automatically closes
-        	        }
-        	     })
-        	    .setIcon(android.R.drawable.ic_dialog_alert)
-        	    .show();
+        		boolean dels = true;
+        		//TODO: Change
+        		mCallback.deleteDataBolk(existingBolk);
+        		if(dels) {
+        	    	getDialog().dismiss();
+        		}
         		break;
         		
         	case R.id.dialog_button_legg_til:

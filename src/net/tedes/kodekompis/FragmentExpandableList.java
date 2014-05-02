@@ -3,7 +3,9 @@ package net.tedes.kodekompis;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -41,12 +43,29 @@ public class FragmentExpandableList extends Fragment
 		ManageStorage.writeList(getActivity().getBaseContext(), (ArrayList<DataBolk>)listAdapter.getData(), kode);
 	}
 	
-	public void deleteDataBolk(DataBolk bolken){
-		//TODO: Implement confirmation dialog here, rather than several other places. Return true/false on delete instead.
-		listAdapter.deleteDataBolk(bolken);
-		listAdapter.notifyDataSetChanged();
-		//TODO: Make async task here maybe?
-		ManageStorage.writeList(getActivity().getBaseContext(), (ArrayList<DataBolk>)listAdapter.getData(), kode);
+	// Opens dialog to confirm delete action. Method called from longpress on list, or trash icon in edit dialog.
+	public void deleteDataBolk(final DataBolk bolken){
+		
+		//Ask for delete confirmation
+		new AlertDialog.Builder(getActivity())
+	    .setTitle(R.string.dialog_delete_title)
+	    .setMessage(R.string.dialog_delete_message)
+	    .setPositiveButton(R.string.dialog_delete_confirm, new DialogInterface.OnClickListener() {
+	        public void onClick(DialogInterface dialog, int which) { 
+	            //Continue with delete
+	        	listAdapter.deleteDataBolk(bolken);
+	    		listAdapter.notifyDataSetChanged();
+	    		//TODO: Make async task here maybe?
+	    		ManageStorage.writeList(getActivity().getBaseContext(), (ArrayList<DataBolk>)listAdapter.getData(), kode);
+	        }
+	     })
+	    .setNegativeButton(R.string.dialog_delete_cancel, new DialogInterface.OnClickListener() {
+	        public void onClick(DialogInterface dialog, int which) { 
+	            //Do nothing, this dialog automatically closes
+	        }
+	     })
+	    .setIcon(android.R.drawable.ic_dialog_alert)
+	    .show();
 	}
 	
 	public void sortDataBolkList(DataBolk.SortMethod sortMethod) {
