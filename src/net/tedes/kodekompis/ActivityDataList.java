@@ -1,5 +1,8 @@
 package net.tedes.kodekompis;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -28,8 +31,27 @@ public class ActivityDataList extends FragmentActivity
 	}
 	
 	@Override
-	public void updateDataBolk(DataBolk bolken) {
-		listFragment.updateDataBolk(bolken);
+	public ArrayList<String> getPasswords() {
+		ArrayList<String> passwords = new ArrayList<String>();
+		for(DataBolk bolk : listFragment.getAdapter().getData()){
+			if(!passwords.contains(bolk.getPassord())) {
+				passwords.add(bolk.getPassord());
+			}
+		}
+		Collections.sort(passwords);
+		return passwords;
+	}
+
+	@Override
+	public ArrayList<String> getUsernames() {
+		ArrayList<String> usernames = new ArrayList<String>();
+		for(DataBolk bolk : listFragment.getAdapter().getData()){
+			if(!usernames.contains(bolk.getBrukernavn())) {
+				usernames.add(bolk.getBrukernavn());
+			}
+		}
+		Collections.sort(usernames);
+		return usernames;
 	}
 	
 	@Override
@@ -37,6 +59,12 @@ public class ActivityDataList extends FragmentActivity
 		listFragment.sortDataBolkList(sortMethod);
 	}
 	
+	@Override
+	public void updateDataBolk(DataBolk bolken) {
+		listFragment.updateDataBolk(bolken);
+	}
+	
+
 	@Override
 	public void openEditDialog(DataBolk bolken) {
 		FragmentManager fm = getSupportFragmentManager();
@@ -118,5 +146,4 @@ public class ActivityDataList extends FragmentActivity
 			fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
 		}
 	}
-	
 }

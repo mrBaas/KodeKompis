@@ -1,5 +1,7 @@
 package net.tedes.kodekompis;
 
+import java.util.ArrayList;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -17,6 +19,8 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -33,8 +37,8 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
 	private DataBolk existingBolk;
 	
 	private EditText mSted;
-	private EditText mBruker;
-	private EditText mPass;
+	private AutoCompleteTextView mBruker;
+	private AutoCompleteTextView mPass;
 	
 	//TextWatcher
     final TextWatcher textWatcher = new TextWatcher() {
@@ -87,7 +91,7 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         if (getArguments() != null) {
         	DataBolk bolk = (DataBolk)getArguments().getSerializable(Tedes.EXTRA_DIALOG_EDIT_DATABOLK);
         	if(bolk != null) {
-        		this.existingBolk	= bolk;
+        		this.existingBolk = bolk;
             }
         }
     }
@@ -105,10 +109,26 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         mAvbryt  = (Button)view.findViewById(R.id.dialog_button_avbryt);
         mLeggTil = (Button)view.findViewById(R.id.dialog_button_legg_til);
         
-        mSted   = (EditText)view.findViewById(R.id.dialog_input_sted);
-        mBruker = (EditText)view.findViewById(R.id.dialog_input_bruker);
-        mPass   = (EditText)view.findViewById(R.id.dialog_input_passord);
         
+        //Creating the instances of ArrayAdapter containing lists of existing unique usernames/passwords
+        ArrayList<String> userList  = mCallback.getUsernames();
+        ArrayList<String> passList = mCallback.getPasswords();
+        
+        ArrayAdapter<String> userAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_item, userList);
+        ArrayAdapter<String> passAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_item, passList);
+
+        
+        mSted   = (EditText)view.findViewById(R.id.dialog_input_sted);
+        
+        mBruker = (AutoCompleteTextView)view.findViewById(R.id.dialog_input_bruker);
+        mBruker.setThreshold(1);
+        mBruker.setAdapter(userAdapter);
+        
+        mPass   = (AutoCompleteTextView)view.findViewById(R.id.dialog_input_passord);
+        mPass.setThreshold(1);
+        mPass.setAdapter(passAdapter);
+        
+        //If the dialog opens an existing bolk for editing, prefill the edittext fields.
         if(existingBolk != null){
         	((TextView)view.findViewById(R.id.dialog_topheader)).setText(R.string.dialog_header_edit);
         	mSted.setText(existingBolk.getSted());
