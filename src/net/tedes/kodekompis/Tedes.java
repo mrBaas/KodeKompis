@@ -9,7 +9,7 @@ public final class Tedes {
 	public static final int ICON_STED = R.drawable.tedes_sted;
 	public static final int ICON_USER = R.drawable.tedes_user;
 	public static final int ICON_PASS = R.drawable.tedes_pass;
-	public static final int ICON_TRASH = R.drawable.tedes_trash;
+	public static final int ICON_TRASH = R.drawable.tedes_button_trash;
 	
 	public static final int ICON_SORT_ALPHA = R.drawable.tedes_sort_alpha;
 	public static final int ICON_SORT_ALPHA_REVERSE = R.drawable.tedes_sort_alpha_rev;
