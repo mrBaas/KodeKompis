@@ -162,12 +162,9 @@ public class FragmentLeggTilListe extends DialogFragment implements OnClickListe
         		getDialog().dismiss();
         		break;
         	case R.id.dialog_trash:
-        		boolean dels = true;
-        		//TODO: Change
         		mCallback.deleteDataBolk(existingBolk);
-        		if(dels) {
-        	    	getDialog().dismiss();
-        		}
+        		//Dialog is ansynch, cannot wait for answer to know whether to close or not, without "overcomplicating" it with callbacks.
+        	    getDialog().dismiss();
         		break;
         		
         	case R.id.dialog_button_legg_til:

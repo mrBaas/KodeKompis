@@ -1,227 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/main_background_color"
-    android:orientation="vertical" 
-    >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:background="@color/main_background_color">
 	
-    <!-- HEADER -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-        <TextView
-	        android:id="@+id/welcome_header"
-	        android:layout_width="match_parent"
-	        android:layout_height="match_parent"
-	        android:textSize="20sp"
-	        android:textColor="@color/eb_white"
-	        android:textStyle="bold"
-	        android:gravity="center"
-	        android:text="@string/welcome_enterfirst"
-	         />
-        
-    </LinearLayout>
-    <!-- END HEADER -->
-
-
-<!-- PIN INDICATORS -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        >
-        
-        <ImageView
-	        android:id="@+id/indicator1"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:background="@null"
-	        android:src="@android:drawable/presence_invisible"
-	        android:padding="10dp" />
-        
-        <ImageView
-	        android:id="@+id/indicator2"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:background="@null"
-	        android:src="@android:drawable/presence_invisible"
-	        android:padding="10dp" />
-        
-        <ImageView
-	        android:id="@+id/indicator3"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:background="@null"
-	        android:src="@android:drawable/presence_invisible"
-	        android:padding="10dp" />
-	        
-		<ImageView
-	        android:id="@+id/indicator4"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:background="@null"
-	        android:src="@android:drawable/presence_invisible"
-	        android:padding="10dp" />
-        
-    </LinearLayout>
-    <!-- END PIN INDICATORS -->
-
-	<!-- NUMMER RAD 1 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        >
-        
-        <ImageButton
-	        android:id="@+id/inputNumber1"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:background="@null"
-	        android:src="@drawable/code1"
-	        android:padding="10dp"
-	         />
-        
-        <ImageButton
-	        android:id="@+id/inputNumber2"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:background="@null"
-	        android:src="@drawable/code2"
-	        android:padding="10dp" />
-        
-        <ImageButton
-	        android:id="@+id/inputNumber3"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:background="@null"
-	        android:src="@drawable/code3"
-	        android:padding="10dp" />
-        
-    </LinearLayout>
-    <!-- END NUMMER RAD 1 -->
-    
-    
-    <!-- NUMMER RAD 2 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        >
-        
-        <ImageButton
-	        android:id="@+id/inputNumber4"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:background="@null"
-	        android:src="@drawable/code4"
-	        android:padding="10dp" />
-        
-        <ImageButton
-	        android:id="@+id/inputNumber5"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:background="@null"
-	        android:src="@drawable/code5" 
-	        android:padding="10dp"/>
-        
-        <ImageButton
-	        android:id="@+id/inputNumber6"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:background="@null"
-	        android:src="@drawable/code6" 
-	        android:padding="10dp"/>
-        
-    </LinearLayout>
-    <!-- END NUMMER RAD 2 -->
-    
-    
-    <!-- NUMMER RAD 3 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        >
-        
-        <ImageButton
-	        android:id="@+id/inputNumber7"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:background="@null"
-	        android:src="@drawable/code7"
-	        android:padding="10dp" />
-        
-        <ImageButton
-	        android:id="@+id/inputNumber8"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:background="@null"
-	        android:src="@drawable/code8"
-	        android:padding="10dp" />
-        
-        <ImageButton
-	        android:id="@+id/inputNumber9"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:background="@null"
-	        android:src="@drawable/code9"
-	        android:padding="10dp" />
-        
-    </LinearLayout>
-    <!-- END NUMMER RAD 3 -->
-    
-    
-    <!-- NUMMER RAD 4 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        >
-        
-        <ImageView
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:background="@null"
-	        android:src="@drawable/whitespace"
-	        android:padding="10dp" />
-        
-        <ImageButton
-	        android:id="@+id/inputNumber0"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:background="@null"
-	        android:src="@drawable/code0"
-	        android:padding="10dp" />
-        
-        <ImageButton
-	        android:id="@+id/slett"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:background="@null"
-	        android:src="@drawable/slett"
-	        android:padding="10dp" />
-        
-    </LinearLayout>
-	<!-- END NUMMER RAD 4 -->
-
 	<!-- PREVIOUS / NEXT BUTTONS -->
     <LinearLayout
+		android:id="@+id/buttons"
         android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="0dp"
-        android:gravity="center|bottom"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        >
-        
-        <!-- android:src="@drawable/buttonsource" -->
+        android:gravity="center"
+        android:layout_alignParentBottom="true">
         <Button
 	        android:id="@+id/buttonPrevious"
 	        android:gravity="center|right"
@@ -231,8 +21,7 @@
 	        android:paddingRight="15dp"
 	        android:background="@drawable/tedes_button_prev"
 	        android:textColor="@color/main_background_color"
-	        android:text="@string/welcome_button_prev"
-	        />
+	        android:text="@string/welcome_button_prev"/>
         <Button
 	        android:id="@+id/buttonRedo"
 	        android:gravity="center"
@@ -241,8 +30,7 @@
 	        android:layout_height="wrap_content"
 	        android:background="@drawable/tedes_button_general"
 	        android:textColor="@color/main_background_color"
-	        android:text="@string/welcome_button_redo"
-	        />
+	        android:text="@string/welcome_button_redo"/>
         <Button
 	        android:id="@+id/buttonNext"
 	        android:gravity="center|left"
@@ -252,9 +40,202 @@
 	        android:paddingLeft="15dp"
 	        android:background="@drawable/tedes_button_next"
 	        android:textColor="@color/main_background_color"
-	        android:text="@string/welcome_button_confirm"
-	        />
+	        android:text="@string/welcome_button_confirm"/>
     </LinearLayout>
     <!-- END PREVIOUS / NEXT BUTTONS -->
+    
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_above="@id/buttons"
+	    android:background="@color/main_background_color"
+	    android:orientation="vertical">
+	
+	    <!-- HEADER -->
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content">
+	        <TextView
+		        android:id="@+id/welcome_header"
+		        android:layout_width="match_parent"
+		        android:layout_height="match_parent"
+		        android:textSize="20sp"
+		        android:textColor="@color/eb_white"
+		        android:textStyle="bold"
+		        android:gravity="center"
+		        android:text="@string/welcome_enterfirst"/>
+	    </LinearLayout>
+	    <!-- END HEADER -->
 
-</LinearLayout>
+		<!-- PIN INDICATORS -->
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:gravity="center">
+	        <ImageView
+		        android:id="@+id/indicator1"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:background="@null"
+		        android:src="@android:drawable/presence_invisible"
+		        android:padding="10dp"/>
+	        <ImageView
+		        android:id="@+id/indicator2"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:background="@null"
+		        android:src="@android:drawable/presence_invisible"
+		        android:padding="10dp"/>
+	        <ImageView
+		        android:id="@+id/indicator3"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:background="@null"
+		        android:src="@android:drawable/presence_invisible"
+		        android:padding="10dp"/>
+			<ImageView
+		        android:id="@+id/indicator4"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:background="@null"
+		        android:src="@android:drawable/presence_invisible"
+		        android:padding="10dp"/>
+	    </LinearLayout>
+	    <!-- END PIN INDICATORS -->
+
+		<ScrollView
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:background="@color/main_background_color">
+			
+			<!--Scrollable content here-->
+			<LinearLayout
+				android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+	
+				<!-- NUMMER RAD 1 -->
+			    <LinearLayout
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:orientation="horizontal"
+			        android:gravity="center">
+			        <ImageButton
+				        android:id="@+id/inputNumber1"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:background="@null"
+				        android:src="@drawable/code1"
+				        android:padding="10dp"/>
+			        <ImageButton
+				        android:id="@+id/inputNumber2"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:background="@null"
+				        android:src="@drawable/code2"
+				        android:padding="10dp"/>
+			        <ImageButton
+				        android:id="@+id/inputNumber3"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:background="@null"
+				        android:src="@drawable/code3"
+				        android:padding="10dp"/>
+			    </LinearLayout>
+			    <!-- END NUMMER RAD 1 -->
+	    
+			    <!-- NUMMER RAD 2 -->
+			    <LinearLayout
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:orientation="horizontal"
+			        android:gravity="center">
+			        <ImageButton
+				        android:id="@+id/inputNumber4"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:background="@null"
+				        android:src="@drawable/code4"
+				        android:padding="10dp"/>
+			        <ImageButton
+				        android:id="@+id/inputNumber5"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:background="@null"
+				        android:src="@drawable/code5" 
+				        android:padding="10dp"/>
+			        <ImageButton
+				        android:id="@+id/inputNumber6"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:background="@null"
+				        android:src="@drawable/code6" 
+				        android:padding="10dp"/>
+			    </LinearLayout>
+			    <!-- END NUMMER RAD 2 -->
+			    
+			    <!-- NUMMER RAD 3 -->
+			    <LinearLayout
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:orientation="horizontal"
+			        android:gravity="center">
+			        <ImageButton
+				        android:id="@+id/inputNumber7"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:background="@null"
+				        android:src="@drawable/code7"
+				        android:padding="10dp"/>
+			        <ImageButton
+				        android:id="@+id/inputNumber8"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:background="@null"
+				        android:src="@drawable/code8"
+				        android:padding="10dp"/>
+			        <ImageButton
+				        android:id="@+id/inputNumber9"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:background="@null"
+				        android:src="@drawable/code9"
+				        android:padding="10dp"/>
+			    </LinearLayout>
+			    <!-- END NUMMER RAD 3 -->
+			    
+			    <!-- NUMMER RAD 4 -->
+			    <LinearLayout
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:orientation="horizontal"
+			        android:gravity="center">
+			        <ImageView
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:background="@null"
+				        android:src="@drawable/whitespace"
+				        android:padding="10dp"/>
+			        <ImageButton
+				        android:id="@+id/inputNumber0"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:background="@null"
+				        android:src="@drawable/code0"
+				        android:padding="10dp" />
+			        <ImageButton
+				        android:id="@+id/slett"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:background="@null"
+				        android:src="@drawable/slett"
+				        android:padding="10dp"/>
+			    </LinearLayout>
+				<!-- END NUMMER RAD 4 -->
+	
+			</LinearLayout>
+		</ScrollView>
+	</LinearLayout>
+</RelativeLayout>
